@@ -1,0 +1,920 @@
+[
+  {
+    "_meta": {
+      "id": "gh_chip_turner",
+      "filename": "gh_9ca65e_Profile__35_.pdf",
+      "difficulty": "hard",
+      "challenges": ["minimal_content", "linkedin_format", "no_skills_section"]
+    },
+    "full_name": "Chip Turner",
+    "email": "chipturn2@gmail.com",
+    "phone": null,
+    "location": "Boston",
+    "linkedin_url": "linkedin.com/in/chip-turner-33b318a9",
+    "github_url": null,
+    "current_title": "Real Estate Professional",
+    "current_company": null,
+    "summary": null,
+    "skills": [],
+    "certifications": [],
+    "experience": [
+      {
+        "title": "Real Estate",
+        "company": null,
+        "start_date": "2010",
+        "end_date": "2014",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": []
+  },
+  {
+    "_meta": {
+      "id": "gh_kate_burnetes",
+      "filename": "gh_49090e_kateburneresgh.pdf",
+      "difficulty": "medium",
+      "challenges": ["10_pages", "redacted_company_names", "dense_skills_matrix", "template_format"]
+    },
+    "full_name": "Kate Burnetes",
+    "email": "kevin.johnson@caylent.com",
+    "phone": null,
+    "location": "India",
+    "linkedin_url": null,
+    "github_url": null,
+    "current_title": "Member Of Technical Staff - DevOps",
+    "current_company": null,
+    "summary": "9+ Years of experience in designing and implementation of DevOps solutions. Expert in DevOps, production engineering, operations and automation. Expert in designing highly scalable solutions on cloud platforms.",
+    "skills": [
+      "Red Hat Linux", "Debian", "FreeBSD", "Ubuntu",
+      "Chef", "Puppet", "Cfengine",
+      "AWS", "CloudFormation", "OpsWorks", "RDS", "R53", "VPC", "Elasticache",
+      "Openstack", "Nova", "Cinder", "Glance", "Neutron", "keystone",
+      "Perl", "Python", "Ruby", "Bash Shell Scripting", "Awk",
+      "Memcahed", "Redis",
+      "Cassandra",
+      "TCP-IP", "Network Security", "VPN", "DNS", "Routing", "Switching",
+      "AWS ELB", "HA proxy", "Veritas Cluster server", "Inifiband",
+      "MySQL", "Postgres",
+      "Nagios", "PagerDuty integration", "Graphite", "Thousandeyes", "Newrelic",
+      "Apache", "Nginx",
+      "Jenkins", "Cloudbolt",
+      "VMware ESX", "VMware Vsphere", "XEN", "Vbox", "KVM",
+      "DHCP", "Linux/Unix Security", "LVM", "VxVM", "RAID",
+      "SAN", "NetApp Filer", "NFS", "CIFS",
+      "Solr", "Spark", "ELK Stack",
+      "Qube", "Muster",
+      "Syslog", "Logstash", "Fluentd"
+    ],
+    "certifications": [
+      "Cisco Certified Network Associate (CCNA)",
+      "Red Hat Certified Engineer (RHCE)",
+      "NetApp ONTAP",
+      "Isilon OneFS",
+      "Red Hat Enterprise Linux",
+      "DSE Cassandra",
+      "Chef",
+      "Isilon Storage",
+      "NetApp Storage NAS & SAN"
+    ],
+    "experience": [
+      {
+        "title": "Member Of Technical Staff - DevOps",
+        "company": null,
+        "start_date": "March 2014",
+        "end_date": null,
+        "duration_months": null,
+        "description": "Configuring & Managing High Available Cloud based Wi-Fi/Network management with fully automated LINUX infrastructure. Providing Infrastructure as a Service. Jenkins Continuous Deployment.",
+        "achievements": [
+          "Deployed Cassandra & Kairoas db in AWS VPC & Interconnecting VPCs by IPSec",
+          "Configuring/Managing OpenStack Private Cloud Linux Servers",
+          "Managing Aruba GitHub Organization (Version Control)",
+          "Configuring and Managing Elasticsearch ELK Stack",
+          "Single Click Code Deploy to Production Env"
+        ]
+      },
+      {
+        "title": "Senior Systems Engineer - Infrastructure Automation",
+        "company": null,
+        "start_date": "July 2010",
+        "end_date": "March 2014",
+        "duration_months": null,
+        "description": "Automating Code Rollout in QA and Prod Env. Providing Infrastructure as a Service.",
+        "achievements": [
+          "Managing NetApp Storage, EMC Isilon Storage, HP MSA & DAS",
+          "Built VMware ESXi Servers and Provisioned Virtual Instance to Production",
+          "Deployed Network IDS (Snort)"
+        ]
+      },
+      {
+        "title": "Systems Engineer - Infrastructure",
+        "company": null,
+        "start_date": "June 2006",
+        "end_date": "June 2010",
+        "duration_months": null,
+        "description": "Automating Infrastructure. Managing Provision Servers (Cobbler) & Cfengine. Tool development.",
+        "achievements": [
+          "Built 6 Node Isilon Storage and Provisioned 10TB Storage",
+          "Worked with NetApp PSE & Built Two Node NetApp FAS3040 Cluster and Provisioned 30TB Storage"
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.E.",
+        "field_of_study": "Computer Science & Engg",
+        "school": "A.M.S. College of Engg. (Anna University)",
+        "graduation_year": 2005
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "gh_perry_d",
+      "filename": "gh_de251e_Perry_D.pdf",
+      "difficulty": "medium",
+      "challenges": ["linkedin_format", "abbreviated_name", "greenhouse_activity_noise", "no_education"]
+    },
+    "full_name": "Perry D.",
+    "email": null,
+    "phone": null,
+    "location": "Washington DC-Baltimore Area",
+    "linkedin_url": "linkedin.com/in/perry-d-025ba216b",
+    "github_url": null,
+    "current_title": "DevOps Architect",
+    "current_company": "Anthem, Inc.",
+    "summary": null,
+    "skills": [
+      "Amazon Web Services (AWS)",
+      "DevOps",
+      "Ansible"
+    ],
+    "certifications": [],
+    "experience": [
+      {
+        "title": "DevOps Architect",
+        "company": "Anthem, Inc.",
+        "start_date": "July 2020",
+        "end_date": null,
+        "duration_months": null,
+        "description": "Working as part of Anthem Digital Cloud Support team to help implement a service driven, competitive organizational process based on DevOps/ITIL principles.",
+        "achievements": []
+      },
+      {
+        "title": "DevOps SME",
+        "company": "Brierley and Partners",
+        "start_date": "April 2020",
+        "end_date": "July 2020",
+        "duration_months": null,
+        "description": "Worked on behalf of Quentelli Inc to assess Brierley's DevOps needs and design practices that accelerate the pace of digital transformation",
+        "achievements": []
+      },
+      {
+        "title": "DevOps Architect/ Operations Manager",
+        "company": "Electronic Arts (EA)",
+        "start_date": "May 2019",
+        "end_date": "April 2020",
+        "duration_months": null,
+        "description": "Leading a team of cross-functional support team (Big Data and AI professionals from various Big Data streams) to implement a service driven, competitive organization model based on DevOps/ITIL principles.",
+        "achievements": []
+      },
+      {
+        "title": "DevOps Architect",
+        "company": "Lazard Frères & Co. LLC",
+        "start_date": "December 2018",
+        "end_date": "April 2019",
+        "duration_months": null,
+        "description": "Working as part of Contino DevOps group with a team of subject matter experts to identify and document current business and technical requirements for CI/CD Tool Suite which includes creating a reference architecture that addresses Lazard requirements to implement these tools; and to develop a project plan for such implementation using Infrastructure as Code (IaC) tools like Terraform, Ansible and CloudFormation.",
+        "achievements": []
+      },
+      {
+        "title": "DevOps Architect",
+        "company": "Domino's",
+        "start_date": "January 2018",
+        "end_date": "November 2018",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": []
+  },
+  {
+    "_meta": {
+      "id": "gh_yasser_i",
+      "filename": "gh_ebee7e_Yasser_I.pdf",
+      "difficulty": "hard",
+      "challenges": ["bilingual_spanish_english", "spanish_section_headers", "spanish_dates", "abbreviated_name", "greenhouse_activity_noise"]
+    },
+    "full_name": "Yasser I.",
+    "email": null,
+    "phone": null,
+    "location": "Estados Unidos",
+    "linkedin_url": "linkedin.com/in/yisam",
+    "github_url": null,
+    "current_title": "Senior DevOps Engineer",
+    "current_company": "Globant",
+    "summary": "I'm a Computer Engineering specialized in SRE/DevOps. I like to work with Open Source technologies and Cloud solutions, my philosophy is building agnostic systems using design patterns with good practices about Software Engineer. I've worked with many teams in retail, television, greeting card, government and bank/insurance",
+    "skills": [
+      "Kubernetes",
+      "DevOps",
+      "Terraform"
+    ],
+    "certifications": [
+      "M102: MongoDB for DBAs",
+      "Google Cloud Certified - Professional Cloud Architect",
+      "AWS Certified Solutions Architect - Professional",
+      "Evaluación de Decisiones Estratégicas"
+    ],
+    "experience": [
+      {
+        "title": "Senior DevOps Engineer",
+        "company": "Globant",
+        "start_date": "septiembre de 2020",
+        "end_date": null,
+        "duration_months": null,
+        "description": "Senior DevOps Engineer at Hallmark Labs",
+        "achievements": []
+      },
+      {
+        "title": "DevOps Lead",
+        "company": "Consorcio",
+        "start_date": "octubre de 2019",
+        "end_date": "agosto de 2020",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "DevOps Consultant",
+        "company": "Multicaja S.A.",
+        "start_date": "julio de 2019",
+        "end_date": "enero de 2020",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Site Reliability Engineering - DevOps Engineer",
+        "company": "Walmart",
+        "start_date": "marzo de 2019",
+        "end_date": "octubre de 2019",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Site Reliability Engineering en División de Gobierno Digital",
+        "company": "Gobierno Digital Chile",
+        "start_date": "agosto de 2015",
+        "end_date": "marzo de 2019",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Sysadmin",
+        "company": "Wivo Analytics | Analítica de Retail",
+        "start_date": "marzo de 2015",
+        "end_date": "agosto de 2015",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "CEO y Fundador de la Start-Up",
+        "company": "Yumsys Informática",
+        "start_date": "agosto de 2012",
+        "end_date": "marzo de 2015",
+        "duration_months": null,
+        "description": "Yumsys Informática was a Start-Up dedicated to the IT field, specializing in the development of Full-Stack projects mainly in the cloud. I was responsible for implementing and maintaining systems, ensuring the high availability of information and above all the security of the systems",
+        "achievements": []
+      },
+      {
+        "title": "Teaching assistant of the subject Object Oriented Programming",
+        "company": "Universidad San Sebastian",
+        "start_date": "agosto de 2013",
+        "end_date": "diciembre de 2013",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Assistant Professor of the subject Area Experiencial",
+        "company": "Universidad San Sebastian",
+        "start_date": "marzo de 2011",
+        "end_date": "diciembre de 2011",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Teaching assistant of the subject Information technology",
+        "company": "Universidad San Sebastian",
+        "start_date": "marzo de 2011",
+        "end_date": "julio de 2011",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "Computer Engineering",
+        "field_of_study": null,
+        "school": "Universidad San Sebastián",
+        "graduation_year": 2014
+      },
+      {
+        "degree": "Web programming workshop",
+        "field_of_study": null,
+        "school": "Universidad San Sebastián",
+        "graduation_year": 2011
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "gh_david_nwanguma",
+      "filename": "gh_426f50_Mr_David_Resume.pdf",
+      "difficulty": "medium",
+      "challenges": ["images_in_pdf", "non_traditional_education", "checkmark_formatting", "international_location"]
+    },
+    "full_name": "David Olumati Nwanguma",
+    "email": "nwangumado@gmail.com",
+    "phone": "+971585102940",
+    "location": "UAE",
+    "linkedin_url": null,
+    "github_url": null,
+    "current_title": "DevOps Engineer (Freelance)",
+    "current_company": "GNI FZ LLE",
+    "summary": "DevOps engineer with 3+ years of experience managing infrastructure for applications with millions of users. I focus on scalability and performance and have helped save a lot of funds by reducing infrastructure costs while improving performance.",
+    "skills": [
+      "AWS Cloud Services",
+      "CI/CD",
+      "Jenkins",
+      "Chef",
+      "Puppet",
+      "Git",
+      "Docker",
+      "Bash",
+      "Ubuntu",
+      "Centos",
+      "PowerShell"
+    ],
+    "certifications": [
+      "Devops Engineer Data Service Group USA",
+      "Red Hat System Admin Data Service Group USA",
+      "AWS Cloud Engineer Data Service Group USA",
+      "Linux Administrator Data Service Group USA",
+      "System Analyst Data Service Group USA",
+      "Quality Management System- (ISO 9001:2015 QMS- Lead Auditor)",
+      "Document Control",
+      "Professional Certificate in Health, Safely and Environment (HSE General and Advanced Level. HSE 1, 2, and 3.)",
+      "Medic First Aid, AED and CPR"
+    ],
+    "experience": [
+      {
+        "title": "DevOps Engineer (Freelance)",
+        "company": "GNI FZ LLE",
+        "start_date": "2019",
+        "end_date": null,
+        "duration_months": null,
+        "description": "Providing DevOps, CI/CD, code reliability testing, and other development services for clients.",
+        "achievements": [
+          "Deploy script to implement a CI/CD process that reduced the time to deploy from hours to minute.",
+          "Shifted operations from a puppet environment to a more modern Docker-based service architecture",
+          "Saving the company lots of money by leading a transition from GCP to AWS which improved performance as well as saved a lot of money",
+          "Led the architecture transition from a single monolithic app into microservices using Docker Containers and implemented APIs to interact with each microservices"
+        ]
+      },
+      {
+        "title": "Linux System Admin / Visa Consultant",
+        "company": "Satguru Travels and tourism",
+        "start_date": "2018",
+        "end_date": "2019",
+        "duration_months": null,
+        "description": "evaluate hardware and software to determine the best design and configuration for the production environment in which they are employed.",
+        "achievements": [
+          "Identify and Resolve System Issues",
+          "Maintain the System",
+          "write documentation that will help system users and the systems administration team to utilize the system efficiently and effectively."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "Bachelor's Degree",
+        "field_of_study": "Music and Entrepreneurship",
+        "school": "Nnamdi Azikiwe University",
+        "graduation_year": 2016
+      },
+      {
+        "degree": "National Examination Council",
+        "field_of_study": null,
+        "school": "Community Secondary School Igbo Etche",
+        "graduation_year": 2006
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "gh_reginaldo_oliveira",
+      "filename": "gh_02c08f_Resume_Reginaldo_1_.pdf",
+      "difficulty": "easy",
+      "challenges": ["international_name", "skills_grouped_by_experience", "arrow_bullet_characters"]
+    },
+    "full_name": "Reginaldo Batista de Oliveira",
+    "email": "reginaldobo@gmail.com",
+    "phone": "+55 15 996826615",
+    "location": "São Paulo, Brazil",
+    "linkedin_url": "linkedin.com/in/reginaldo-devops",
+    "github_url": null,
+    "current_title": "DevOps Engineer",
+    "current_company": "Gamers Club",
+    "summary": null,
+    "skills": [
+      "Servers", "Storages", "Unix", "Linux", "Bash Scripts", "ITIL",
+      "AWS", "VPC", "EC2", "S3", "RDS", "IAM", "Route53", "Git", "Docker Container",
+      "Code Build", "Code Pipeline", "ECS", "MongoDB", "Cloud Formation",
+      "Ansible", "Rundeck", "PostgreSQL", "Elasticsearch", "Rancher"
+    ],
+    "certifications": [
+      "AWS Solutions Architect - Professional",
+      "AWS SysOps Administrator - Associate",
+      "AWS Solutions Architect - Associate",
+      "ITIL v3 Foundation",
+      "COBIT 4.1 Foundation",
+      "IT Service Management Foundation (ISO/IEC 20000)",
+      "Information Security Foundation (ISO/IEC 27002)"
+    ],
+    "experience": [
+      {
+        "title": "DevOps Engineer",
+        "company": "Gamers Club",
+        "start_date": "jan/2020",
+        "end_date": null,
+        "duration_months": null,
+        "description": "Gamers Club is the biggest eSports platform on latin america.",
+        "achievements": [
+          "Migrate several Docker Container applications to Docker Swarm and kubernetes (EKS).",
+          "Leveraged Rundeck, Bash Scripts and Jenkins to automate tasks and maximize productivity.",
+          "Implemented monitoring for some environments using Pingdom, Graylog, Prometheus and Grafana.",
+          "Created several AWS environments with terraform."
+        ]
+      },
+      {
+        "title": "DevOps Engineer",
+        "company": "Diebold Nixdorf",
+        "start_date": "apr/2018",
+        "end_date": "jan/2020",
+        "duration_months": null,
+        "description": "Diebold Nixdorf employs approximately 25,000 employees in more than 130 countries.",
+        "achievements": [
+          "Implemented Docker Container orchestration with Kubernetes (EKS) and AWS Elastic Container Service.",
+          "Leveraged Ansible, Rundeck, Bash Scripts and Python to automate tasks and maximize productivity.",
+          "Created a MongoDB Replication with 3 nodes to maintain application high-availability."
+        ]
+      },
+      {
+        "title": "DevOps Engineer",
+        "company": "Linte",
+        "start_date": "aug/2017",
+        "end_date": "apr/2018",
+        "duration_months": null,
+        "description": "Linte is a legaltech startup of document automation and data management.",
+        "achievements": [
+          "Implement Docker Container orchestration with AWS Elastic Container Service.",
+          "Implement Continuous Integration/Continuous Deployment with AWS CodeBuild and AWS CodePipeline."
+        ]
+      },
+      {
+        "title": "Cloud Solutions Architect",
+        "company": "OTG",
+        "start_date": "jun/2016",
+        "end_date": "jul/2017",
+        "duration_months": null,
+        "description": "OTG is a pioneer in servicing and support services for multi vendor servers and storage units for critical mission in Brazil.",
+        "achievements": [
+          "Helped clients to migrate their workload to AWS using CloudVelox Solutions, include databases and applications."
+        ]
+      },
+      {
+        "title": "IT Support/NOC Coordinator",
+        "company": "OTG",
+        "start_date": "sep/2007",
+        "end_date": "jun/2016",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "IT Support Analyst",
+        "company": "OTG",
+        "start_date": "sep/2003",
+        "end_date": "aug/2007",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Developer",
+        "company": "MPS Informática",
+        "start_date": "sep/2000",
+        "end_date": "aug/2003",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Developer Intern",
+        "company": "Celepar",
+        "start_date": "jan/2000",
+        "end_date": "aug/2000",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "MBA",
+        "field_of_study": "Project Management",
+        "school": "Anhanguera Educacional",
+        "graduation_year": 2009
+      },
+      {
+        "degree": "B.Sc.",
+        "field_of_study": "Computer Science",
+        "school": "Universidade Federal do Paraná",
+        "graduation_year": 2003
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "gh_sarwar_chowdhury",
+      "filename": "gh_f2f409_Profile_207_.pdf",
+      "difficulty": "easy",
+      "challenges": ["linkedin_format"]
+    },
+    "full_name": "Sarwar Chowdhury",
+    "email": "chowdhurysarwar@gmail.com",
+    "phone": null,
+    "location": "Dallas-Fort Worth Metroplex",
+    "linkedin_url": "linkedin.com/in/sarwar-chowdhury",
+    "github_url": null,
+    "current_title": "DevOps Tech Lead",
+    "current_company": "Accenture",
+    "summary": "Experienced consultant with a track record of implementing large scale Enterprise Integration projects. Skilled in Oracle SOA Suite, Oracle Service Bus (OSB), Spring Boot Microservices, and containerization.",
+    "skills": [
+      "SOA",
+      "ESB",
+      "Weblogic"
+    ],
+    "certifications": [
+      "AWS Certified Developer – Associate",
+      "AWS Certified Solutions Architect – Associate",
+      "AWS Certified SysOps Administrator – Associate",
+      "HashiCorp Certified Terraform Associate",
+      "Oracle SOA Suite 11g Certified Implementation Specialist"
+    ],
+    "experience": [
+      {
+        "title": "DevOps Tech Lead",
+        "company": "Accenture",
+        "start_date": "July 2012",
+        "end_date": null,
+        "duration_months": null,
+        "description": "DevOps using Docker, Chef, Jenkins, GitLab and Nexus. Leveraging SonarQube and IQ Server. Large scale enterprise integration using Oracle SOA Suite, Oracle Service Bus (OSB) and Spring Boot Microservices.",
+        "achievements": []
+      },
+      {
+        "title": "Software Engineer",
+        "company": "Pearson Education",
+        "start_date": "November 2010",
+        "end_date": "July 2012",
+        "duration_months": null,
+        "description": "Worked in a fast paced agile development environment.",
+        "achievements": [
+          "Designed and developed SOA Composite in Oracle SOA Suite using BPEL, Mediator",
+          "Developed Acceptance Test Driven Development(ATDD) framework for SOA Composites using Cucumber and SOA Mock Services",
+          "Build and continuous integration using Maven and Hudson"
+        ]
+      },
+      {
+        "title": "Software Engineer",
+        "company": "eDominate",
+        "start_date": "January 2009",
+        "end_date": "November 2010",
+        "duration_months": null,
+        "description": "Web Application development using Java, Spring Framework",
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "Master's Degree",
+        "field_of_study": "Computer Science",
+        "school": "Arizona State University",
+        "graduation_year": 2010
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "gh_pablo_valentino",
+      "filename": "gh_1b9b02_Pablo_Valentino__1_.pdf",
+      "difficulty": "hard",
+      "challenges": ["6_pages", "bilingual_spanish_english", "spanish_dates", "images_in_pdf", "large_file", "no_education_listed"]
+    },
+    "full_name": "Pablo Valentino",
+    "email": "pabloaval@gmail.com",
+    "phone": "+5491133853093",
+    "location": "Argentina",
+    "linkedin_url": "linkedin.com/in/pabloaval",
+    "github_url": null,
+    "current_title": "Systems Coordinator",
+    "current_company": "The Walt Disney Company",
+    "summary": "I am a person who is constantly growing, looking for new knowledge to contribute to the team where I work. I adapt easily to all kinds of work ecosystems and changes. I seek to offer potential and learning capacity in a dynamic team, with a view to the future, which allows me to grow professionally. Here are some of my knowledge: Cloud Specialist. DevOps. High availability. AWS. Azure. Networking. Specialties: Cloud Computing. Cloud Web Services / On Premise. Support.",
+    "skills": [
+      "Amazon Web Servies",
+      "DevOps",
+      "Cloud Computing"
+    ],
+    "certifications": [],
+    "experience": [
+      {
+        "title": "Systems Coordinator",
+        "company": "The Walt Disney Company",
+        "start_date": "marzo de 2019",
+        "end_date": null,
+        "duration_months": null,
+        "description": null,
+        "achievements": [
+          "AWS Cloud Engineer",
+          "Azure Cloud Engineer",
+          "Observability: NewRelic - Zabbix - Nagios - ELK.",
+          "Cloud Governance Assessments: DNS management, domain registration, security certificates",
+          "Web Services Migrations: On Premise --> Cloud (AWS | Azure | Rackspace Cloud)",
+          "Scalability and resilience of Web platforms with audiences greater than 500k of concurrent users",
+          "Monitoring Plans for a system with an availability of 99.999%"
+        ]
+      },
+      {
+        "title": "Systems Coordinator",
+        "company": "Fox Networks Group - Latin America",
+        "start_date": "marzo de 2013",
+        "end_date": "marzo de 2019",
+        "duration_months": null,
+        "description": null,
+        "achievements": [
+          "AWS Cloud Engineer",
+          "Web Services Migrations: On Premise --> Cloud (AWS | Azure | Rackspace Cloud)",
+          "Construction of ecosystems of high availability and automatic scaling",
+          "Scalability and resilience of Web platforms with audiences greater than 500k of concurrent users"
+        ]
+      },
+      {
+        "title": "Sr. Systems Administrator",
+        "company": "Drogueria Progen S.A.",
+        "start_date": "marzo de 2012",
+        "end_date": "marzo de 2013",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Sr. Systems Administrator",
+        "company": "Formatos Eficientes (Supermercados Eki)",
+        "start_date": "julio de 2011",
+        "end_date": "marzo de 2012",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Sr. Systems Coordinator | Support Coordinator",
+        "company": "Boldt S.A.",
+        "start_date": "noviembre de 2010",
+        "end_date": "julio de 2011",
+        "duration_months": null,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Regional Administrator",
+        "company": "ACE Group",
+        "start_date": "junio de 2010",
+        "end_date": "noviembre de 2010",
+        "duration_months": null,
+        "description": "Management of nine countries (Argentina, Chile, Brazil, Peru, Colombia, Ecuador, Puerto Rico, Panama, Mexico).",
+        "achievements": []
+      },
+      {
+        "title": "Systems Operator",
+        "company": "Edenor",
+        "start_date": "enero de 2010",
+        "end_date": "junio de 2010",
+        "duration_months": null,
+        "description": "Windows server administration. Execution of Nexus processes on Netware platforms.",
+        "achievements": []
+      },
+      {
+        "title": "Sr. Systems Administrator",
+        "company": "Softtek",
+        "start_date": "noviembre de 2008",
+        "end_date": "julio de 2009",
+        "duration_months": null,
+        "description": "On site technical support level 1, 2 and 3. Windows Server Administration.",
+        "achievements": []
+      },
+      {
+        "title": "Technical Support",
+        "company": "Price Waterhouse Coopers",
+        "start_date": "diciembre de 2006",
+        "end_date": "noviembre de 2008",
+        "duration_months": null,
+        "description": "On Site technical support, level 1 and 2. Massive user management (more than 1800 employees).",
+        "achievements": []
+      }
+    ],
+    "education": []
+  },
+  {
+    "_meta": {
+      "id": "gh_franco_agnello",
+      "filename": "gh_e52d85_Franco_Jesús_Agnello_-_Curriculum_Vitae.pdf",
+      "difficulty": "hard",
+      "challenges": ["entirely_spanish", "no_tech_experience", "student_cv", "images_in_pdf", "non_standard_format"]
+    },
+    "full_name": "Franco Jesús Agnello",
+    "email": "francoagnello18@gmail.com",
+    "phone": "261-273-3014",
+    "location": null,
+    "linkedin_url": null,
+    "github_url": null,
+    "current_title": null,
+    "current_company": null,
+    "summary": null,
+    "skills": [],
+    "certifications": [],
+    "experience": [
+      {
+        "title": "Mozo",
+        "company": "Finca Don Gino",
+        "start_date": "2017",
+        "end_date": "2017",
+        "duration_months": null,
+        "description": "Mis responsabilidades eran atender a los invitados, siendo amable y estar al servicio permanentemente de ellos.",
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "Tecnicatura Superior",
+        "field_of_study": "Análisis y Programación de Sistemas",
+        "school": "Instituto de Educación Superior 9-008 Manuel Belgrano",
+        "graduation_year": null
+      },
+      {
+        "degree": "Curso de Reparación de Computadoras",
+        "field_of_study": null,
+        "school": "Colegio Don Bosco",
+        "graduation_year": 2017
+      },
+      {
+        "degree": null,
+        "field_of_study": null,
+        "school": "Colegio Sagrada Familia",
+        "graduation_year": 2016
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "gh_mario_avila",
+      "filename": "gh_16e095_CV_MAR_A4.pdf",
+      "difficulty": "medium",
+      "challenges": ["images_in_pdf", "security_focused", "international_education", "no_skills_section"]
+    },
+    "full_name": "Mario Ávila",
+    "email": "ingeniero.avila@hotmail.com",
+    "phone": "+57 3166908631",
+    "location": "Colombia",
+    "linkedin_url": "@avila82",
+    "github_url": null,
+    "current_title": "Cloud Security Architect | Consultant",
+    "current_company": "MI AGUILA",
+    "summary": "My workstyle is collaborative. Deploying new technologies in business environments, adding value, and creating trusting relationships with technology partners and final customers. Over my 13+ years of experience working in Latin America, I have had the opportunity to work closely with public and private customers, channel partners and cloud-based cybersecurity top vendors.",
+    "skills": [],
+    "certifications": [
+      "CCNA",
+      "CSSP",
+      "CCSA",
+      "CSSE",
+      "RSA Certified",
+      "TrendMicro Certified",
+      "CyberArk Certified",
+      "MS Azure Funds",
+      "AWS Certified Cloud Practitioner",
+      "AWS Architect Associate Certified",
+      "AWS Certified Security - Specialty"
+    ],
+    "experience": [
+      {
+        "title": "Cloud Security Architect",
+        "company": "MI AGUILA",
+        "start_date": "March 2021",
+        "end_date": null,
+        "duration_months": null,
+        "description": "Technical leadership for the Sec team (DevSecOps/Sec Analyst), working collaboratively with another Tech Leads in the team (Back, DevOps, Front, QA, Data). Hands-on experience in cloud providers (AWS, Azure) with focus on security services.",
+        "achievements": [
+          "Contribute with security team to address compliance requisites and security controls based on IT sec standards, benchmarks, and best practices for cloud services adoption.",
+          "Assess and reviews IT configurations from a security perspective using RT intelligence to prevent/detect/response security threats"
+        ]
+      },
+      {
+        "title": "Regional Security Specialist/Senior Sales Engineer LATAM",
+        "company": "Licencias Online",
+        "start_date": "April 2014",
+        "end_date": "Sept 2020",
+        "duration_months": null,
+        "description": "Technical focal point for selected vendors in assigned cybersecurity project evaluations across Latin America.",
+        "achievements": [
+          "Experience on deployment cloud/on-premises top security vendor solutions as Imperva, CyberArk and Forcepoint techs for customer/partners.",
+          "Hands-on experience designing, configuring and/or developing proof of concepts in security solutions for customers cloud platforms (AWS/Azure)"
+        ]
+      },
+      {
+        "title": "Presales Engineer SOLA",
+        "company": "Licencias Online",
+        "start_date": "Nov 2012",
+        "end_date": "April 2014",
+        "duration_months": null,
+        "description": "Presales activities on cybersecurity projects with channel partners.",
+        "achievements": []
+      },
+      {
+        "title": "Presales Engineer",
+        "company": "Novared/ETEK ARG",
+        "start_date": "March 2012",
+        "end_date": "Nov 2013",
+        "duration_months": null,
+        "description": "Delivered PoVs, PoCs, demos, and sizing for customers.",
+        "achievements": []
+      },
+      {
+        "title": "Senior Support Engineer",
+        "company": "Novared/ETEK ARG",
+        "start_date": "March 2011",
+        "end_date": "March 2012",
+        "duration_months": null,
+        "description": "Senior support and implementation of technologies such as Check Point, Nokia appliances, McAfee and Fortinet for customers",
+        "achievements": []
+      },
+      {
+        "title": "Support Engineer Level II",
+        "company": "ETEK International Holding Corp COL",
+        "start_date": "March 2010",
+        "end_date": "Jan 2011",
+        "duration_months": null,
+        "description": "Support Level II and implementation of technologies as Check Point-Nokia, Cisco ASA, IBM Assuria and Websense for customers",
+        "achievements": []
+      },
+      {
+        "title": "Helpdesk Support Level I",
+        "company": "ETEK International Holding Corp COL",
+        "start_date": "June 2009",
+        "end_date": "March 2010",
+        "duration_months": null,
+        "description": "Support Level I and implementation of technologies as Check Point-Nokia, Cisco ASA, IBM Assuria and Websense for customers.",
+        "achievements": []
+      },
+      {
+        "title": "Network and Security Administrator",
+        "company": "Arolen S.A.",
+        "start_date": "May 2008",
+        "end_date": "June 2009",
+        "duration_months": null,
+        "description": "On-site support and administration engineer for Registraduría del Estado Civil - RNEC",
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "Master of Information Security",
+        "field_of_study": null,
+        "school": "Universidad de Buenos Aires",
+        "graduation_year": 2014
+      },
+      {
+        "degree": "Electronic Engineer",
+        "field_of_study": null,
+        "school": "Universidad del Norte",
+        "graduation_year": 2008
+      }
+    ]
+  }
+]

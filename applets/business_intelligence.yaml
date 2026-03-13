@@ -1,0 +1,22 @@
+applet: business_intelligence
+display_name: "Business Intelligence"
+description: "BI and analyst workflows."
+depends_on:
+  - data_connections
+
+routes:
+  - business_intelligence
+  - data_analyst
+  - search
+
+tasks:
+  - business_intelligence_tasks
+  - data_analyst_tasks
+
+services: []
+models: []
+flows: []
+pages:
+  - data-analyst
+migration_tags:
+  - bi

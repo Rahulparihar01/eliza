@@ -1,0 +1,20 @@
+applet: content
+display_name: "Content Apps"
+description: "Content writer, research, and SOW automation."
+
+routes:
+  - content_writer
+  - content_research
+  - sow
+
+tasks:
+  - content_writer_tasks
+
+services: []
+models: []
+flows: []
+pages:
+  - content-research
+  - sow
+migration_tags:
+  - content

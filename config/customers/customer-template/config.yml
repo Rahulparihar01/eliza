@@ -1,0 +1,74 @@
+customer_id: "CUSTOMER_ID_PLACEHOLDER"
+customer_name: "Customer Name Placeholder"
+created_at: "2024-01-01T00:00:00Z"
+updated_at: "2024-01-01T00:00:00Z"
+
+branding:
+  company_name: "Customer Company Name"
+  logo_url: null
+  primary_color: "#2F6BFF"
+  secondary_color: "#8B5CF6"
+  custom_css: null
+
+data_sources:
+  - name: "HR System"
+    type: "hr"
+    enabled: true
+    connection_config:
+      format: "csv"  # csv, json, api
+      file_path: "/app/data/hr/"
+    chunking_strategy: "semantic"
+    qa_rag_enabled: false
+  
+  - name: "Financial Data"
+    type: "financial"
+    enabled: true
+    connection_config:
+      format: "xlsx"
+      file_path: "/app/data/financial/"
+    chunking_strategy: "fixed"
+    qa_rag_enabled: false
+  
+  - name: "Documents"
+    type: "documents"
+    enabled: true
+    connection_config:
+      formats: ["pdf", "docx", "txt"]
+      file_path: "/app/data/documents/"
+    chunking_strategy: "hierarchical"
+    qa_rag_enabled: true
+
+model_config:
+  default_provider: "openai"
+  models:
+    intent_analysis: "gpt-4o-mini"
+    context_enrichment: "gpt-4o"
+    prompt_generation: "gpt-4o"
+    embeddings: "text-embedding-3-small"
+  fallback_providers:
+    - "anthropic"
+    - "groq"
+
+security_config:
+  jwt_secret_key: "CHANGE_THIS_SECRET_KEY"
+  session_timeout_minutes: 60
+  max_login_attempts: 5
+  require_2fa: false
+  allowed_domains: []
+
+business_rules:
+  departments:
+    - "Sales"
+    - "Marketing"
+    - "Engineering"
+    - "HR"
+    - "Finance"
+    - "Operations"
+  roles:
+    - "Employee"
+    - "Manager"
+    - "Director"
+    - "VP"
+    - "C-Level"
+  custom_analysis_rules: {}
+  roi_calculation_method: "realistic"

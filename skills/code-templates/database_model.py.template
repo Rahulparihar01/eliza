@@ -1,0 +1,179 @@
+# ============================================================
+# DATABASE MODEL TEMPLATE
+# ============================================================
+# 
+# Usage:
+#   1. Copy this file to src/models/[feature_name].py
+#   2. Replace all [PLACEHOLDERS] with actual values
+#   3. Create corresponding migration
+#   4. Register model in src/models/__init__.py if needed
+#
+# Skill Reference: skills/database-migrations/DATABASE_MIGRATION_GUIDE.md
+# ============================================================
+
+"""
+[FEATURE_NAME] Database Models
+
+SQLAlchemy models for [describe what these models represent].
+"""
+from sqlalchemy import Column, Integer, String, Text, Float, DateTime, ForeignKey, Boolean
+from sqlalchemy.dialects.postgresql import JSON
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
+from enum import Enum
+
+from src.models.database import BaseModel, Base
+
+
+# ============================================================
+# ENUMS
+# ============================================================
+class [Feature]Status(str, Enum):
+    """Status values for [Feature]."""
+    PENDING = "pending"
+    PROCESSING = "processing"
+    COMPLETED = "completed"
+    FAILED = "failed"
+
+
+class [Feature]EventType(str, Enum):
+    """Event types for telemetry."""
+    STARTED = "started"
+    PROGRESS = "progress"
+    AGENT_STARTED = "agent_started"
+    AGENT_COMPLETED = "agent_completed"
+    TOOL_CALLED = "tool_called"
+    ERROR = "error"
+    COMPLETED = "completed"
+
+
+# ============================================================
+# MAIN MODEL
+# ============================================================
+class [Feature](BaseModel):
+    """
+    Main [feature] model.
+    
+    Inherits from BaseModel: id, created_at, updated_at
+    """
+    __tablename__ = "[feature_table_name]"
+    
+    # Unique identifier (UUID or similar)
+    [feature]_id = Column(String(100), unique=True, nullable=False, index=True)
+    
+    # Multi-tenant isolation (REQUIRED)
+    customer_id = Column(
+        String(100), 
+        ForeignKey("customers.customer_id"), 
+        nullable=False, 
+        index=True
+    )
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    
+    # Core fields
+    name = Column(String(255), nullable=False)
+    description = Column(Text, nullable=True)
+    
+    # Status tracking
+    status = Column(String(50), nullable=False, default=[Feature]Status.PENDING.value)
+    error_message = Column(Text, nullable=True)
+    
+    # Configuration/input (JSON for flexibility)
+    config = Column(JSON, nullable=True)
+    
+    # Results (JSON for flexibility)
+    result = Column(JSON, nullable=True)
+    
+    # Metrics
+    progress_percentage = Column(Float, default=0)
+    items_processed = Column(Integer, default=0)
+    
+    # Timing
+    started_at = Column(DateTime(timezone=True), nullable=True)
+    completed_at = Column(DateTime(timezone=True), nullable=True)
+    
+    # Celery task tracking
+    task_id = Column(String(100), nullable=True, index=True)
+    
+    # Relationships
+    events = relationship(
+        "[Feature]Event",
+        back_populates="[feature]",
+        cascade="all, delete-orphan",
+        lazy="dynamic"
+    )
+    customer = relationship("Customer")
+    user = relationship("User")
+
+
+# ============================================================
+# EVENTS/TELEMETRY MODEL (for SSE streaming)
+# ============================================================
+class [Feature]Event(Base):  # Note: Base, not BaseModel (custom schema)
+    """
+    Event/telemetry model for tracking [feature] progress.
+    
+    Used for SSE streaming to frontend.
+    """
+    __tablename__ = "[feature]_events"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    [feature]_id = Column(
+        String(100),
+        ForeignKey("[feature_table_name].[feature]_id", ondelete="CASCADE"),
+        nullable=False,
+        index=True
+    )
+    
+    # Event details
+    event_type = Column(String(50), nullable=False)
+    agent_name = Column(String(100), nullable=True)
+    tool_name = Column(String(100), nullable=True)
+    stage_name = Column(String(100), nullable=True)
+    
+    # Messages
+    message = Column(Text, nullable=True)  # Internal message
+    user_message = Column(Text, nullable=True)  # User-friendly message
+    
+    # Progress
+    progress_percentage = Column(Float, nullable=True)
+    
+    # Data payload
+    data = Column(JSON, nullable=True)
+    error_details = Column(JSON, nullable=True)
+    
+    # Timing
+    duration_ms = Column(Integer, nullable=True)
+    timestamp = Column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        nullable=False,
+        index=True
+    )
+    
+    # Relationship
+    [feature] = relationship("[Feature]", back_populates="events")
+
+
+# ============================================================
+# IMPORTANT: If table lacks updated_at, override it
+# ============================================================
+"""
+# If your migration doesn't include updated_at column:
+
+class [Feature](BaseModel):
+    __tablename__ = "[feature_table_name]"
+    
+    # Override to exclude inherited column
+    updated_at = None
+    
+    # ... rest of columns
+"""
+
+
+# ============================================================
+# MIGRATION TEMPLATE (save to alembic/versions/)
+# ============================================================
+"""
+See: skills/code-templates/migration.py.template
+"""

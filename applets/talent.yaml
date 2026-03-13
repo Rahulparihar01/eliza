@@ -1,0 +1,31 @@
+applet: talent
+display_name: "Talent Intelligence"
+description: "Talent sourcing, scoring, and feedback workflows."
+
+routes:
+  - talent
+  - talent_matching
+  - ml_talent
+  - talent_feedback
+  - talent_config
+  - hr
+  - compliance
+  - candidate_feedback
+  - reference_checks
+  - reference_check_webhooks
+  - linkedin_enrichment
+  - outreach
+  - email_templates
+  - analysis_config
+
+tasks:
+  - talent_tasks
+
+services: []
+models: []
+flows: []
+pages:
+  - talent-intelligence
+  - reference-checks
+migration_tags:
+  - talent

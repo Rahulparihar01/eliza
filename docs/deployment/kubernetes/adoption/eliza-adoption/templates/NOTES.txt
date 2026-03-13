@@ -1,0 +1,34 @@
+===========================================================
+  ELIZA Accelerate - Adoption Analytics
+===========================================================
+
+The platform is deploying. The app container runs database
+migrations on first boot, which takes 1-2 minutes.
+
+1. Watch the app pod become ready:
+
+   kubectl get pods -l app.kubernetes.io/component=app -w
+
+2. Once ready, access the platform:
+{{- if .Values.ingress.enabled }}
+{{- range .Values.ingress.hosts }}
+
+   https://{{ .host }}
+{{- end }}
+{{- else }}
+
+   kubectl port-forward svc/{{ include "eliza.fullname" . }}-frontend 3000:80
+   open http://localhost:3000
+{{- end }}
+
+3. Log in with the admin credentials you configured.
+
+4. Configure adoption sync:
+   Admin Settings > AI Providers > Add OpenAI provider
+   (requires a Compliance API key with compliance_export scope)
+
+5. After first successful boot, disable tenant initialization:
+
+   helm upgrade {{ .Release.Name }} . --set app.initTenant=false
+
+===========================================================

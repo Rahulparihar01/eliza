@@ -1,0 +1,204 @@
+Got it—here’s a best-in-class, engineer-ready design that fuses Docling’s new Granite VLM with the strongest ideas from chunking, RAG, query expansion, and knowledge graphs. I’ll keep it practical and testable, while citing the key sources that inform each design choice.
+
+VLM → DocTags → Semantic-Graph RAG (SG-RAG)
+0) Why this architecture
+
+Granite-Docling 258M gives you accurate, layout-aware conversion (incl. scans) in one pass, emitting DocTags/HTML that preserve structure and coordinates—ideal for downstream indexing. 
+
+
+Retrieval quality jumps when you add hierarchical summaries (RAPTOR), graph-structured context (GraphRAG), and query/document expansion (HyDE / doc2query)—and then gate/reflect with Self-RAG and contextual retrieval. 
+
+1) Ingestion & Parsing (Docling + Granite VLM)
+
+Goal: lossless, layout-aware text/tables/figures with coordinates + logical blocks.
+
+Parse every file via Docling VlmPipeline with Granite-Docling as the model; request DocTags (preferred) or HTML. CLI: docling --pipeline vlm file.pdf. Programmatic options support local/remote backends (LM Studio/Ollama/vLLM). 
+
+
+Granite-Docling/SmolDocling are end-to-end VLMs (OCR + layout + tables/code) trained for document conversion; DocTags are first-class in Docling’s toolkit. 
+
+
+Why: You get table cells, headers, footers, multi-column sections, figure captions, etc., as structured nodes, which dramatically improves chunking and graph extraction later. 
+
+
+2) Structure-Aware Nodeization (Chunking that respects layout)
+
+Goal: produce semantically coherent “nodes” with boundaries that follow the document’s natural structure.
+
+Primary split: Use DocTags blocks (section → paragraph/list/table/code/figure) as atomic units.
+
+Adaptive merge/split:
+
+Build a hierarchy (doc → section → block) and recursively merge short neighboring blocks; split long blocks by discourse cues (headings, list items, table rows) rather than fixed tokens.
+
+Add a RAPTOR layer: recursively cluster nodes and synthesize summaries at each level (node→section-summary→doc-summary), storing the tree for multi-level recall. 
+
+Reality check: purely semantic chunking is not always worth the extra cost; this design keeps semantics because the layout already gives us boundaries, and uses hierarchical summaries for recall instead of over-splitting. 
+
+
+(Optional, frontier): evaluate Chunking-Free In-Context Retrieval (CFIC) on ultra-long PDFs; it bypasses chunking by retrieving evidence from hidden states, but treat as experimental. 
+
+3) Dual (Tri) Indexing with Multimodal awareness
+
+Goal: robust retrieval under varied queries.
+
+Lexical index: BM25/ELASTIC for exact terms, code symbols, citations. (BEIR shows BM25 is a strong baseline.) 
+
+
+Dense index: instruction-tuned embeddings (e.g., E5, Jina v3). Keep query/document instructions (task prompts) to match training. 
+
+
+Multimodal vectors (optional): for pages/figures/screenshots, add a multimodal embedding column (e.g., Voyage-MM) to retrieve figure-heavy content. 
+
+
+Reranking: cross-encoder reranker (MS-MARCO MiniLM L6 or stronger) over top-K mixed candidates; two-stage rerank (text-only then multimodal if the query references figures). Reranking is consistently state-of-the-art in BEIR-style setups. 
+
+
+4) Knowledge Graph Extraction (for “global” sensemaking & precise joins)
+
+Goal: build a light entity–relation graph to support global and compositional questions.
+
+Pipeline:
+
+NER & coref with spaCy (domain model if available);
+
+Relation prompts via spacy-llm or a compact LLM to extract triples (subject–predicate–object) from DocTags nodes (carry page/section ids).
+
+Store as property graph (Neo4j/Memgraph) with edges back to node ids + coordinates. 
+
+
+GraphRAG layer: build communities over the entity graph; pregenerate community summaries tied to source spans. This drastically helps “global” questions and narrative sensemaking over large corpora. 
+
+
+Notes: LLM-augmented KG construction is viable but benefits from human-in-the-loop quality checks; start narrow with a domain schema. 
+
+5) Document-Side Enrichment (once, at index time)
+
+Goal: make chunks easier to retrieve.
+
+Doc-expansion (doc2query / docTTTTTquery): generate likely questions/queries for each node and append them to the node’s hidden “expansion” field (indexed but not shown). This reduces term mismatch in first-stage retrieval. 
+
+Q&A synthesis: for each node, synthesize 1–3 high-precision QA pairs whose answers are exact spans in the node; store as metadata and index the questions alongside the node. (Use clinical/finance variations if domain-specific.) 
+
+Hierarchy roll-ups: attach the RAPTOR section/doc summaries as parent nodes, with backlinks. 
+
+6) Query-Time Intelligence (augment & route before retrieval)
+
+Goal: boost recall without polluting context.
+
+Query expansion: run HyDE (generate a short hypothetical answer / passage → embed → retrieve) in parallel with the raw query path; union the candidate sets. 
+
+Contextual Retrieval (Anthropic): compute Contextual Embeddings (prepend minimal task/user context) + Contextual BM25 (expand with salient terms); reduces failed retrievals substantially. 
+
+Graph entry point: map entities in the query → fetch neighboring communities’ pre-summaries (GraphRAG) → treat them as pseudo-documents in the candidate pool. 
+
+Long-context routing: if the query is “global” or needs cross-section synthesis, promote RAPTOR parent summaries and (optionally) LongRAG retrieval units (4k-token windows) to avoid over-fragmentation. 
+
+Self-RAG gating: before stuffing context, ask the model (once) “do I need retrieval?” and “which slices look irrelevant?”; prune aggressively. 
+
+7) Answer Synthesis & Attribution
+
+Build a final context from: top reranked nodes, their justifying spans, and figure/table crops where cited.
+
+For global answers, aggregate community partials (GraphRAG) → final synthesis; include span-level citations with page/coordinates for trust. 
+
+8) Evaluation & Ablations (baked-in)
+
+IR quality: NDCG@10 / Recall@k on BEIR-like tasks; run with (+/-) doc-expansion, HyDE, graph path, RAPTOR. 
+
+Latency/cost: log per-stage timings; measure reranker FLOPs and graph traversal time.
+
+User tasks: exact-answer accuracy, citation correctness, judge-LQA for “global” prompts (GraphRAG style). 
+
+Reference Implementation Sketch (you can build this now)
+
+Parser (Docling + Granite VLM):
+
+Configure VlmPipelineOptions(response_format="doctags"), set Granite-Docling endpoint (HF Inference / local vLLM). Parse to DoclingDocument with node ids + bbox. 
+
+Indexer:
+
+Nodeization from DocTags → nodes with type, section_path, bbox.
+
+RAPTOR: cluster/summarize nodes to build a tree; store summaries as parent nodes. 
+
+Doc-expansion: run docTTTTTquery on each node; append generated queries to node.meta. 
+
+QGen: create 1–3 span-grounded QA pairs per node (store Q in searchable field). 
+
+Embeddings:
+
+Text: E5/Jina-v3 with proper instruction prompts for query vs. passage. 
+
+Images/figures: optional multimodal embeddings of page crops. 
+
+Lexical: BM25 index of raw text + expansions. 
+
+Graph build: spaCy + spacy-llm to extract entities/relations from nodes; push to Neo4j/Memgraph with node_id backrefs; run community detection and cache community summaries. 
+
+Query path:
+
+Augment: HyDE (generate hypothetical passage), Query2Doc (if you prefer doc-style expansions), Contextual Retrieval. 
+
+Retrieve: hybrid (BM25 + dense + graph communities + RAPTOR parents). 
+
+Rerank: cross-encoder; keep top N with span offsets. 
+
+Gate & synthesize: Self-RAG reflection tokens to drop noise; compose answer with span-level cites (page, bbox). 
+
+Why this is novel (and practical)
+
+Layout-first semantics: Instead of paying heavy LLM tax for “semantic chunking,” we leverage DocTags (true layout + structure) then add hierarchical summaries only where needed—matching evidence that semantic chunking is often not worth its cost. 
+
+Dual enrichment: We enrich documents (doc2query + QA pairs) and queries (HyDE + Contextual Retrieval), covering mismatches from both sides with proven techniques. 
+
+
+Graph-assisted recall without over-indexing: A thin KG with community summaries gives GraphRAG-style global awareness yet keeps strict links to original spans for trustworthy citations. 
+
+Adaptive routing: Self-RAG + LongRAG/RAPTOR decide when to read “big” units vs. precise spans—scaling from pinpoint fact lookup to corpus-level synthesis. 
+
+Minimal code hints to get you started (pseudocode-ish)
+# 1) Parse
+from docling.vlm import VlmPipeline, VlmPipelineOptions
+opts = VlmPipelineOptions(response_format="doctags", enable_remote_services=True)
+doc = VlmPipeline(model="ibm-granite/granite-docling-258M", options=opts).convert("resume.pdf")  # emits DocTags
+# 2) Nodeize (respect DocTags blocks), attach section_path/bbox
+nodes = nodeize_from_doctags(doc)
+# 3) RAPTOR summaries
+tree = build_raptor_tree(nodes)  # cluster -> summarize -> parent nodes
+# 4) Expansion + QA
+nodes = add_doc2query_expansions(nodes)
+nodes = add_span_grounded_qa(nodes)
+# 5) Index
+bm25.add(nodes.raw_text + expansions + Qs)
+dense.add(embed_passages(nodes.text_with_titles))
+graph.upsert(extract_triples(nodes))
+# 6) Query
+cands = hybrid_retrieve(q, bm25, dense, graph_communities(q), raptor_parents(q), hyde(q))
+top = cross_encoder_rerank(q, cands)
+answer = self_rag_generate(q, top.with_spans())
+
+What to measure first (fast proof)
+
+A/B on Recall@10 with/without: (a) doc-expansion, (b) HyDE, (c) graph communities, (d) RAPTOR parents; and citation accuracy on 50–100 held-out questions. Use a BEIR subset or your resume set with handcrafted queries. 
+
+
+Key sources (selection)
+
+Granite-Docling & Docling VLM: IBM announcement; HF model card; Docling docs. 
+
+RAPTOR (hierarchical retrieval): paper & guides. 
+
+GraphRAG (entity graph + community summaries): MSR blog, paper, docs. 
+
+HyDE (hypothetical doc embeddings): ACL/ArXiv + guides. 
+
+Contextual Retrieval (Anthropic): method overview. 
+
+LongRAG (long units), semantic chunking caveats, CFIC (chunk-free): papers. 
+
+Reranking & BEIR: benchmarks and cross-encoder practice. 
+
+spaCy + spacy-llm for IE → KG: docs and tutorials. 
+
+If you’d like, I can turn this into a small reference repo with Docling parsing, RAPTOR tree building, doc-expansion/QA generation, a light KG builder, and a hybrid retriever (BM25 + E5/Jina + rerank) so you can run it on your 50-resume test set.

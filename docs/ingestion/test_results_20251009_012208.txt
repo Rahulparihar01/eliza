@@ -1,0 +1,436 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.9.6, pytest-8.4.2, pluggy-1.6.0 -- /Applications/Xcode.app/Contents/Developer/usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/scottgay/Documents/Eliza/eliza-platform
+plugins: asyncio-1.2.0, anyio-4.11.0, cov-7.0.0
+asyncio: mode=strict, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+collecting ... collected 16 items
+
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_01_list_connector_types PASSED [  6%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_02_validate_configuration PASSED [ 12%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_03_test_connection PASSED [ 18%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_04_cost_estimation PASSED [ 25%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_05_create_configuration PASSED [ 31%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_06_list_configurations PASSED [ 37%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_07_trigger_sync FAILED [ 43%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_08_execute_sync_directly FAILED [ 50%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_09_verify_sync_run_status FAILED [ 56%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_10_verify_ingested_data FAILED [ 62%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_11_verify_transformed_data FAILED [ 68%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_12_verify_telemetry FAILED [ 75%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_13_test_deduplication FAILED [ 81%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_14_configuration_update PASSED [ 87%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_15_connector_statistics FAILED [ 93%]
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_16_data_integrity FAILED [100%]
+
+=================================== FAILURES ===================================
+__________________ TestIngestionPipeline.test_07_trigger_sync __________________
+
+self = <tests.test_ingestion_pipeline_comprehensive.TestIngestionPipeline object at 0x1148b0910>
+
+    def test_07_trigger_sync(self):
+        """Test triggering a manual sync."""
+        logger.info("=" * 80)
+        logger.info("TEST 7: Trigger Manual Sync")
+        logger.info("=" * 80)
+    
+        service = ConnectorService(self.db)
+    
+>       sync_run = service.trigger_sync(
+            connector_id=self.__class__.connector_id,
+            customer_id=TEST_CUSTOMER_ID,
+            manual_trigger=True
+        )
+
+tests/test_ingestion_pipeline_comprehensive.py:357: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/services/ingestion/connector_service.py:458: in trigger_sync
+    sync_run = ConnectorSyncRun(
+<string>:4: in __init__
+    ???
+../../../Library/Python/3.9/lib/python/site-packages/sqlalchemy/orm/state.py:572: in _initialize_instance
+    manager.dispatch.init_failure(self, args, kwargs)
+../../../Library/Python/3.9/lib/python/site-packages/sqlalchemy/util/langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+../../../Library/Python/3.9/lib/python/site-packages/sqlalchemy/orm/state.py:569: in _initialize_instance
+    manager.original_init(*mixed[1:], **kwargs)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ConnectorSyncRun(id=None)>
+kwargs = {'connector_id': 10, 'customer_id': 'test_customer_ingestion', 'metadata_json': {'connector_type': 'people_data_labs', 'manual_trigger': True, 'sync_config_version': 1}, 'records_deduplicated': 0, ...}
+cls_ = <class 'src.models.connector.ConnectorSyncRun'>, k = 'records_read'
+
+    def _declarative_constructor(self: Any, **kwargs: Any) -> None:
+        """A simple constructor that allows initialization from kwargs.
+    
+        Sets attributes on the constructed instance using the names and
+        values in ``kwargs``.
+    
+        Only keys that are present as
+        attributes of the instance's class are allowed. These could be,
+        for example, any mapped columns or relationships.
+        """
+        cls_ = type(self)
+        for k in kwargs:
+            if not hasattr(cls_, k):
+>               raise TypeError(
+                    "%r is an invalid keyword argument for %s" % (k, cls_.__name__)
+                )
+E               TypeError: 'records_read' is an invalid keyword argument for ConnectorSyncRun
+
+../../../Library/Python/3.9/lib/python/site-packages/sqlalchemy/orm/decl_base.py:2179: TypeError
+----------------------------- Captured stdout call -----------------------------
+2025-10-09 01:22:11,408 INFO sqlalchemy.engine.Engine SELECT connector_configurations.connector_id AS connector_configurations_connector_id, connector_configurations.connector_type AS connector_configurations_connector_type, connector_configurations.connector_name AS connector_configurations_connector_name, connector_configurations.description AS connector_configurations_description, connector_configurations.tags AS connector_configurations_tags, connector_configurations.customer_id AS connector_configurations_customer_id, connector_configurations.use_shared_credentials AS connector_configurations_use_shared_credentials, connector_configurations.credentials_encrypted AS connector_configurations_credentials_encrypted, connector_configurations.sync_config AS connector_configurations_sync_config, connector_configurations.sync_config_version AS connector_configurations_sync_config_version, connector_configurations.sync_config_history AS connector_configurations_sync_config_history, connector_configurations.max_records_per_sync AS connector_configurations_max_records_per_sync, connector_configurations.estimated_cost_per_sync AS connector_configurations_estimated_cost_per_sync, connector_configurations.total_cost_to_date AS connector_configurations_total_cost_to_date, connector_configurations.sync_schedule AS connector_configurations_sync_schedule, connector_configurations.sync_mode AS connector_configurations_sync_mode, connector_configurations.is_enabled AS connector_configurations_is_enabled, connector_configurations.is_healthy AS connector_configurations_is_healthy, connector_configurations.last_health_check AS connector_configurations_last_health_check, connector_configurations.health_check_message AS connector_configurations_health_check_message, connector_configurations.created_by_user_id AS connector_configurations_created_by_user_id, connector_configurations.id AS connector_configurations_id, connector_configurations.created_at AS connector_configurations_created_at, connector_configurations.updated_at AS connector_configurations_updated_at 
+FROM connector_configurations 
+WHERE connector_configurations.connector_id = %(connector_id_1)s AND connector_configurations.customer_id = %(customer_id_1)s 
+ LIMIT %(param_1)s
+2025-10-09 01:22:11,408 INFO sqlalchemy.engine.Engine [generated in 0.00008s] {'connector_id_1': 'people_data_labs_test_customer_ingestion_781a5e8e', 'customer_id_1': 'test_customer_ingestion', 'param_1': 1}
+2025-10-09 01:22:11,410 INFO sqlalchemy.engine.Engine SELECT connector_sync_runs.sync_id AS connector_sync_runs_sync_id, connector_sync_runs.connector_id AS connector_sync_runs_connector_id, connector_sync_runs.customer_id AS connector_sync_runs_customer_id, connector_sync_runs.celery_task_id AS connector_sync_runs_celery_task_id, connector_sync_runs.sync_mode AS connector_sync_runs_sync_mode, connector_sync_runs.triggered_by AS connector_sync_runs_triggered_by, connector_sync_runs.status AS connector_sync_runs_status, connector_sync_runs.started_at AS connector_sync_runs_started_at, connector_sync_runs.completed_at AS connector_sync_runs_completed_at, connector_sync_runs.records_extracted AS connector_sync_runs_records_extracted, connector_sync_runs.records_loaded AS connector_sync_runs_records_loaded, connector_sync_runs.records_skipped AS connector_sync_runs_records_skipped, connector_sync_runs.records_failed AS connector_sync_runs_records_failed, connector_sync_runs.checkpoint_before AS connector_sync_runs_checkpoint_before, connector_sync_runs.checkpoint_after AS connector_sync_runs_checkpoint_after, connector_sync_runs.error_message AS connector_sync_runs_error_message, connector_sync_runs.error_details AS connector_sync_runs_error_details, connector_sync_runs.duration_seconds AS connector_sync_runs_duration_seconds, connector_sync_runs.api_calls_made AS connector_sync_runs_api_calls_made, connector_sync_runs.bytes_transferred AS connector_sync_runs_bytes_transferred, connector_sync_runs.cost_incurred AS connector_sync_runs_cost_incurred, connector_sync_runs.id AS connector_sync_runs_id, connector_sync_runs.created_at AS connector_sync_runs_created_at, connector_sync_runs.updated_at AS connector_sync_runs_updated_at 
+FROM connector_sync_runs 
+WHERE connector_sync_runs.connector_id = %(connector_id_1)s AND connector_sync_runs.status IN (%(status_1_1)s, %(status_1_2)s) 
+ LIMIT %(param_1)s
+2025-10-09 01:22:11,410 INFO sqlalchemy.engine.Engine [generated in 0.00010s] {'connector_id_1': 10, 'param_1': 1, 'status_1_1': 'pending', 'status_1_2': 'running'}
+------------------------------ Captured log call -------------------------------
+INFO     sqlalchemy.engine.Engine:base.py:1899 SELECT connector_configurations.connector_id AS connector_configurations_connector_id, connector_configurations.connector_type AS connector_configurations_connector_type, connector_configurations.connector_name AS connector_configurations_connector_name, connector_configurations.description AS connector_configurations_description, connector_configurations.tags AS connector_configurations_tags, connector_configurations.customer_id AS connector_configurations_customer_id, connector_configurations.use_shared_credentials AS connector_configurations_use_shared_credentials, connector_configurations.credentials_encrypted AS connector_configurations_credentials_encrypted, connector_configurations.sync_config AS connector_configurations_sync_config, connector_configurations.sync_config_version AS connector_configurations_sync_config_version, connector_configurations.sync_config_history AS connector_configurations_sync_config_history, connector_configurations.max_records_per_sync AS connector_configurations_max_records_per_sync, connector_configurations.estimated_cost_per_sync AS connector_configurations_estimated_cost_per_sync, connector_configurations.total_cost_to_date AS connector_configurations_total_cost_to_date, connector_configurations.sync_schedule AS connector_configurations_sync_schedule, connector_configurations.sync_mode AS connector_configurations_sync_mode, connector_configurations.is_enabled AS connector_configurations_is_enabled, connector_configurations.is_healthy AS connector_configurations_is_healthy, connector_configurations.last_health_check AS connector_configurations_last_health_check, connector_configurations.health_check_message AS connector_configurations_health_check_message, connector_configurations.created_by_user_id AS connector_configurations_created_by_user_id, connector_configurations.id AS connector_configurations_id, connector_configurations.created_at AS connector_configurations_created_at, connector_configurations.updated_at AS connector_configurations_updated_at 
+FROM connector_configurations 
+WHERE connector_configurations.connector_id = %(connector_id_1)s AND connector_configurations.customer_id = %(customer_id_1)s 
+ LIMIT %(param_1)s
+INFO     sqlalchemy.engine.Engine:base.py:1904 [generated in 0.00008s] {'connector_id_1': 'people_data_labs_test_customer_ingestion_781a5e8e', 'customer_id_1': 'test_customer_ingestion', 'param_1': 1}
+INFO     sqlalchemy.engine.Engine:base.py:1899 SELECT connector_sync_runs.sync_id AS connector_sync_runs_sync_id, connector_sync_runs.connector_id AS connector_sync_runs_connector_id, connector_sync_runs.customer_id AS connector_sync_runs_customer_id, connector_sync_runs.celery_task_id AS connector_sync_runs_celery_task_id, connector_sync_runs.sync_mode AS connector_sync_runs_sync_mode, connector_sync_runs.triggered_by AS connector_sync_runs_triggered_by, connector_sync_runs.status AS connector_sync_runs_status, connector_sync_runs.started_at AS connector_sync_runs_started_at, connector_sync_runs.completed_at AS connector_sync_runs_completed_at, connector_sync_runs.records_extracted AS connector_sync_runs_records_extracted, connector_sync_runs.records_loaded AS connector_sync_runs_records_loaded, connector_sync_runs.records_skipped AS connector_sync_runs_records_skipped, connector_sync_runs.records_failed AS connector_sync_runs_records_failed, connector_sync_runs.checkpoint_before AS connector_sync_runs_checkpoint_before, connector_sync_runs.checkpoint_after AS connector_sync_runs_checkpoint_after, connector_sync_runs.error_message AS connector_sync_runs_error_message, connector_sync_runs.error_details AS connector_sync_runs_error_details, connector_sync_runs.duration_seconds AS connector_sync_runs_duration_seconds, connector_sync_runs.api_calls_made AS connector_sync_runs_api_calls_made, connector_sync_runs.bytes_transferred AS connector_sync_runs_bytes_transferred, connector_sync_runs.cost_incurred AS connector_sync_runs_cost_incurred, connector_sync_runs.id AS connector_sync_runs_id, connector_sync_runs.created_at AS connector_sync_runs_created_at, connector_sync_runs.updated_at AS connector_sync_runs_updated_at 
+FROM connector_sync_runs 
+WHERE connector_sync_runs.connector_id = %(connector_id_1)s AND connector_sync_runs.status IN (%(status_1_1)s, %(status_1_2)s) 
+ LIMIT %(param_1)s
+INFO     sqlalchemy.engine.Engine:base.py:1904 [generated in 0.00010s] {'connector_id_1': 10, 'param_1': 1, 'status_1_1': 'pending', 'status_1_2': 'running'}
+_____________ TestIngestionPipeline.test_08_execute_sync_directly ______________
+
+self = <tests.test_ingestion_pipeline_comprehensive.TestIngestionPipeline object at 0x1148b0af0>
+
+    def test_08_execute_sync_directly(self):
+        """
+        Execute sync directly (simulating what Celery does).
+    
+        In real deployment, Celery worker would execute this.
+        For testing, we run it directly.
+        """
+        logger.info("=" * 80)
+        logger.info("TEST 8: Execute Sync Directly")
+        logger.info("=" * 80)
+    
+        service = ConnectorService(self.db)
+    
+        # Fetch the connector config
+        config = service.get_configuration(self.__class__.connector_id, TEST_CUSTOMER_ID)
+        assert config is not None, "Configuration should exist"
+    
+        logger.info(f"Executing sync for: {config.connector_name}")
+        logger.info(f"Query: {config.sync_config.get('search_query')}")
+    
+        # Execute sync
+        result = service.execute_sync(
+            connector_id=self.__class__.connector_id,
+            customer_id=TEST_CUSTOMER_ID,
+            sync_mode="full",
+            sync_params={
+>               "sync_run_id": self.__class__.sync_run_id,
+                "sync_id": self.__class__.sync_id,
+                "connector_type": config.connector_type,
+                "sync_config": config.sync_config
+            },
+            task_id="test_task_id"
+        )
+E       AttributeError: type object 'TestIngestionPipeline' has no attribute 'sync_run_id'
+
+tests/test_ingestion_pipeline_comprehensive.py:409: AttributeError
+----------------------------- Captured stdout call -----------------------------
+2025-10-09 01:22:11,485 INFO sqlalchemy.engine.Engine SELECT connector_configurations.connector_id AS connector_configurations_connector_id, connector_configurations.connector_type AS connector_configurations_connector_type, connector_configurations.connector_name AS connector_configurations_connector_name, connector_configurations.description AS connector_configurations_description, connector_configurations.tags AS connector_configurations_tags, connector_configurations.customer_id AS connector_configurations_customer_id, connector_configurations.use_shared_credentials AS connector_configurations_use_shared_credentials, connector_configurations.credentials_encrypted AS connector_configurations_credentials_encrypted, connector_configurations.sync_config AS connector_configurations_sync_config, connector_configurations.sync_config_version AS connector_configurations_sync_config_version, connector_configurations.sync_config_history AS connector_configurations_sync_config_history, connector_configurations.max_records_per_sync AS connector_configurations_max_records_per_sync, connector_configurations.estimated_cost_per_sync AS connector_configurations_estimated_cost_per_sync, connector_configurations.total_cost_to_date AS connector_configurations_total_cost_to_date, connector_configurations.sync_schedule AS connector_configurations_sync_schedule, connector_configurations.sync_mode AS connector_configurations_sync_mode, connector_configurations.is_enabled AS connector_configurations_is_enabled, connector_configurations.is_healthy AS connector_configurations_is_healthy, connector_configurations.last_health_check AS connector_configurations_last_health_check, connector_configurations.health_check_message AS connector_configurations_health_check_message, connector_configurations.created_by_user_id AS connector_configurations_created_by_user_id, connector_configurations.id AS connector_configurations_id, connector_configurations.created_at AS connector_configurations_created_at, connector_configurations.updated_at AS connector_configurations_updated_at 
+FROM connector_configurations 
+WHERE connector_configurations.connector_id = %(connector_id_1)s AND connector_configurations.customer_id = %(customer_id_1)s 
+ LIMIT %(param_1)s
+2025-10-09 01:22:11,485 INFO sqlalchemy.engine.Engine [cached since 0.07693s ago] {'connector_id_1': 'people_data_labs_test_customer_ingestion_781a5e8e', 'customer_id_1': 'test_customer_ingestion', 'param_1': 1}
+------------------------------ Captured log call -------------------------------
+INFO     sqlalchemy.engine.Engine:base.py:1899 SELECT connector_configurations.connector_id AS connector_configurations_connector_id, connector_configurations.connector_type AS connector_configurations_connector_type, connector_configurations.connector_name AS connector_configurations_connector_name, connector_configurations.description AS connector_configurations_description, connector_configurations.tags AS connector_configurations_tags, connector_configurations.customer_id AS connector_configurations_customer_id, connector_configurations.use_shared_credentials AS connector_configurations_use_shared_credentials, connector_configurations.credentials_encrypted AS connector_configurations_credentials_encrypted, connector_configurations.sync_config AS connector_configurations_sync_config, connector_configurations.sync_config_version AS connector_configurations_sync_config_version, connector_configurations.sync_config_history AS connector_configurations_sync_config_history, connector_configurations.max_records_per_sync AS connector_configurations_max_records_per_sync, connector_configurations.estimated_cost_per_sync AS connector_configurations_estimated_cost_per_sync, connector_configurations.total_cost_to_date AS connector_configurations_total_cost_to_date, connector_configurations.sync_schedule AS connector_configurations_sync_schedule, connector_configurations.sync_mode AS connector_configurations_sync_mode, connector_configurations.is_enabled AS connector_configurations_is_enabled, connector_configurations.is_healthy AS connector_configurations_is_healthy, connector_configurations.last_health_check AS connector_configurations_last_health_check, connector_configurations.health_check_message AS connector_configurations_health_check_message, connector_configurations.created_by_user_id AS connector_configurations_created_by_user_id, connector_configurations.id AS connector_configurations_id, connector_configurations.created_at AS connector_configurations_created_at, connector_configurations.updated_at AS connector_configurations_updated_at 
+FROM connector_configurations 
+WHERE connector_configurations.connector_id = %(connector_id_1)s AND connector_configurations.customer_id = %(customer_id_1)s 
+ LIMIT %(param_1)s
+INFO     sqlalchemy.engine.Engine:base.py:1904 [cached since 0.07693s ago] {'connector_id_1': 'people_data_labs_test_customer_ingestion_781a5e8e', 'customer_id_1': 'test_customer_ingestion', 'param_1': 1}
+_____________ TestIngestionPipeline.test_09_verify_sync_run_status _____________
+
+self = <tests.test_ingestion_pipeline_comprehensive.TestIngestionPipeline object at 0x1148b0cd0>
+
+    def test_09_verify_sync_run_status(self):
+        """Verify sync run was updated with correct status."""
+        logger.info("=" * 80)
+        logger.info("TEST 9: Verify Sync Run Status")
+        logger.info("=" * 80)
+    
+        sync_run = self.db.query(ConnectorSyncRun).filter(
+>           ConnectorSyncRun.id == self.__class__.sync_run_id
+        ).first()
+E       AttributeError: type object 'TestIngestionPipeline' has no attribute 'sync_run_id'
+
+tests/test_ingestion_pipeline_comprehensive.py:438: AttributeError
+______________ TestIngestionPipeline.test_10_verify_ingested_data ______________
+
+self = <tests.test_ingestion_pipeline_comprehensive.TestIngestionPipeline object at 0x11489dd00>
+
+    def test_10_verify_ingested_data(self):
+        """Verify raw data was saved to staging table."""
+        logger.info("=" * 80)
+        logger.info("TEST 10: Verify Ingested Data (Staging)")
+        logger.info("=" * 80)
+    
+        ingested_count = self.db.query(IngestedData).filter(
+>           IngestedData.sync_run_id == self.__class__.sync_run_id
+        ).count()
+E       AttributeError: type object 'IngestedData' has no attribute 'sync_run_id'
+
+tests/test_ingestion_pipeline_comprehensive.py:467: AttributeError
+____________ TestIngestionPipeline.test_11_verify_transformed_data _____________
+
+self = <tests.test_ingestion_pipeline_comprehensive.TestIngestionPipeline object at 0x1148b0c10>
+
+    def test_11_verify_transformed_data(self):
+        """Verify data was transformed to PDLPerson records."""
+        logger.info("=" * 80)
+        logger.info("TEST 11: Verify Transformed Data (PDLPerson)")
+        logger.info("=" * 80)
+    
+        persons_count = self.db.query(PDLPerson).filter(
+            PDLPerson.customer_id == TEST_CUSTOMER_ID
+        ).count()
+    
+>       assert persons_count > 0, "Should have transformed PDLPerson records"
+E       AssertionError: Should have transformed PDLPerson records
+E       assert 0 > 0
+
+tests/test_ingestion_pipeline_comprehensive.py:517: AssertionError
+----------------------------- Captured stdout call -----------------------------
+2025-10-09 01:22:11,523 INFO sqlalchemy.engine.Engine SELECT count(*) AS count_1 
+FROM (SELECT pdl_persons.pdl_id AS pdl_persons_pdl_id, pdl_persons.customer_id AS pdl_persons_customer_id, pdl_persons.full_name AS pdl_persons_full_name, pdl_persons.first_name AS pdl_persons_first_name, pdl_persons.last_name AS pdl_persons_last_name, pdl_persons.middle_name AS pdl_persons_middle_name, pdl_persons.job_title AS pdl_persons_job_title, pdl_persons.job_title_role AS pdl_persons_job_title_role, pdl_persons.job_title_sub_role AS pdl_persons_job_title_sub_role, pdl_persons.job_title_levels AS pdl_persons_job_title_levels, pdl_persons.job_company_name AS pdl_persons_job_company_name, pdl_persons.job_company_id AS pdl_persons_job_company_id, pdl_persons.job_company_size AS pdl_persons_job_company_size, pdl_persons.job_company_industry AS pdl_persons_job_company_industry, pdl_persons.job_company_location_name AS pdl_persons_job_company_location_name, pdl_persons.job_start_date AS pdl_persons_job_start_date, pdl_persons.primary_email AS pdl_persons_primary_email, pdl_persons.emails AS pdl_persons_emails, pdl_persons.primary_phone AS pdl_persons_primary_phone, pdl_persons.phone_numbers AS pdl_persons_phone_numbers, pdl_persons.linkedin_url AS pdl_persons_linkedin_url, pdl_persons.linkedin_username AS pdl_persons_linkedin_username, pdl_persons.twitter_url AS pdl_persons_twitter_url, pdl_persons.github_url AS pdl_persons_github_url, pdl_persons.location_name AS pdl_persons_location_name, pdl_persons.location_locality AS pdl_persons_location_locality, pdl_persons.location_metro AS pdl_persons_location_metro, pdl_persons.location_region AS pdl_persons_location_region, pdl_persons.location_country AS pdl_persons_location_country, pdl_persons.location_continent AS pdl_persons_location_continent, pdl_persons.skills AS pdl_persons_skills, pdl_persons.inferred_years_experience AS pdl_persons_inferred_years_experience, pdl_persons.education_history AS pdl_persons_education_history, pdl_persons.work_history AS pdl_persons_work_history, pdl_persons.pdl_likelihood AS pdl_persons_pdl_likelihood, pdl_persons.pdl_last_updated AS pdl_persons_pdl_last_updated, pdl_persons.first_seen_sync_id AS pdl_persons_first_seen_sync_id, pdl_persons.last_updated_sync_id AS pdl_persons_last_updated_sync_id, pdl_persons.sync_count AS pdl_persons_sync_count, pdl_persons.ingested_data_id AS pdl_persons_ingested_data_id, pdl_persons.raw_data AS pdl_persons_raw_data, pdl_persons.id AS pdl_persons_id, pdl_persons.created_at AS pdl_persons_created_at, pdl_persons.updated_at AS pdl_persons_updated_at 
+FROM pdl_persons 
+WHERE pdl_persons.customer_id = %(customer_id_1)s) AS anon_1
+2025-10-09 01:22:11,523 INFO sqlalchemy.engine.Engine [generated in 0.00015s] {'customer_id_1': 'test_customer_ingestion'}
+------------------------------ Captured log call -------------------------------
+INFO     sqlalchemy.engine.Engine:base.py:1899 SELECT count(*) AS count_1 
+FROM (SELECT pdl_persons.pdl_id AS pdl_persons_pdl_id, pdl_persons.customer_id AS pdl_persons_customer_id, pdl_persons.full_name AS pdl_persons_full_name, pdl_persons.first_name AS pdl_persons_first_name, pdl_persons.last_name AS pdl_persons_last_name, pdl_persons.middle_name AS pdl_persons_middle_name, pdl_persons.job_title AS pdl_persons_job_title, pdl_persons.job_title_role AS pdl_persons_job_title_role, pdl_persons.job_title_sub_role AS pdl_persons_job_title_sub_role, pdl_persons.job_title_levels AS pdl_persons_job_title_levels, pdl_persons.job_company_name AS pdl_persons_job_company_name, pdl_persons.job_company_id AS pdl_persons_job_company_id, pdl_persons.job_company_size AS pdl_persons_job_company_size, pdl_persons.job_company_industry AS pdl_persons_job_company_industry, pdl_persons.job_company_location_name AS pdl_persons_job_company_location_name, pdl_persons.job_start_date AS pdl_persons_job_start_date, pdl_persons.primary_email AS pdl_persons_primary_email, pdl_persons.emails AS pdl_persons_emails, pdl_persons.primary_phone AS pdl_persons_primary_phone, pdl_persons.phone_numbers AS pdl_persons_phone_numbers, pdl_persons.linkedin_url AS pdl_persons_linkedin_url, pdl_persons.linkedin_username AS pdl_persons_linkedin_username, pdl_persons.twitter_url AS pdl_persons_twitter_url, pdl_persons.github_url AS pdl_persons_github_url, pdl_persons.location_name AS pdl_persons_location_name, pdl_persons.location_locality AS pdl_persons_location_locality, pdl_persons.location_metro AS pdl_persons_location_metro, pdl_persons.location_region AS pdl_persons_location_region, pdl_persons.location_country AS pdl_persons_location_country, pdl_persons.location_continent AS pdl_persons_location_continent, pdl_persons.skills AS pdl_persons_skills, pdl_persons.inferred_years_experience AS pdl_persons_inferred_years_experience, pdl_persons.education_history AS pdl_persons_education_history, pdl_persons.work_history AS pdl_persons_work_history, pdl_persons.pdl_likelihood AS pdl_persons_pdl_likelihood, pdl_persons.pdl_last_updated AS pdl_persons_pdl_last_updated, pdl_persons.first_seen_sync_id AS pdl_persons_first_seen_sync_id, pdl_persons.last_updated_sync_id AS pdl_persons_last_updated_sync_id, pdl_persons.sync_count AS pdl_persons_sync_count, pdl_persons.ingested_data_id AS pdl_persons_ingested_data_id, pdl_persons.raw_data AS pdl_persons_raw_data, pdl_persons.id AS pdl_persons_id, pdl_persons.created_at AS pdl_persons_created_at, pdl_persons.updated_at AS pdl_persons_updated_at 
+FROM pdl_persons 
+WHERE pdl_persons.customer_id = %(customer_id_1)s) AS anon_1
+INFO     sqlalchemy.engine.Engine:base.py:1904 [generated in 0.00015s] {'customer_id_1': 'test_customer_ingestion'}
+________________ TestIngestionPipeline.test_12_verify_telemetry ________________
+
+self = <tests.test_ingestion_pipeline_comprehensive.TestIngestionPipeline object at 0x1148b0640>
+
+    def test_12_verify_telemetry(self):
+        """Verify telemetry events were logged."""
+        logger.info("=" * 80)
+        logger.info("TEST 12: Verify Telemetry Events")
+        logger.info("=" * 80)
+    
+        telemetry_count = self.db.query(ConnectorTelemetry).filter(
+>           ConnectorTelemetry.sync_run_id == self.__class__.sync_run_id
+        ).count()
+E       AttributeError: type object 'ConnectorTelemetry' has no attribute 'sync_run_id'
+
+tests/test_ingestion_pipeline_comprehensive.py:546: AttributeError
+_______________ TestIngestionPipeline.test_13_test_deduplication _______________
+
+self = <tests.test_ingestion_pipeline_comprehensive.TestIngestionPipeline object at 0x1148b0f40>
+
+    def test_13_test_deduplication(self):
+        """Test deduplication by running sync again."""
+        logger.info("=" * 80)
+        logger.info("TEST 13: Test Deduplication (Second Sync)")
+        logger.info("=" * 80)
+    
+        # Get initial count
+        initial_count = self.db.query(PDLPerson).filter(
+            PDLPerson.customer_id == TEST_CUSTOMER_ID
+        ).count()
+    
+        logger.info(f"Initial person count: {initial_count}")
+    
+        # Trigger second sync
+        service = ConnectorService(self.db)
+>       sync_run2 = service.trigger_sync(
+            connector_id=self.__class__.connector_id,
+            customer_id=TEST_CUSTOMER_ID,
+            manual_trigger=True
+        )
+
+tests/test_ingestion_pipeline_comprehensive.py:584: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/services/ingestion/connector_service.py:458: in trigger_sync
+    sync_run = ConnectorSyncRun(
+<string>:4: in __init__
+    ???
+../../../Library/Python/3.9/lib/python/site-packages/sqlalchemy/orm/state.py:572: in _initialize_instance
+    manager.dispatch.init_failure(self, args, kwargs)
+../../../Library/Python/3.9/lib/python/site-packages/sqlalchemy/util/langhelpers.py:224: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+../../../Library/Python/3.9/lib/python/site-packages/sqlalchemy/orm/state.py:569: in _initialize_instance
+    manager.original_init(*mixed[1:], **kwargs)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <ConnectorSyncRun(id=None)>
+kwargs = {'connector_id': 10, 'customer_id': 'test_customer_ingestion', 'metadata_json': {'connector_type': 'people_data_labs', 'manual_trigger': True, 'sync_config_version': 1}, 'records_deduplicated': 0, ...}
+cls_ = <class 'src.models.connector.ConnectorSyncRun'>, k = 'records_read'
+
+    def _declarative_constructor(self: Any, **kwargs: Any) -> None:
+        """A simple constructor that allows initialization from kwargs.
+    
+        Sets attributes on the constructed instance using the names and
+        values in ``kwargs``.
+    
+        Only keys that are present as
+        attributes of the instance's class are allowed. These could be,
+        for example, any mapped columns or relationships.
+        """
+        cls_ = type(self)
+        for k in kwargs:
+            if not hasattr(cls_, k):
+>               raise TypeError(
+                    "%r is an invalid keyword argument for %s" % (k, cls_.__name__)
+                )
+E               TypeError: 'records_read' is an invalid keyword argument for ConnectorSyncRun
+
+../../../Library/Python/3.9/lib/python/site-packages/sqlalchemy/orm/decl_base.py:2179: TypeError
+----------------------------- Captured stdout call -----------------------------
+2025-10-09 01:22:11,537 INFO sqlalchemy.engine.Engine SELECT count(*) AS count_1 
+FROM (SELECT pdl_persons.pdl_id AS pdl_persons_pdl_id, pdl_persons.customer_id AS pdl_persons_customer_id, pdl_persons.full_name AS pdl_persons_full_name, pdl_persons.first_name AS pdl_persons_first_name, pdl_persons.last_name AS pdl_persons_last_name, pdl_persons.middle_name AS pdl_persons_middle_name, pdl_persons.job_title AS pdl_persons_job_title, pdl_persons.job_title_role AS pdl_persons_job_title_role, pdl_persons.job_title_sub_role AS pdl_persons_job_title_sub_role, pdl_persons.job_title_levels AS pdl_persons_job_title_levels, pdl_persons.job_company_name AS pdl_persons_job_company_name, pdl_persons.job_company_id AS pdl_persons_job_company_id, pdl_persons.job_company_size AS pdl_persons_job_company_size, pdl_persons.job_company_industry AS pdl_persons_job_company_industry, pdl_persons.job_company_location_name AS pdl_persons_job_company_location_name, pdl_persons.job_start_date AS pdl_persons_job_start_date, pdl_persons.primary_email AS pdl_persons_primary_email, pdl_persons.emails AS pdl_persons_emails, pdl_persons.primary_phone AS pdl_persons_primary_phone, pdl_persons.phone_numbers AS pdl_persons_phone_numbers, pdl_persons.linkedin_url AS pdl_persons_linkedin_url, pdl_persons.linkedin_username AS pdl_persons_linkedin_username, pdl_persons.twitter_url AS pdl_persons_twitter_url, pdl_persons.github_url AS pdl_persons_github_url, pdl_persons.location_name AS pdl_persons_location_name, pdl_persons.location_locality AS pdl_persons_location_locality, pdl_persons.location_metro AS pdl_persons_location_metro, pdl_persons.location_region AS pdl_persons_location_region, pdl_persons.location_country AS pdl_persons_location_country, pdl_persons.location_continent AS pdl_persons_location_continent, pdl_persons.skills AS pdl_persons_skills, pdl_persons.inferred_years_experience AS pdl_persons_inferred_years_experience, pdl_persons.education_history AS pdl_persons_education_history, pdl_persons.work_history AS pdl_persons_work_history, pdl_persons.pdl_likelihood AS pdl_persons_pdl_likelihood, pdl_persons.pdl_last_updated AS pdl_persons_pdl_last_updated, pdl_persons.first_seen_sync_id AS pdl_persons_first_seen_sync_id, pdl_persons.last_updated_sync_id AS pdl_persons_last_updated_sync_id, pdl_persons.sync_count AS pdl_persons_sync_count, pdl_persons.ingested_data_id AS pdl_persons_ingested_data_id, pdl_persons.raw_data AS pdl_persons_raw_data, pdl_persons.id AS pdl_persons_id, pdl_persons.created_at AS pdl_persons_created_at, pdl_persons.updated_at AS pdl_persons_updated_at 
+FROM pdl_persons 
+WHERE pdl_persons.customer_id = %(customer_id_1)s) AS anon_1
+2025-10-09 01:22:11,537 INFO sqlalchemy.engine.Engine [cached since 0.01422s ago] {'customer_id_1': 'test_customer_ingestion'}
+2025-10-09 01:22:11,538 INFO sqlalchemy.engine.Engine SELECT connector_configurations.connector_id AS connector_configurations_connector_id, connector_configurations.connector_type AS connector_configurations_connector_type, connector_configurations.connector_name AS connector_configurations_connector_name, connector_configurations.description AS connector_configurations_description, connector_configurations.tags AS connector_configurations_tags, connector_configurations.customer_id AS connector_configurations_customer_id, connector_configurations.use_shared_credentials AS connector_configurations_use_shared_credentials, connector_configurations.credentials_encrypted AS connector_configurations_credentials_encrypted, connector_configurations.sync_config AS connector_configurations_sync_config, connector_configurations.sync_config_version AS connector_configurations_sync_config_version, connector_configurations.sync_config_history AS connector_configurations_sync_config_history, connector_configurations.max_records_per_sync AS connector_configurations_max_records_per_sync, connector_configurations.estimated_cost_per_sync AS connector_configurations_estimated_cost_per_sync, connector_configurations.total_cost_to_date AS connector_configurations_total_cost_to_date, connector_configurations.sync_schedule AS connector_configurations_sync_schedule, connector_configurations.sync_mode AS connector_configurations_sync_mode, connector_configurations.is_enabled AS connector_configurations_is_enabled, connector_configurations.is_healthy AS connector_configurations_is_healthy, connector_configurations.last_health_check AS connector_configurations_last_health_check, connector_configurations.health_check_message AS connector_configurations_health_check_message, connector_configurations.created_by_user_id AS connector_configurations_created_by_user_id, connector_configurations.id AS connector_configurations_id, connector_configurations.created_at AS connector_configurations_created_at, connector_configurations.updated_at AS connector_configurations_updated_at 
+FROM connector_configurations 
+WHERE connector_configurations.connector_id = %(connector_id_1)s AND connector_configurations.customer_id = %(customer_id_1)s 
+ LIMIT %(param_1)s
+2025-10-09 01:22:11,538 INFO sqlalchemy.engine.Engine [cached since 0.1299s ago] {'connector_id_1': 'people_data_labs_test_customer_ingestion_781a5e8e', 'customer_id_1': 'test_customer_ingestion', 'param_1': 1}
+2025-10-09 01:22:11,539 INFO sqlalchemy.engine.Engine SELECT connector_sync_runs.sync_id AS connector_sync_runs_sync_id, connector_sync_runs.connector_id AS connector_sync_runs_connector_id, connector_sync_runs.customer_id AS connector_sync_runs_customer_id, connector_sync_runs.celery_task_id AS connector_sync_runs_celery_task_id, connector_sync_runs.sync_mode AS connector_sync_runs_sync_mode, connector_sync_runs.triggered_by AS connector_sync_runs_triggered_by, connector_sync_runs.status AS connector_sync_runs_status, connector_sync_runs.started_at AS connector_sync_runs_started_at, connector_sync_runs.completed_at AS connector_sync_runs_completed_at, connector_sync_runs.records_extracted AS connector_sync_runs_records_extracted, connector_sync_runs.records_loaded AS connector_sync_runs_records_loaded, connector_sync_runs.records_skipped AS connector_sync_runs_records_skipped, connector_sync_runs.records_failed AS connector_sync_runs_records_failed, connector_sync_runs.checkpoint_before AS connector_sync_runs_checkpoint_before, connector_sync_runs.checkpoint_after AS connector_sync_runs_checkpoint_after, connector_sync_runs.error_message AS connector_sync_runs_error_message, connector_sync_runs.error_details AS connector_sync_runs_error_details, connector_sync_runs.duration_seconds AS connector_sync_runs_duration_seconds, connector_sync_runs.api_calls_made AS connector_sync_runs_api_calls_made, connector_sync_runs.bytes_transferred AS connector_sync_runs_bytes_transferred, connector_sync_runs.cost_incurred AS connector_sync_runs_cost_incurred, connector_sync_runs.id AS connector_sync_runs_id, connector_sync_runs.created_at AS connector_sync_runs_created_at, connector_sync_runs.updated_at AS connector_sync_runs_updated_at 
+FROM connector_sync_runs 
+WHERE connector_sync_runs.connector_id = %(connector_id_1)s AND connector_sync_runs.status IN (%(status_1_1)s, %(status_1_2)s) 
+ LIMIT %(param_1)s
+2025-10-09 01:22:11,539 INFO sqlalchemy.engine.Engine [cached since 0.1291s ago] {'connector_id_1': 10, 'param_1': 1, 'status_1_1': 'pending', 'status_1_2': 'running'}
+------------------------------ Captured log call -------------------------------
+INFO     sqlalchemy.engine.Engine:base.py:1899 SELECT count(*) AS count_1 
+FROM (SELECT pdl_persons.pdl_id AS pdl_persons_pdl_id, pdl_persons.customer_id AS pdl_persons_customer_id, pdl_persons.full_name AS pdl_persons_full_name, pdl_persons.first_name AS pdl_persons_first_name, pdl_persons.last_name AS pdl_persons_last_name, pdl_persons.middle_name AS pdl_persons_middle_name, pdl_persons.job_title AS pdl_persons_job_title, pdl_persons.job_title_role AS pdl_persons_job_title_role, pdl_persons.job_title_sub_role AS pdl_persons_job_title_sub_role, pdl_persons.job_title_levels AS pdl_persons_job_title_levels, pdl_persons.job_company_name AS pdl_persons_job_company_name, pdl_persons.job_company_id AS pdl_persons_job_company_id, pdl_persons.job_company_size AS pdl_persons_job_company_size, pdl_persons.job_company_industry AS pdl_persons_job_company_industry, pdl_persons.job_company_location_name AS pdl_persons_job_company_location_name, pdl_persons.job_start_date AS pdl_persons_job_start_date, pdl_persons.primary_email AS pdl_persons_primary_email, pdl_persons.emails AS pdl_persons_emails, pdl_persons.primary_phone AS pdl_persons_primary_phone, pdl_persons.phone_numbers AS pdl_persons_phone_numbers, pdl_persons.linkedin_url AS pdl_persons_linkedin_url, pdl_persons.linkedin_username AS pdl_persons_linkedin_username, pdl_persons.twitter_url AS pdl_persons_twitter_url, pdl_persons.github_url AS pdl_persons_github_url, pdl_persons.location_name AS pdl_persons_location_name, pdl_persons.location_locality AS pdl_persons_location_locality, pdl_persons.location_metro AS pdl_persons_location_metro, pdl_persons.location_region AS pdl_persons_location_region, pdl_persons.location_country AS pdl_persons_location_country, pdl_persons.location_continent AS pdl_persons_location_continent, pdl_persons.skills AS pdl_persons_skills, pdl_persons.inferred_years_experience AS pdl_persons_inferred_years_experience, pdl_persons.education_history AS pdl_persons_education_history, pdl_persons.work_history AS pdl_persons_work_history, pdl_persons.pdl_likelihood AS pdl_persons_pdl_likelihood, pdl_persons.pdl_last_updated AS pdl_persons_pdl_last_updated, pdl_persons.first_seen_sync_id AS pdl_persons_first_seen_sync_id, pdl_persons.last_updated_sync_id AS pdl_persons_last_updated_sync_id, pdl_persons.sync_count AS pdl_persons_sync_count, pdl_persons.ingested_data_id AS pdl_persons_ingested_data_id, pdl_persons.raw_data AS pdl_persons_raw_data, pdl_persons.id AS pdl_persons_id, pdl_persons.created_at AS pdl_persons_created_at, pdl_persons.updated_at AS pdl_persons_updated_at 
+FROM pdl_persons 
+WHERE pdl_persons.customer_id = %(customer_id_1)s) AS anon_1
+INFO     sqlalchemy.engine.Engine:base.py:1904 [cached since 0.01422s ago] {'customer_id_1': 'test_customer_ingestion'}
+INFO     sqlalchemy.engine.Engine:base.py:1899 SELECT connector_configurations.connector_id AS connector_configurations_connector_id, connector_configurations.connector_type AS connector_configurations_connector_type, connector_configurations.connector_name AS connector_configurations_connector_name, connector_configurations.description AS connector_configurations_description, connector_configurations.tags AS connector_configurations_tags, connector_configurations.customer_id AS connector_configurations_customer_id, connector_configurations.use_shared_credentials AS connector_configurations_use_shared_credentials, connector_configurations.credentials_encrypted AS connector_configurations_credentials_encrypted, connector_configurations.sync_config AS connector_configurations_sync_config, connector_configurations.sync_config_version AS connector_configurations_sync_config_version, connector_configurations.sync_config_history AS connector_configurations_sync_config_history, connector_configurations.max_records_per_sync AS connector_configurations_max_records_per_sync, connector_configurations.estimated_cost_per_sync AS connector_configurations_estimated_cost_per_sync, connector_configurations.total_cost_to_date AS connector_configurations_total_cost_to_date, connector_configurations.sync_schedule AS connector_configurations_sync_schedule, connector_configurations.sync_mode AS connector_configurations_sync_mode, connector_configurations.is_enabled AS connector_configurations_is_enabled, connector_configurations.is_healthy AS connector_configurations_is_healthy, connector_configurations.last_health_check AS connector_configurations_last_health_check, connector_configurations.health_check_message AS connector_configurations_health_check_message, connector_configurations.created_by_user_id AS connector_configurations_created_by_user_id, connector_configurations.id AS connector_configurations_id, connector_configurations.created_at AS connector_configurations_created_at, connector_configurations.updated_at AS connector_configurations_updated_at 
+FROM connector_configurations 
+WHERE connector_configurations.connector_id = %(connector_id_1)s AND connector_configurations.customer_id = %(customer_id_1)s 
+ LIMIT %(param_1)s
+INFO     sqlalchemy.engine.Engine:base.py:1904 [cached since 0.1299s ago] {'connector_id_1': 'people_data_labs_test_customer_ingestion_781a5e8e', 'customer_id_1': 'test_customer_ingestion', 'param_1': 1}
+INFO     sqlalchemy.engine.Engine:base.py:1899 SELECT connector_sync_runs.sync_id AS connector_sync_runs_sync_id, connector_sync_runs.connector_id AS connector_sync_runs_connector_id, connector_sync_runs.customer_id AS connector_sync_runs_customer_id, connector_sync_runs.celery_task_id AS connector_sync_runs_celery_task_id, connector_sync_runs.sync_mode AS connector_sync_runs_sync_mode, connector_sync_runs.triggered_by AS connector_sync_runs_triggered_by, connector_sync_runs.status AS connector_sync_runs_status, connector_sync_runs.started_at AS connector_sync_runs_started_at, connector_sync_runs.completed_at AS connector_sync_runs_completed_at, connector_sync_runs.records_extracted AS connector_sync_runs_records_extracted, connector_sync_runs.records_loaded AS connector_sync_runs_records_loaded, connector_sync_runs.records_skipped AS connector_sync_runs_records_skipped, connector_sync_runs.records_failed AS connector_sync_runs_records_failed, connector_sync_runs.checkpoint_before AS connector_sync_runs_checkpoint_before, connector_sync_runs.checkpoint_after AS connector_sync_runs_checkpoint_after, connector_sync_runs.error_message AS connector_sync_runs_error_message, connector_sync_runs.error_details AS connector_sync_runs_error_details, connector_sync_runs.duration_seconds AS connector_sync_runs_duration_seconds, connector_sync_runs.api_calls_made AS connector_sync_runs_api_calls_made, connector_sync_runs.bytes_transferred AS connector_sync_runs_bytes_transferred, connector_sync_runs.cost_incurred AS connector_sync_runs_cost_incurred, connector_sync_runs.id AS connector_sync_runs_id, connector_sync_runs.created_at AS connector_sync_runs_created_at, connector_sync_runs.updated_at AS connector_sync_runs_updated_at 
+FROM connector_sync_runs 
+WHERE connector_sync_runs.connector_id = %(connector_id_1)s AND connector_sync_runs.status IN (%(status_1_1)s, %(status_1_2)s) 
+ LIMIT %(param_1)s
+INFO     sqlalchemy.engine.Engine:base.py:1904 [cached since 0.1291s ago] {'connector_id_1': 10, 'param_1': 1, 'status_1_1': 'pending', 'status_1_2': 'running'}
+______________ TestIngestionPipeline.test_15_connector_statistics ______________
+
+self = <tests.test_ingestion_pipeline_comprehensive.TestIngestionPipeline object at 0x1148b9340>
+
+    def test_15_connector_statistics(self):
+        """Test aggregate statistics for connector."""
+        logger.info("=" * 80)
+        logger.info("TEST 15: Connector Statistics")
+        logger.info("=" * 80)
+    
+        # Aggregate sync runs
+        sync_runs = self.db.query(ConnectorSyncRun).join(
+            ConnectorConfiguration
+        ).filter(
+            ConnectorConfiguration.connector_id == self.__class__.connector_id
+        ).all()
+    
+        total_syncs = len(sync_runs)
+        successful_syncs = sum(1 for s in sync_runs if s.status == SyncStatus.COMPLETED.value)
+        total_records = sum(s.records_read for s in sync_runs)
+        total_transformed = sum(s.records_transformed for s in sync_runs)
+    
+        logger.info(f"✅ Statistics computed")
+        logger.info(f"   Total syncs: {total_syncs}")
+        logger.info(f"   Successful syncs: {successful_syncs}")
+>       logger.info(f"   Success rate: {successful_syncs / total_syncs * 100:.1f}%")
+E       ZeroDivisionError: division by zero
+
+tests/test_ingestion_pipeline_comprehensive.py:704: ZeroDivisionError
+----------------------------- Captured stdout call -----------------------------
+2025-10-09 01:22:11,589 INFO sqlalchemy.engine.Engine SELECT connector_sync_runs.sync_id AS connector_sync_runs_sync_id, connector_sync_runs.connector_id AS connector_sync_runs_connector_id, connector_sync_runs.customer_id AS connector_sync_runs_customer_id, connector_sync_runs.celery_task_id AS connector_sync_runs_celery_task_id, connector_sync_runs.sync_mode AS connector_sync_runs_sync_mode, connector_sync_runs.triggered_by AS connector_sync_runs_triggered_by, connector_sync_runs.status AS connector_sync_runs_status, connector_sync_runs.started_at AS connector_sync_runs_started_at, connector_sync_runs.completed_at AS connector_sync_runs_completed_at, connector_sync_runs.records_extracted AS connector_sync_runs_records_extracted, connector_sync_runs.records_loaded AS connector_sync_runs_records_loaded, connector_sync_runs.records_skipped AS connector_sync_runs_records_skipped, connector_sync_runs.records_failed AS connector_sync_runs_records_failed, connector_sync_runs.checkpoint_before AS connector_sync_runs_checkpoint_before, connector_sync_runs.checkpoint_after AS connector_sync_runs_checkpoint_after, connector_sync_runs.error_message AS connector_sync_runs_error_message, connector_sync_runs.error_details AS connector_sync_runs_error_details, connector_sync_runs.duration_seconds AS connector_sync_runs_duration_seconds, connector_sync_runs.api_calls_made AS connector_sync_runs_api_calls_made, connector_sync_runs.bytes_transferred AS connector_sync_runs_bytes_transferred, connector_sync_runs.cost_incurred AS connector_sync_runs_cost_incurred, connector_sync_runs.id AS connector_sync_runs_id, connector_sync_runs.created_at AS connector_sync_runs_created_at, connector_sync_runs.updated_at AS connector_sync_runs_updated_at 
+FROM connector_sync_runs JOIN connector_configurations ON connector_configurations.id = connector_sync_runs.connector_id 
+WHERE connector_configurations.connector_id = %(connector_id_1)s
+2025-10-09 01:22:11,589 INFO sqlalchemy.engine.Engine [generated in 0.00008s] {'connector_id_1': 'people_data_labs_test_customer_ingestion_781a5e8e'}
+------------------------------ Captured log call -------------------------------
+INFO     sqlalchemy.engine.Engine:base.py:1899 SELECT connector_sync_runs.sync_id AS connector_sync_runs_sync_id, connector_sync_runs.connector_id AS connector_sync_runs_connector_id, connector_sync_runs.customer_id AS connector_sync_runs_customer_id, connector_sync_runs.celery_task_id AS connector_sync_runs_celery_task_id, connector_sync_runs.sync_mode AS connector_sync_runs_sync_mode, connector_sync_runs.triggered_by AS connector_sync_runs_triggered_by, connector_sync_runs.status AS connector_sync_runs_status, connector_sync_runs.started_at AS connector_sync_runs_started_at, connector_sync_runs.completed_at AS connector_sync_runs_completed_at, connector_sync_runs.records_extracted AS connector_sync_runs_records_extracted, connector_sync_runs.records_loaded AS connector_sync_runs_records_loaded, connector_sync_runs.records_skipped AS connector_sync_runs_records_skipped, connector_sync_runs.records_failed AS connector_sync_runs_records_failed, connector_sync_runs.checkpoint_before AS connector_sync_runs_checkpoint_before, connector_sync_runs.checkpoint_after AS connector_sync_runs_checkpoint_after, connector_sync_runs.error_message AS connector_sync_runs_error_message, connector_sync_runs.error_details AS connector_sync_runs_error_details, connector_sync_runs.duration_seconds AS connector_sync_runs_duration_seconds, connector_sync_runs.api_calls_made AS connector_sync_runs_api_calls_made, connector_sync_runs.bytes_transferred AS connector_sync_runs_bytes_transferred, connector_sync_runs.cost_incurred AS connector_sync_runs_cost_incurred, connector_sync_runs.id AS connector_sync_runs_id, connector_sync_runs.created_at AS connector_sync_runs_created_at, connector_sync_runs.updated_at AS connector_sync_runs_updated_at 
+FROM connector_sync_runs JOIN connector_configurations ON connector_configurations.id = connector_sync_runs.connector_id 
+WHERE connector_configurations.connector_id = %(connector_id_1)s
+INFO     sqlalchemy.engine.Engine:base.py:1904 [generated in 0.00008s] {'connector_id_1': 'people_data_labs_test_customer_ingestion_781a5e8e'}
+_________________ TestIngestionPipeline.test_16_data_integrity _________________
+
+self = <tests.test_ingestion_pipeline_comprehensive.TestIngestionPipeline object at 0x1148b9520>
+
+    def test_16_data_integrity(self):
+        """Final data integrity checks."""
+        logger.info("=" * 80)
+        logger.info("TEST 16: Data Integrity Check")
+        logger.info("=" * 80)
+    
+        # Check foreign key integrity
+        orphaned_sync_runs = self.db.query(ConnectorSyncRun).filter(
+>           ConnectorSyncRun.connector_config_id == self.__class__.connector_config_id,
+            ~ConnectorSyncRun.connector_config_id.in_(
+                self.db.query(ConnectorConfiguration.id)
+            )
+        ).count()
+E       AttributeError: type object 'ConnectorSyncRun' has no attribute 'connector_config_id'
+
+tests/test_ingestion_pipeline_comprehensive.py:721: AttributeError
+--------------------------- Captured stdout teardown ---------------------------
+2025-10-09 01:22:11,602 INFO sqlalchemy.engine.Engine DELETE FROM connector_telemetry WHERE connector_telemetry.customer_id = %(customer_id_1)s
+2025-10-09 01:22:11,602 INFO sqlalchemy.engine.Engine [cached since 2.056s ago] {'customer_id_1': 'test_customer_ingestion'}
+2025-10-09 01:22:11,602 INFO sqlalchemy.engine.Engine DELETE FROM ingested_data WHERE ingested_data.customer_id = %(customer_id_1)s
+2025-10-09 01:22:11,603 INFO sqlalchemy.engine.Engine [cached since 2.052s ago] {'customer_id_1': 'test_customer_ingestion'}
+2025-10-09 01:22:11,603 INFO sqlalchemy.engine.Engine DELETE FROM pdl_persons WHERE pdl_persons.customer_id = %(customer_id_1)s
+2025-10-09 01:22:11,603 INFO sqlalchemy.engine.Engine [cached since 2.05s ago] {'customer_id_1': 'test_customer_ingestion'}
+2025-10-09 01:22:11,603 INFO sqlalchemy.engine.Engine DELETE FROM connector_sync_runs WHERE connector_sync_runs.customer_id = %(customer_id_1)s
+2025-10-09 01:22:11,604 INFO sqlalchemy.engine.Engine [cached since 2.048s ago] {'customer_id_1': 'test_customer_ingestion'}
+2025-10-09 01:22:11,604 INFO sqlalchemy.engine.Engine DELETE FROM connector_configurations WHERE connector_configurations.customer_id = %(customer_id_1)s
+2025-10-09 01:22:11,604 INFO sqlalchemy.engine.Engine [cached since 2.047s ago] {'customer_id_1': 'test_customer_ingestion'}
+2025-10-09 01:22:11,604 INFO sqlalchemy.engine.Engine COMMIT
+---------------------------- Captured log teardown -----------------------------
+INFO     sqlalchemy.engine.Engine:base.py:1899 DELETE FROM connector_telemetry WHERE connector_telemetry.customer_id = %(customer_id_1)s
+INFO     sqlalchemy.engine.Engine:base.py:1904 [cached since 2.056s ago] {'customer_id_1': 'test_customer_ingestion'}
+INFO     sqlalchemy.engine.Engine:base.py:1899 DELETE FROM ingested_data WHERE ingested_data.customer_id = %(customer_id_1)s
+INFO     sqlalchemy.engine.Engine:base.py:1904 [cached since 2.052s ago] {'customer_id_1': 'test_customer_ingestion'}
+INFO     sqlalchemy.engine.Engine:base.py:1899 DELETE FROM pdl_persons WHERE pdl_persons.customer_id = %(customer_id_1)s
+INFO     sqlalchemy.engine.Engine:base.py:1904 [cached since 2.05s ago] {'customer_id_1': 'test_customer_ingestion'}
+INFO     sqlalchemy.engine.Engine:base.py:1899 DELETE FROM connector_sync_runs WHERE connector_sync_runs.customer_id = %(customer_id_1)s
+INFO     sqlalchemy.engine.Engine:base.py:1904 [cached since 2.048s ago] {'customer_id_1': 'test_customer_ingestion'}
+INFO     sqlalchemy.engine.Engine:base.py:1899 DELETE FROM connector_configurations WHERE connector_configurations.customer_id = %(customer_id_1)s
+INFO     sqlalchemy.engine.Engine:base.py:1904 [cached since 2.047s ago] {'customer_id_1': 'test_customer_ingestion'}
+INFO     sqlalchemy.engine.Engine:base.py:1143 COMMIT
+=============================== warnings summary ===============================
+src/models/database.py:24
+  /Users/scottgay/Documents/Eliza/eliza-platform/src/models/database.py:24: MovedIn20Warning: The ``declarative_base()`` function is now available as sqlalchemy.orm.declarative_base(). (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    Base = declarative_base(metadata=metadata)
+
+../../../Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35
+  /Users/scottgay/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+    warnings.warn(
+
+tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_01_list_connector_types
+  /Users/scottgay/Documents/Eliza/eliza-platform/tests/test_ingestion_pipeline_comprehensive.py:100: SAWarning: relationship 'Role.child_roles' will copy column roles.id to column roles.parent_role_id, which conflicts with relationship(s): 'Role.parent_role' (copies roles.id to roles.parent_role_id). If this is not the intention, consider if these relationships should be linked with back_populates, or if viewonly=True should be applied to one or more if they are read-only. For the less common case that foreign key constraints are partially overlapping, the orm.foreign() annotation can be used to isolate the columns that should be written towards.   To silence this warning, add the parameter 'overlaps="parent_role"' to the 'Role.child_roles' relationship. (Background on this warning at: https://sqlalche.me/e/20/qzyx) (This warning originated from the `configure_mappers()` process, which was invoked automatically in response to a user-initiated operation.)
+    db.query(ConnectorTelemetry).filter(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_07_trigger_sync
+FAILED tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_08_execute_sync_directly
+FAILED tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_09_verify_sync_run_status
+FAILED tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_10_verify_ingested_data
+FAILED tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_11_verify_transformed_data
+FAILED tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_12_verify_telemetry
+FAILED tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_13_test_deduplication
+FAILED tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_15_connector_statistics
+FAILED tests/test_ingestion_pipeline_comprehensive.py::TestIngestionPipeline::test_16_data_integrity
+=================== 9 failed, 7 passed, 3 warnings in 2.52s ====================

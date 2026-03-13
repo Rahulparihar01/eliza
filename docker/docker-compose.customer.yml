@@ -1,0 +1,128 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "${APP_PORT:-5001}:5001"
+    environment:
+      # Database connections
+      - DATABASE_URL=postgresql://${DB_USER:-user}:${DB_PASSWORD:-password}@postgres:5432/${DB_NAME:-ai_enablement}
+      - REDIS_URL=redis://redis:6379
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_USER=${NEO4J_USER:-neo4j}
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD:-password}
+      
+      # Customer-specific configuration
+      - CUSTOMER_ID=${CUSTOMER_ID}
+      - CUSTOMER_NAME=${CUSTOMER_NAME}
+      - ENVIRONMENT=${ENVIRONMENT:-production}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      
+      # AI API Keys
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      
+      # Application settings
+      - PYTHONPATH=/app
+      - CREWAI_LOG_LEVEL=${CREWAI_LOG_LEVEL:-INFO}
+      - CREWAI_SAVE_LOGS=true
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      neo4j:
+        condition: service_healthy
+    volumes:
+      # Customer-specific configuration
+      - ./config/customers/${CUSTOMER_ID}:/app/config/customer:ro
+      # Persistent data with customer namespace
+      - ${CUSTOMER_ID}_data:/app/data
+      - ${CUSTOMER_ID}_logs:/app/logs
+      - ${CUSTOMER_ID}_cache:/app/cache
+    networks:
+      - ${CUSTOMER_ID}_network
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ${DB_NAME:-ai_enablement}
+      POSTGRES_USER: ${DB_USER:-user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - ${CUSTOMER_ID}_postgres_data:/var/lib/postgresql/data
+      - ./scripts/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - ${CUSTOMER_ID}_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-user} -d ${DB_NAME:-ai_enablement}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - ${CUSTOMER_ID}_redis_data:/data
+    networks:
+      - ${CUSTOMER_ID}_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+
+  neo4j:
+    image: neo4j:5.13
+    environment:
+      NEO4J_AUTH: ${NEO4J_USER:-neo4j}/${NEO4J_PASSWORD:-password}
+      NEO4J_PLUGINS: '["apoc"]'
+      NEO4J_dbms_security_procedures_unrestricted: "apoc.*"
+      NEO4J_dbms_memory_heap_initial__size: ${NEO4J_HEAP_INITIAL:-512M}
+      NEO4J_dbms_memory_heap_max__size: ${NEO4J_HEAP_MAX:-2G}
+    ports:
+      - "${NEO4J_HTTP_PORT:-7474}:7474"
+      - "${NEO4J_BOLT_PORT:-7687}:7687"
+    volumes:
+      - ${CUSTOMER_ID}_neo4j_data:/data
+      - ${CUSTOMER_ID}_neo4j_logs:/logs
+    networks:
+      - ${CUSTOMER_ID}_network
+    healthcheck:
+      test: ["CMD", "cypher-shell", "-u", "${NEO4J_USER:-neo4j}", "-p", "${NEO4J_PASSWORD:-password}", "RETURN 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+
+volumes:
+  ${CUSTOMER_ID}_postgres_data:
+    name: ${CUSTOMER_ID}_postgres_data
+  ${CUSTOMER_ID}_redis_data:
+    name: ${CUSTOMER_ID}_redis_data
+  ${CUSTOMER_ID}_neo4j_data:
+    name: ${CUSTOMER_ID}_neo4j_data
+  ${CUSTOMER_ID}_neo4j_logs:
+    name: ${CUSTOMER_ID}_neo4j_logs
+  ${CUSTOMER_ID}_data:
+    name: ${CUSTOMER_ID}_data
+  ${CUSTOMER_ID}_logs:
+    name: ${CUSTOMER_ID}_logs
+  ${CUSTOMER_ID}_cache:
+    name: ${CUSTOMER_ID}_cache
+
+networks:
+  ${CUSTOMER_ID}_network:
+    name: ${CUSTOMER_ID}_network
+    driver: bridge

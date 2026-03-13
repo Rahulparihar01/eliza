@@ -1,0 +1,107 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "eliza.fullname" . }}-app
+  labels:
+    {{- include "eliza.labels" . | nindent 4 }}
+    app.kubernetes.io/component: app
+spec:
+  replicas: {{ .Values.app.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "eliza.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: app
+  template:
+    metadata:
+      labels:
+        {{- include "eliza.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: app
+      {{- with .Values.app.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- range . }}
+        - name: {{ . }}
+        {{- end }}
+      {{- end }}
+      containers:
+        - name: app
+          image: {{ include "eliza.backendImage" . }}
+          imagePullPolicy: {{ .Values.image.backend.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.app.port }}
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: {{ include "eliza.configMapName" . }}
+          env:
+            - name: RUN_MIGRATIONS
+              value: "true"
+            - name: INIT_TENANT
+              value: {{ .Values.app.initTenant | quote }}
+            - name: ADMIN_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "eliza.secretName" . }}
+                  key: ADMIN_EMAIL
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "eliza.secretName" . }}
+                  key: ADMIN_PASSWORD
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "eliza.secretName" . }}
+                  key: OPENAI_API_KEY
+            - name: ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "eliza.secretName" . }}
+                  key: ENCRYPTION_KEY
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "eliza.secretName" . }}
+                  key: DB_PASSWORD
+            - name: DATABASE_URL
+              value: {{ include "eliza.databaseUrl" . | quote }}
+            - name: REDIS_URL
+              value: "redis://{{ include "eliza.redisHost" . }}:{{ include "eliza.redisPort" . }}"
+            - name: CELERY_BROKER_URL
+              value: "redis://{{ include "eliza.redisHost" . }}:{{ include "eliza.redisPort" . }}/0"
+            - name: CELERY_RESULT_BACKEND
+              value: "redis://{{ include "eliza.redisHost" . }}:{{ include "eliza.redisPort" . }}/1"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.app.healthcheck.path }}
+              port: http
+            initialDelaySeconds: {{ .Values.app.healthcheck.initialDelaySeconds }}
+            periodSeconds: {{ .Values.app.healthcheck.periodSeconds }}
+            timeoutSeconds: {{ .Values.app.healthcheck.timeoutSeconds }}
+            failureThreshold: {{ .Values.app.healthcheck.failureThreshold }}
+          resources:
+            {{- toYaml .Values.app.resources | nindent 12 }}
+      {{- with .Values.app.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.app.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.app.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

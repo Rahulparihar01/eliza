@@ -1,0 +1,51 @@
+id,file,name,email,location,role,seniority,years_experience,tracks,degree,university,grad_year
+2183d3ebb18e,resume_ml_01.pdf,Emerson Johnson,emersonjohnson925@outlook.com,"San Francisco, CA",Staff ML Engineer,junior,1,NLP;Tabular,Ph.D. Computer Science,MIT,2017
+466f2b0215d4,resume_ml_02.pdf,Rowan Wright,rowanwright853@outlook.com,"San Francisco, CA",MLOps Engineer,senior,8,TimeSeries;NLP,B.S. Electrical Engineering,Cornell University,2015
+2e349b0836ee,resume_ml_03.pdf,Finley Johnson,finleyjohnson277@proton.me,"Austin, TX",Senior Machine Learning Engineer,mid‑level,5,TimeSeries;MLOps,B.S. Electrical Engineering,Stanford University,2011
+7f20b9b387cb,resume_ml_04.pdf,Devon Perez,devonperez647@proton.me,"New York, NY",ML Platform Engineer,junior,3,RecSys;CV,B.S. Computer Science,University of Illinois Urbana‑Champaign,2016
+314deefb20c0,resume_ml_05.pdf,Morgan Johnson,morganjohnson970@gmail.com,"Los Angeles, CA",Data Scientist (ML),junior,3,NLP;RecSys,B.S. Mathematics,Stanford University,2023
+b38d8bc36ac5,resume_ml_06.pdf,Taylor Anderson,tayloranderson554@gmail.com,"Seattle, WA",ML Platform Engineer,junior,1,MLOps;CV,M.S. Data Science,Carnegie Mellon University,2011
+6cb0c2557a04,resume_ml_07.pdf,Emerson Martin,emersonmartin223@outlook.com,"San Francisco, CA",Data Scientist (ML),junior,3,MLOps;TimeSeries,B.S. Computer Science,Stanford University,2015
+24f7f61b3cc1,resume_ml_08.pdf,Avery Johnson,averyjohnson485@gmail.com,"Los Angeles, CA",Applied Scientist,mid‑level,4,TimeSeries;CV,B.S. Computer Science,Georgia Tech,2015
+c15df239cee4,resume_ml_09.pdf,Morgan Martin,morganmartin581@gmail.com,"Chicago, IL",Applied Scientist,mid‑level,6,MLOps;NLP,B.S. Electrical Engineering,Harvard University,2023
+510d5fc80896,resume_ml_10.pdf,Sam Johnson,samjohnson571@yahoo.com,"San Francisco, CA",Applied Scientist,senior,6,NLP;RecSys,M.S. Computer Science,University of Illinois Urbana‑Champaign,2021
+1cbc8a8e33af,resume_ml_11.pdf,Elliot White,elliotwhite719@proton.me,"San Francisco, CA",Senior Machine Learning Engineer,mid‑level,5,Tabular;NLP,B.S. Mathematics,Stanford University,2022
+e48a0c03cbd7,resume_ml_12.pdf,Jules White,juleswhite644@proton.me,"Seattle, WA",ML Platform Engineer,senior,8,CV;Tabular,B.S. Mathematics,Carnegie Mellon University,2013
+4c0ed24a7ad0,resume_ml_13.pdf,Skyler Moore,skylermoore139@proton.me,"Los Angeles, CA",ML Platform Engineer,junior,3,TimeSeries;RecSys,Ph.D. Computer Science,University of Texas at Austin,2022
+cd2086d87b12,resume_ml_14.pdf,Cameron Wright,cameronwright475@proton.me,"San Francisco, CA",ML Platform Engineer,mid‑level,5,RecSys;NLP,M.Eng. Computer Engineering,Cornell University,2017
+30205c4af10b,resume_ml_15.pdf,Quinn Martin,quinnmartin767@proton.me,"Denver, CO",MLOps Engineer,senior,9,TimeSeries;RecSys,M.S. Data Science,University of Illinois Urbana‑Champaign,2017
+e059fabe5189,resume_ml_16.pdf,Hayden Hernandez,haydenhernandez972@gmail.com,"Los Angeles, CA",MLOps Engineer,mid‑level,6,RecSys;CV,M.S. Computer Science,Cornell University,2018
+d3ab1cf7dc96,resume_ml_17.pdf,Alex Johnson,alexjohnson640@gmail.com,"Denver, CO",Applied Scientist,junior,2,TimeSeries;RecSys,M.Eng. Computer Engineering,University of Illinois Urbana‑Champaign,2016
+5a550d6683f6,resume_ml_18.pdf,Elliot Hall,elliothall423@gmail.com,"Seattle, WA",Senior Machine Learning Engineer,mid‑level,3,Tabular;MLOps,M.S. Computer Science,Georgia Tech,2024
+80bd6c993a38,resume_ml_19.pdf,Rowan Martinez,rowanmartinez252@outlook.com,"Boston, MA",MLOps Engineer,mid‑level,3,CV;NLP,Ph.D. Computer Science,MIT,2019
+7660fe00922e,resume_ml_20.pdf,Micah Smith,micahsmith954@yahoo.com,"New York, NY",Data Scientist (ML),junior,2,RecSys;Tabular,M.Eng. Computer Engineering,Stanford University,2014
+07b317eed96c,resume_ml_21.pdf,Micah Lewis,micahlewis483@yahoo.com,"Denver, CO",Senior Machine Learning Engineer,mid‑level,6,MLOps;TimeSeries,M.S. Data Science,University of Illinois Urbana‑Champaign,2017
+a22380c2fce3,resume_ml_22.pdf,Avery King,averyking816@gmail.com,"Denver, CO",Senior Machine Learning Engineer,junior,1,TimeSeries;RecSys,B.S. Computer Science,Georgia Tech,2023
+464b2b41c74f,resume_ml_23.pdf,Drew Moore,drewmoore402@outlook.com,"Los Angeles, CA",Data Scientist (ML),junior,2,MLOps;TimeSeries,B.S. Electrical Engineering,Carnegie Mellon University,2016
+3748b8b4c524,resume_ml_24.pdf,Kai Martinez,kaimartinez336@proton.me,"New York, NY",MLOps Engineer,mid‑level,3,MLOps;NLP,Ph.D. Computer Science,University of Washington,2022
+dc574ff0d135,resume_ml_25.pdf,Casey Lee,caseylee546@yahoo.com,"Seattle, WA",ML Platform Engineer,senior,8,Tabular;TimeSeries,M.S. Computer Science,Georgia Tech,2024
+a3ebc4d4a605,resume_ml_26.pdf,Finley Garcia,finleygarcia806@proton.me,"San Francisco, CA",Data Scientist (ML),senior,12,TimeSeries;CV,Ph.D. Computer Science,Harvard University,2018
+76bbb0f16432,resume_ml_27.pdf,Reese Smith,reesesmith342@gmail.com,"Boston, MA",Applied Scientist,senior,10,Tabular;MLOps,M.Eng. Computer Engineering,MIT,2023
+d525785b4d54,resume_ml_28.pdf,Jules Thompson,julesthompson125@outlook.com,"Los Angeles, CA",Staff ML Engineer,mid‑level,3,MLOps;CV,B.S. Mathematics,MIT,2024
+6c37cb8f5d84,resume_ml_29.pdf,Blake Miller,blakemiller115@yahoo.com,"San Francisco, CA",MLOps Engineer,senior,12,Tabular;CV,M.S. Data Science,Georgia Tech,2018
+be5aecb3e424,resume_ml_30.pdf,Devon Martinez,devonmartinez694@gmail.com,"Atlanta, GA",ML Platform Engineer,mid‑level,3,TimeSeries;NLP,B.S. Electrical Engineering,University of Washington,2019
+4d6128a9892c,resume_ml_31.pdf,Jamie Hall,jamiehall581@yahoo.com,"Atlanta, GA",MLOps Engineer,mid‑level,6,Tabular;CV,B.S. Mathematics,MIT,2014
+e7621bdc953d,resume_ml_32.pdf,Jordan Garcia,jordangarcia438@proton.me,"Atlanta, GA",Machine Learning Engineer,mid‑level,5,NLP;MLOps,M.Eng. Computer Engineering,Harvard University,2022
+ae4c32e4906e,resume_ml_33.pdf,Parker Hall,parkerhall167@outlook.com,"San Francisco, CA",Senior Machine Learning Engineer,mid‑level,6,MLOps;CV,M.S. Computer Science,Carnegie Mellon University,2016
+daf0c7fa8471,resume_ml_34.pdf,Casey Clark,caseyclark581@proton.me,"Austin, TX",ML Platform Engineer,senior,12,CV;RecSys,B.S. Computer Science,Cornell University,2018
+79f49e85969b,resume_ml_35.pdf,Blake Young,blakeyoung753@gmail.com,"Atlanta, GA",Senior Machine Learning Engineer,mid‑level,4,MLOps;RecSys,B.S. Computer Science,University of Texas at Austin,2022
+23271c5b1a52,resume_ml_36.pdf,Avery Smith,averysmith614@outlook.com,"Denver, CO",Machine Learning Engineer,senior,11,RecSys;CV,M.S. Data Science,Georgia Tech,2024
+6c5a4a50a36d,resume_ml_37.pdf,Riley Brown,rileybrown980@outlook.com,"Boston, MA",Machine Learning Engineer,mid‑level,5,CV;RecSys,B.S. Electrical Engineering,Cornell University,2024
+9aeda802d907,resume_ml_38.pdf,Finley Wright,finleywright729@outlook.com,"Chicago, IL",Machine Learning Engineer,mid‑level,6,CV;NLP,B.S. Computer Science,Harvard University,2017
+a13b6abcedc1,resume_ml_39.pdf,Hayden Harris,haydenharris605@outlook.com,"New York, NY",Staff ML Engineer,mid‑level,5,Tabular;RecSys,M.S. Computer Science,University of Texas at Austin,2023
+db5ced763fbe,resume_ml_40.pdf,Kai Allen,kaiallen109@outlook.com,"Chicago, IL",Machine Learning Engineer,junior,1,RecSys;TimeSeries,B.S. Mathematics,University of Texas at Austin,2014
+416f2a2b6e07,resume_ml_41.pdf,Skyler Martin,skylermartin716@outlook.com,"Seattle, WA",Machine Learning Engineer,junior,2,CV;NLP,M.Eng. Computer Engineering,University of Washington,2012
+5d80707a663b,resume_ml_42.pdf,Jules Garcia,julesgarcia182@gmail.com,"San Francisco, CA",Senior Machine Learning Engineer,mid‑level,5,RecSys;NLP,B.S. Computer Science,Stanford University,2012
+7105fd733f1d,resume_ml_43.pdf,Sam White,samwhite221@outlook.com,"Atlanta, GA",Senior Machine Learning Engineer,senior,9,TimeSeries;MLOps,M.S. Data Science,University of Illinois Urbana‑Champaign,2012
+e812a11edde8,resume_ml_44.pdf,Quinn Taylor,quinntaylor733@gmail.com,"Los Angeles, CA",ML Platform Engineer,senior,8,MLOps;RecSys,Ph.D. Computer Science,Cornell University,2018
+d096e70149b9,resume_ml_45.pdf,Skyler Miller,skylermiller376@gmail.com,"Denver, CO",Senior Machine Learning Engineer,mid‑level,5,TimeSeries;RecSys,Ph.D. Computer Science,Harvard University,2022
+601e1f49029e,resume_ml_46.pdf,Devon Thomas,devonthomas263@outlook.com,"New York, NY",Data Scientist (ML),junior,2,CV;MLOps,M.S. Data Science,University of Illinois Urbana‑Champaign,2017
+c3034c3589cb,resume_ml_47.pdf,Parker Young,parkeryoung302@gmail.com,"Los Angeles, CA",ML Platform Engineer,junior,2,CV;Tabular,B.S. Mathematics,Cornell University,2013
+a53ebf168738,resume_ml_48.pdf,Finley Johnson,finleyjohnson300@yahoo.com,"Washington, DC",Data Scientist (ML),junior,1,RecSys;CV,B.S. Mathematics,Carnegie Mellon University,2015
+b464247f94e8,resume_ml_49.pdf,Quinn Chen,quinnchen148@proton.me,"Seattle, WA",ML Platform Engineer,mid‑level,3,RecSys;TimeSeries,Ph.D. Computer Science,Harvard University,2014
+2f7950f4eebd,resume_ml_50.pdf,Emerson Johnson,emersonjohnson148@proton.me,"Los Angeles, CA",Applied Scientist,senior,9,NLP;CV,B.S. Mathematics,Cornell University,2018

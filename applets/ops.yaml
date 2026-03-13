@@ -1,0 +1,17 @@
+applet: ops
+display_name: "Platform Operations"
+description: "Platform and tenant operational capabilities."
+
+routes:
+  - admin
+
+tasks: []
+services: []
+models: []
+flows: []
+pages:
+  - admin
+  - storage-settings
+  - coming-soon
+migration_tags:
+  - ops

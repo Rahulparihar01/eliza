@@ -1,0 +1,78 @@
+# Me, Myself and AI: 5 Days, 2 Models, 200M Tokens
+## Some thoughts after using Claude 4.5 and GPT-5 Codex across Cursor and Augment Code
+
+I just spent 5 days building with AI coding assistants. The first time going from empty repo to working platform with my AI friends. The setup: two models, two coding tools, and a workflow that kept them both honest.
+
+## The Workflow
+
+**Write specs first** → 14 detailed markdown docs (API contracts, database schemas, workflows)
+
+**Build with multiple models:**
+- Cursor + GPT-5 Codex → Initial scaffolding and feature builds
+- Cursor + Claude 4.5 → Refactoring and iteration (noticeably faster than Claude 4)
+- Augment Code + Claude 4.5 → Code review and debugging
+
+**Review loop:**
+- One model builds a feature → Switch tools → Other model reviews it
+- Hit a bug → Get fix from Model A → Ask Model B to critique the approach
+- Models disagree → Forces you to actually understand the tradeoffs
+
+## Patterns That Worked
+
+**Specs as shared context:**
+- Both models reference the same requirements
+- Prevents drift and hallucinations
+- Serves as documentation
+
+**Tool strengths:**
+- Augment Code → Deep debugging and the best at following my specs
+- Claude 4.5 → Faster (MUCH faster) iteration, good diagnosis and tracking down of issues
+- GPT-5 Codex → Complex implementations
+
+It could have just been because I was running the full stack locally in docker...but Augment Code sometimes would slow down dramatically, something to look at: the memory footprint of VScode w/ Augment vs Cursor. Cursor seemed to keep up and move quickly even as the repo and context got bigger. 
+
+**Having models disagree catches more bugs than either alone.**
+
+---
+
+### By the Numbers:
+- **5 days** → concept to working system
+- **200M tokens** → back-and-forth iteration
+- **14 spec docs** → written before major features
+- **138 commits** → small, iterative changes
+- **2 coding tools** → Cursor + Augment Code
+
+---
+
+**Bottom line:** The tools are powerful, but you need structure. Specs keep models honest. Multiple models catch more issues. Claude 4.5's speed is a huge bump from 4. Codex does keep up pretty well though.
+
+The engineering still matters—you need to architect properly and know when AI is wrong. But with the right workflow, you can move incredibly fast.
+
+## The (Maybe Over-Engineered) Stack
+
+**Backend:**
+- FastAPI → REST API and async processing
+- CrewAI → Multi-agent orchestration (5 agents)
+- PostgreSQL → Structured data
+- Neo4j → Graph relationships
+- Redis → Caching and task queues
+- FAISS → Vector Store
+
+**Frontend:**
+- React + TypeScript
+- Tailwind CSS
+
+**Infra:**
+- Docker + Docker Compose → Deployment
+- Celery → Background task processing
+
+Could I have simplified this? Probably. The models handled it fairly well. The specs helped A LOT to keep everything aligned with what I designed.
+
+I'm iterating on some other ideas for managing these agents as I clean it up and get it ready for production. Overall...me, myself, and AI did a great job!
+
+---
+
+*Curious what I built? Feel free to reach out—happy to share the details.*
+
+#AI #SoftwareDevelopment #Claude #Codex #AIEngineering #DeveloperTools #TechLeadership
+

@@ -1,0 +1,3 @@
+# This directory stores failed/abandoned agent run logs
+# Format: YYYY-MM-DD_feature-name.md
+# Include root cause analysis and lessons learned

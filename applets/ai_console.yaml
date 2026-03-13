@@ -1,0 +1,26 @@
+applet: ai_console
+display_name: "AI Console"
+description: "Evaluation and optimization tooling."
+
+routes:
+  - rag_eval
+  - gepa_optimizer
+  - prompt_management
+  - tiny_model_studio
+
+tasks:
+  - rag_eval_tasks
+  - gepa_optimizer_tasks
+
+services: []
+models: []
+flows: []
+pages:
+  - evals
+  - telemetry
+  - gepa-optimizer
+  - prompt-management
+  - tiny-model-studio
+migration_tags:
+  - evals
+  - ai_console

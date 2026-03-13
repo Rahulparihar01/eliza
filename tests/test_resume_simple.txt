@@ -1,0 +1,43 @@
+JOHN DOE
+Software Engineer
+
+Email: john.doe@email.com
+Phone: (555) 123-4567
+LinkedIn: linkedin.com/in/johndoe
+
+SUMMARY
+Experienced Machine Learning Engineer with 5+ years of experience in developing and deploying ML models.
+
+SKILLS
+- Python, TensorFlow, PyTorch, Scikit-learn
+- AWS (SageMaker, Lambda, EC2)
+- Docker, Kubernetes
+- SQL, NoSQL databases
+- Git, CI/CD
+
+EXPERIENCE
+
+Senior ML Engineer | Tech Corp | 2021 - Present
+- Developed and deployed 10+ machine learning models to production
+- Reduced model inference time by 40% through optimization
+- Led team of 3 junior engineers
+- Technologies: Python, TensorFlow, AWS SageMaker
+
+ML Engineer | StartupCo | 2019 - 2021
+- Built recommendation system serving 1M+ users
+- Implemented MLOps pipeline for model deployment
+- Technologies: Python, PyTorch, Docker, Kubernetes
+
+Software Engineer | BigCo | 2017 - 2019
+- Developed backend services handling 100K requests/day
+- Technologies: Python, Flask, PostgreSQL
+
+EDUCATION
+
+Master of Science in Computer Science | Stanford University | 2017
+Bachelor of Science in Computer Science | UC Berkeley | 2015
+
+CERTIFICATIONS
+- AWS Certified Machine Learning Specialty
+- TensorFlow Developer Certificate
+

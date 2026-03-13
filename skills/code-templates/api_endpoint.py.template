@@ -1,0 +1,266 @@
+# ============================================================
+# API ENDPOINT TEMPLATE
+# ============================================================
+# 
+# Usage:
+#   1. Copy this file to src/api/routes/[feature_name].py
+#   2. Replace all [PLACEHOLDERS] with actual values
+#   3. Create schemas in src/api/schemas/[feature_name].py
+#   4. Register router in src/main.py
+#
+# Skill Reference: skills/fastapi-endpoints/FASTAPI_ENDPOINT_DEVELOPMENT.md
+# ============================================================
+
+"""
+[FEATURE_NAME] API Routes
+
+API endpoints for [describe what this module does].
+"""
+from typing import Optional, List
+from fastapi import APIRouter, Depends, HTTPException, status, Query
+from sqlalchemy.orm import Session
+
+from src.models import get_db
+from src.middleware.authorization import AuthorizationMiddleware
+from src.api.schemas.[feature_name] import (
+    [Feature]CreateRequest,
+    [Feature]UpdateRequest,
+    [Feature]Response,
+    [Feature]ListResponse
+)
+from src.services.[feature_name]_service import [Feature]Service
+from src.core.logging import get_logger, LogCategory
+
+logger = get_logger(__name__, LogCategory.API)
+auth_middleware = AuthorizationMiddleware()
+
+router = APIRouter(prefix="/v1/[feature-name]", tags=["[Feature Name]"])
+
+
+# ============================================================
+# CREATE
+# ============================================================
+@router.post(
+    "/",
+    response_model=[Feature]Response,
+    status_code=status.HTTP_201_CREATED,
+    summary="Create a new [feature]",
+    description="Create a new [feature]. Requires '[feature]:write' permission."
+)
+async def create_[feature](
+    request: [Feature]CreateRequest,
+    db: Session = Depends(get_db),
+    current_user = Depends(auth_middleware.require_permission("[feature]:write"))
+):
+    """Create a new [feature]."""
+    logger.info(
+        "create_[feature]",
+        user_id=current_user.user_id,
+        customer_id=current_user.customer_id
+    )
+    
+    try:
+        service = [Feature]Service(db)
+        
+        # Check for duplicates if needed
+        # existing = service.get_by_name(request.name, current_user.customer_id)
+        # if existing:
+        #     raise HTTPException(status_code=409, detail="Already exists")
+        
+        result = service.create(
+            user_id=current_user.user_id,
+            customer_id=current_user.customer_id,
+            **request.dict()
+        )
+        
+        return [Feature]Response.from_orm(result)
+        
+    except HTTPException:
+        raise
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        logger.error("create_[feature]_error", error=str(e), exc_info=True)
+        raise HTTPException(status_code=500, detail="Failed to create [feature]")
+
+
+# ============================================================
+# READ (Single)
+# ============================================================
+@router.get(
+    "/{[feature]_id}",
+    response_model=[Feature]Response,
+    summary="Get [feature] details"
+)
+async def get_[feature](
+    [feature]_id: str,
+    db: Session = Depends(get_db),
+    current_user = Depends(auth_middleware.require_permission("[feature]:read"))
+):
+    """Get a [feature] by ID."""
+    service = [Feature]Service(db)
+    
+    result = service.get([feature]_id)
+    if not result:
+        raise HTTPException(status_code=404, detail="[Feature] not found")
+    
+    # Authorization check
+    if result.customer_id != current_user.customer_id and not current_user.is_superuser:
+        raise HTTPException(status_code=403, detail="Not authorized")
+    
+    return [Feature]Response.from_orm(result)
+
+
+# ============================================================
+# READ (List with pagination)
+# ============================================================
+@router.get(
+    "/",
+    response_model=[Feature]ListResponse,
+    summary="List [features]"
+)
+async def list_[features](
+    status_filter: Optional[str] = Query(None, alias="status"),
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=100),
+    db: Session = Depends(get_db),
+    current_user = Depends(auth_middleware.require_permission("[feature]:read"))
+):
+    """List [features] with pagination."""
+    service = [Feature]Service(db)
+    
+    offset = (page - 1) * page_size
+    results, total = service.list(
+        customer_id=current_user.customer_id,
+        status=status_filter,
+        limit=page_size,
+        offset=offset
+    )
+    
+    total_pages = (total + page_size - 1) // page_size
+    
+    return [Feature]ListResponse(
+        items=[Feature]Response.from_orm(r) for r in results],
+        total=total,
+        page=page,
+        page_size=page_size,
+        total_pages=total_pages
+    )
+
+
+# ============================================================
+# UPDATE
+# ============================================================
+@router.patch(
+    "/{[feature]_id}",
+    response_model=[Feature]Response,
+    summary="Update a [feature]"
+)
+async def update_[feature](
+    [feature]_id: str,
+    request: [Feature]UpdateRequest,
+    db: Session = Depends(get_db),
+    current_user = Depends(auth_middleware.require_permission("[feature]:write"))
+):
+    """Update a [feature]."""
+    service = [Feature]Service(db)
+    
+    result = service.get([feature]_id)
+    if not result:
+        raise HTTPException(status_code=404, detail="[Feature] not found")
+    
+    if result.customer_id != current_user.customer_id and not current_user.is_superuser:
+        raise HTTPException(status_code=403, detail="Not authorized")
+    
+    try:
+        updated = service.update(
+            [feature]_id=feature]_id,
+            **request.dict(exclude_unset=True)
+        )
+        return [Feature]Response.from_orm(updated)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+
+# ============================================================
+# DELETE
+# ============================================================
+@router.delete(
+    "/{[feature]_id}",
+    status_code=status.HTTP_204_NO_CONTENT,
+    summary="Delete a [feature]"
+)
+async def delete_[feature](
+    [feature]_id: str,
+    db: Session = Depends(get_db),
+    current_user = Depends(auth_middleware.require_permission("[feature]:delete"))
+):
+    """Delete a [feature]."""
+    service = [Feature]Service(db)
+    
+    result = service.get([feature]_id)
+    if not result:
+        raise HTTPException(status_code=404, detail="[Feature] not found")
+    
+    if result.customer_id != current_user.customer_id and not current_user.is_superuser:
+        raise HTTPException(status_code=403, detail="Not authorized")
+    
+    logger.info("delete_[feature]", [feature]_id=[feature]_id, user_id=current_user.user_id)
+    service.delete([feature]_id)
+
+
+# ============================================================
+# SCHEMAS (save to src/api/schemas/[feature_name].py)
+# ============================================================
+"""
+from pydantic import BaseModel, Field
+from typing import Optional, List
+from datetime import datetime
+
+
+class [Feature]CreateRequest(BaseModel):
+    name: str = Field(..., min_length=1, max_length=255)
+    description: Optional[str] = Field(None, max_length=2000)
+    
+    class Config:
+        json_schema_extra = {"example": {"name": "Example", "description": "..."}}
+
+
+class [Feature]UpdateRequest(BaseModel):
+    name: Optional[str] = Field(None, min_length=1, max_length=255)
+    description: Optional[str] = None
+    status: Optional[str] = None
+
+
+class [Feature]Response(BaseModel):
+    id: int
+    [feature]_id: str
+    name: str
+    description: Optional[str] = None
+    status: str
+    customer_id: str
+    user_id: int
+    created_at: datetime
+    updated_at: Optional[datetime] = None
+    
+    class Config:
+        from_attributes = True
+
+
+class [Feature]ListResponse(BaseModel):
+    items: List[[Feature]Response]
+    total: int
+    page: int
+    page_size: int
+    total_pages: int
+"""
+
+
+# ============================================================
+# REGISTRATION (add to src/main.py)
+# ============================================================
+"""
+from src.api.routes.[feature_name] import router as [feature]_router
+
+app.include_router([feature]_router)
+"""

@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "eliza.fullname" . }}-app
+  labels:
+    {{- include "eliza.labels" . | nindent 4 }}
+    app.kubernetes.io/component: app
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.appPort }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "eliza.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: app
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "eliza.fullname" . }}-frontend
+  labels:
+    {{- include "eliza.labels" . | nindent 4 }}
+    app.kubernetes.io/component: frontend
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.frontendPort }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "eliza.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: frontend

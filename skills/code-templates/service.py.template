@@ -1,0 +1,353 @@
+# ============================================================
+# SERVICE LAYER TEMPLATE
+# ============================================================
+# 
+# Usage:
+#   1. Copy to src/services/[feature_name]_service.py
+#   2. Replace all [PLACEHOLDERS] with actual values
+#   3. Import in routes/tasks as needed
+#
+# ============================================================
+
+"""
+[FEATURE_NAME] Service
+
+Business logic layer for [feature] operations.
+"""
+import uuid
+from datetime import datetime, timezone
+from typing import List, Optional, Tuple, Dict, Any
+from sqlalchemy.orm import Session
+from sqlalchemy import and_
+
+from src.models.[feature_name] import [Feature], [Feature]Event, [Feature]Status, [Feature]EventType
+from src.core.logging import get_logger, LogCategory
+
+logger = get_logger(__name__, LogCategory.BUSINESS)
+
+
+class [Feature]Service:
+    """
+    Service class for [feature] business logic.
+    
+    Encapsulates database operations and business rules.
+    """
+    
+    def __init__(self, db: Session):
+        """
+        Initialize service with database session.
+        
+        Args:
+            db: SQLAlchemy database session
+        """
+        self.db = db
+    
+    # ================================================================
+    # CREATE
+    # ================================================================
+    def create(
+        self,
+        user_id: int,
+        customer_id: str,
+        name: str,
+        description: Optional[str] = None,
+        config: Optional[Dict[str, Any]] = None,
+        **kwargs
+    ) -> [Feature]:
+        """
+        Create a new [feature].
+        
+        Args:
+            user_id: Creating user's ID
+            customer_id: Customer organization ID
+            name: [Feature] name
+            description: Optional description
+            config: Optional configuration dict
+            
+        Returns:
+            Created [Feature] instance
+        """
+        [feature]_id = f"[feat]_{uuid.uuid4().hex[:12]}"
+        
+        [feature] = [Feature](
+            [feature]_id=[feature]_id,
+            user_id=user_id,
+            customer_id=customer_id,
+            name=name,
+            description=description,
+            config=config,
+            status=[Feature]Status.PENDING.value,
+            **kwargs
+        )
+        
+        self.db.add([feature])
+        self.db.commit()
+        self.db.refresh([feature])
+        
+        logger.info(
+            "[feature]_created",
+            [feature]_id=[feature]_id,
+            user_id=user_id,
+            customer_id=customer_id
+        )
+        
+        return [feature]
+    
+    # ================================================================
+    # READ
+    # ================================================================
+    def get(self, [feature]_id: str) -> Optional[[Feature]]:
+        """
+        Get a [feature] by ID.
+        
+        Args:
+            [feature]_id: [Feature] unique identifier
+            
+        Returns:
+            [Feature] instance or None
+        """
+        return self.db.query([Feature]).filter(
+            [Feature].[feature]_id == [feature]_id
+        ).first()
+    
+    def get_by_name(
+        self,
+        name: str,
+        customer_id: str
+    ) -> Optional[[Feature]]:
+        """
+        Get a [feature] by name within a customer.
+        
+        Args:
+            name: [Feature] name
+            customer_id: Customer organization ID
+            
+        Returns:
+            [Feature] instance or None
+        """
+        return self.db.query([Feature]).filter(
+            and_(
+                [Feature].name == name,
+                [Feature].customer_id == customer_id
+            )
+        ).first()
+    
+    def list(
+        self,
+        customer_id: str,
+        status: Optional[str] = None,
+        search: Optional[str] = None,
+        limit: int = 20,
+        offset: int = 0
+    ) -> Tuple[List[[Feature]], int]:
+        """
+        List [features] with filtering and pagination.
+        
+        Args:
+            customer_id: Filter by customer
+            status: Optional status filter
+            search: Optional search term (name)
+            limit: Maximum results
+            offset: Pagination offset
+            
+        Returns:
+            Tuple of (results list, total count)
+        """
+        query = self.db.query([Feature]).filter(
+            [Feature].customer_id == customer_id
+        )
+        
+        if status:
+            query = query.filter([Feature].status == status)
+        
+        if search:
+            query = query.filter(
+                [Feature].name.ilike(f"%{search}%")
+            )
+        
+        total = query.count()
+        
+        results = query.order_by(
+            [Feature].created_at.desc()
+        ).offset(offset).limit(limit).all()
+        
+        return results, total
+    
+    # ================================================================
+    # UPDATE
+    # ================================================================
+    def update(
+        self,
+        [feature]_id: str,
+        **kwargs
+    ) -> Optional[[Feature]]:
+        """
+        Update a [feature].
+        
+        Args:
+            [feature]_id: [Feature] unique identifier
+            **kwargs: Fields to update
+            
+        Returns:
+            Updated [Feature] instance or None
+        """
+        [feature] = self.get([feature]_id)
+        if not [feature]:
+            return None
+        
+        for key, value in kwargs.items():
+            if hasattr([feature], key) and value is not None:
+                setattr([feature], key, value)
+        
+        self.db.commit()
+        self.db.refresh([feature])
+        
+        logger.info("[feature]_updated", [feature]_id=[feature]_id, fields=list(kwargs.keys()))
+        
+        return [feature]
+    
+    def update_status(
+        self,
+        [feature]_id: str,
+        status: [Feature]Status,
+        error_message: Optional[str] = None
+    ) -> Optional[[Feature]]:
+        """
+        Update [feature] status with proper timestamp handling.
+        
+        Args:
+            [feature]_id: [Feature] unique identifier
+            status: New status
+            error_message: Optional error message (for FAILED status)
+            
+        Returns:
+            Updated [Feature] instance or None
+        """
+        [feature] = self.get([feature]_id)
+        if not [feature]:
+            return None
+        
+        [feature].status = status.value
+        [feature].error_message = error_message
+        
+        # Update timing fields based on status
+        now = datetime.now(timezone.utc)
+        if status == [Feature]Status.PROCESSING:
+            [feature].started_at = now
+        elif status in [[Feature]Status.COMPLETED, [Feature]Status.FAILED]:
+            [feature].completed_at = now
+        
+        self.db.commit()
+        self.db.refresh([feature])
+        
+        logger.info(
+            "[feature]_status_updated",
+            [feature]_id=[feature]_id,
+            status=status.value
+        )
+        
+        return [feature]
+    
+    # ================================================================
+    # DELETE
+    # ================================================================
+    def delete(self, [feature]_id: str) -> bool:
+        """
+        Delete a [feature].
+        
+        Args:
+            [feature]_id: [Feature] unique identifier
+            
+        Returns:
+            True if deleted, False if not found
+        """
+        [feature] = self.get([feature]_id)
+        if not [feature]:
+            return False
+        
+        self.db.delete([feature])
+        self.db.commit()
+        
+        logger.info("[feature]_deleted", [feature]_id=[feature]_id)
+        
+        return True
+    
+    # ================================================================
+    # TELEMETRY (for SSE streaming)
+    # ================================================================
+    def add_telemetry_event(
+        self,
+        [feature]_id: str,
+        event_type: [Feature]EventType,
+        message: Optional[str] = None,
+        user_message: Optional[str] = None,
+        agent_name: Optional[str] = None,
+        tool_name: Optional[str] = None,
+        stage_name: Optional[str] = None,
+        progress_percentage: Optional[float] = None,
+        data: Optional[Dict[str, Any]] = None,
+        error_details: Optional[Dict[str, Any]] = None,
+        duration_ms: Optional[int] = None
+    ) -> [Feature]Event:
+        """
+        Add a telemetry event for SSE streaming.
+        
+        Args:
+            [feature]_id: Parent [feature] ID
+            event_type: Type of event
+            message: Internal message
+            user_message: User-friendly message (shown in UI)
+            agent_name: Name of AI agent if applicable
+            tool_name: Name of tool if applicable
+            stage_name: Current processing stage
+            progress_percentage: Progress (0-100)
+            data: Additional data payload
+            error_details: Error information
+            duration_ms: Operation duration
+            
+        Returns:
+            Created [Feature]Event instance
+        """
+        event = [Feature]Event(
+            [feature]_id=[feature]_id,
+            event_type=event_type.value,
+            message=message,
+            user_message=user_message,
+            agent_name=agent_name,
+            tool_name=tool_name,
+            stage_name=stage_name,
+            progress_percentage=progress_percentage,
+            data=data,
+            error_details=error_details,
+            duration_ms=duration_ms,
+            timestamp=datetime.now(timezone.utc)
+        )
+        
+        self.db.add(event)
+        self.db.commit()
+        
+        return event
+    
+    def get_events(
+        self,
+        [feature]_id: str,
+        after_id: int = 0,
+        limit: int = 100
+    ) -> List[[Feature]Event]:
+        """
+        Get telemetry events for SSE streaming.
+        
+        Args:
+            [feature]_id: Parent [feature] ID
+            after_id: Only return events with ID > this value
+            limit: Maximum events to return
+            
+        Returns:
+            List of events ordered by ID
+        """
+        return self.db.query([Feature]Event).filter(
+            and_(
+                [Feature]Event.[feature]_id == [feature]_id,
+                [Feature]Event.id > after_id
+            )
+        ).order_by([Feature]Event.id).limit(limit).all()

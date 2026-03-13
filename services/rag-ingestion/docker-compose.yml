@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+  rag-ingestion:
+    build:
+      context: ../..
+      dockerfile: services/rag-ingestion/Dockerfile
+    ports:
+      - "8100:8100"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - RAG_OPENSEARCH_HOST=${RAG_OPENSEARCH_HOST:-}
+      - RAG_OPENSEARCH_REGION=${RAG_OPENSEARCH_REGION:-us-east-1}
+      - RAG_OPENSEARCH_INDEX_PREFIX=${RAG_OPENSEARCH_INDEX_PREFIX:-rag_domains}
+      - RAG_USE_LOCAL_ELASTICSEARCH=${RAG_USE_LOCAL_ELASTICSEARCH:-false}
+      - ELASTICSEARCH_HOSTS=${ELASTICSEARCH_HOSTS:-http://elasticsearch:9200}
+      - RAG_VLM_BASE_URL=${RAG_VLM_BASE_URL:-http://host.docker.internal:8000/v1}
+      - RAG_VLM_MODEL=${RAG_VLM_MODEL:-default}
+      - RAG_VLM_API_KEY=${RAG_VLM_API_KEY:-}
+      - RAG_METADATA_ENRICHMENT_TIER=${RAG_METADATA_ENRICHMENT_TIER:-standard}
+      - RAG_METADATA_ENRICHMENT_MODEL=${RAG_METADATA_ENRICHMENT_MODEL:-gpt-4o-mini}
+      - EMBEDDING_MODEL=${EMBEDDING_MODEL:-text-embedding-3-small}
+      - DEFAULT_CHUNK_SIZE=${DEFAULT_CHUNK_SIZE:-512}
+      - DEFAULT_PARSER=${DEFAULT_PARSER:-vlm}
+      - PORT=8100
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:-}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:-}
+      - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN:-}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-us-east-1}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "4"
+          memory: 4G
+        reservations:
+          cpus: "1"
+          memory: 1G
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:8100/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3

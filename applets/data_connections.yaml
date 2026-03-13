@@ -1,0 +1,18 @@
+applet: data_connections
+display_name: "Data Connections"
+description: "Connector and ingestion platform."
+
+routes:
+  - connectors
+  - document_parsing
+
+tasks:
+  - ingestion_tasks
+
+services: []
+models: []
+flows: []
+pages:
+  - data-connections
+migration_tags:
+  - connectors

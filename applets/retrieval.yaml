@@ -1,0 +1,18 @@
+applet: retrieval
+display_name: "Retrieval Integrations"
+description: "External retrieval and OAuth flows."
+
+routes:
+  - retrieval
+  - oauth
+
+tasks:
+  - retrieval_tasks
+
+services: []
+models: []
+flows: []
+pages:
+  - data-search
+migration_tags:
+  - retrieval

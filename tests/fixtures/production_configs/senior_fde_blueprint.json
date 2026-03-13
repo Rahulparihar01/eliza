@@ -1,0 +1,161 @@
+{
+  "id": 1,
+  "customer_id": "eliza",
+  "name": "Senior FDE",
+  "description": null,
+  "role_category": null,
+  "source_linkedin_urls": [
+    "https://www.linkedin.com/in/steven-mcateer/",
+    "https://www.linkedin.com/in/m37/",
+    "https://www.linkedin.com/in/jamesdstackhouse/"
+  ],
+  "source_profile_count": 3,
+  "company_progression": {
+    "industries": [
+      "computer software",
+      "consumer goods",
+      "defense & space",
+      "transportation/trucking/railroad",
+      "education management"
+    ],
+    "company_sizes": [
+      "10001+",
+      "1-10",
+      "1001-5000",
+      "11-50",
+      "51-200"
+    ],
+    "common_companies": [
+      "colgate-palmolive",
+      "amazon",
+      "eliza",
+      "ups",
+      "rippling",
+      "saronic technologies",
+      "assistments",
+      "red bank ymca",
+      "amazon web services (aws)",
+      "cloudtrucks"
+    ],
+    "company_frequencies": {
+      "ups": 0.091,
+      "eliza": 0.091,
+      "amazon": 0.136,
+      "rippling": 0.091,
+      "assistments": 0.045,
+      "cloudtrucks": 0.045,
+      "red bank ymca": 0.045,
+      "colgate-palmolive": 0.136,
+      "saronic technologies": 0.091,
+      "amazon web services (aws)": 0.045
+    }
+  },
+  "role_progression": {
+    "pattern": "Individual Contributor",
+    "title_levels": [],
+    "common_titles": [
+      "founding forward deployed engineer",
+      "senior forward deployed engineer",
+      "forward deployed engineer"
+    ],
+    "title_frequencies": {
+      "forward deployed engineer": 0.333,
+      "senior forward deployed engineer": 0.333,
+      "founding forward deployed engineer": 0.333
+    }
+  },
+  "skill_profile": {
+    "core_skills": [],
+    "common_skills": [],
+    "skill_frequencies": {
+      "c": 0.006,
+      "c#": 0.006,
+      "c++": 0.012,
+      "git": 0.018,
+      "sql": 0.012,
+      "xml": 0.012,
+      "html": 0.012,
+      "java": 0.012,
+      "unix": 0.012,
+      "html5": 0.012,
+      "linux": 0.018,
+      "mysql": 0.018,
+      "python": 0.018,
+      "node.js": 0.012,
+      "teamwork": 0.012,
+      "javascript": 0.012,
+      "a/b testing": 0.006,
+      "programming": 0.012,
+      "communication": 0.006,
+      "cloud computing": 0.012,
+      "team leadership": 0.012,
+      "web development": 0.012,
+      "microsoft office": 0.012,
+      "business insights": 0.006,
+      "project management": 0.012,
+      "agile methodologies": 0.012,
+      "android development": 0.012,
+      "penetration testing": 0.012,
+      "agile software development": 0.006,
+      "agile and waterfall methodologies": 0.006
+    }
+  },
+  "experience_profile": {
+    "avg_years": 5,
+    "max_years": 10,
+    "min_years": 2
+  },
+  "education_profile": {
+    "common_majors": [],
+    "common_schools": [
+      "university of maryland global campus",
+      "university of colorado denver",
+      "worcester polytechnic institute",
+      "muffakham jah college of engineering and technology",
+      "san antonio college",
+      "university at buffalo",
+      "smithson valley high school"
+    ],
+    "degree_distribution": {}
+  },
+  "pdl_query_hints": {
+    "experience_range": [
+      1,
+      12
+    ],
+    "suggested_titles": [
+      "founding forward deployed engineer",
+      "senior forward deployed engineer",
+      "forward deployed engineer"
+    ],
+    "target_companies": [
+      "colgate-palmivve",
+      "amazon",
+      "eliza",
+      "ups",
+      "rippling",
+      "saronic technologies",
+      "assistments",
+      "red bank ymca",
+      "amazon web services (aws)",
+      "cloudtrucks"
+    ],
+    "target_industries": [
+      "computer software",
+      "consumer goods",
+      "defense & space",
+      "transportation/trucking/railroad",
+      "education management"
+    ]
+  },
+  "scoring_weights": {
+    "experience_fit": 0.2,
+    "skill_alignment": 0.3,
+    "trajectory_match": 0.2,
+    "company_background": 0.15,
+    "organizational_fit": 0.15
+  },
+  "is_active": true,
+  "usage_count": 0,
+  "last_used_at": null
+}

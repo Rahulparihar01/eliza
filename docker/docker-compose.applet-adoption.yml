@@ -1,0 +1,35 @@
+services:
+  app:
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      - APPLETS=adoption
+      - LOGSTASH_ENABLED=false
+      - ELASTICSEARCH_SYNC_ENABLED=false
+      - NEO4J_SYNC_ENABLED=false
+      - LANGFUSE_ENABLED=false
+      - RAG_KB_S3_SYNC_ENABLED=false
+
+  celery-worker:
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      app:
+        condition: service_healthy
+    environment:
+      - APPLETS=adoption
+      - LOGSTASH_ENABLED=false
+      - ELASTICSEARCH_SYNC_ENABLED=false
+      - NEO4J_SYNC_ENABLED=false
+      - LANGFUSE_ENABLED=false
+      - RAG_KB_S3_SYNC_ENABLED=false
+
+  frontend:
+    build:
+      args:
+        REACT_APP_APPLETS: adoption

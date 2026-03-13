@@ -1,0 +1,82 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "eliza.fullname" . }}-celery-worker
+  labels:
+    {{- include "eliza.labels" . | nindent 4 }}
+    app.kubernetes.io/component: celery-worker
+spec:
+  replicas: {{ .Values.celeryWorker.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "eliza.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: celery-worker
+  template:
+    metadata:
+      labels:
+        {{- include "eliza.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: celery-worker
+      {{- with .Values.celeryWorker.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- range . }}
+        - name: {{ . }}
+        {{- end }}
+      {{- end }}
+      containers:
+        - name: celery-worker
+          image: {{ include "eliza.backendImage" . }}
+          imagePullPolicy: {{ .Values.image.backend.pullPolicy }}
+          command:
+            - celery
+            - -A
+            - src.celery_app
+            - worker
+            - --loglevel=info
+            - --concurrency={{ .Values.celeryWorker.concurrency }}
+            - --max-tasks-per-child={{ .Values.celeryWorker.maxTasksPerChild }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "eliza.configMapName" . }}
+          env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "eliza.secretName" . }}
+                  key: OPENAI_API_KEY
+            - name: ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "eliza.secretName" . }}
+                  key: ENCRYPTION_KEY
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "eliza.secretName" . }}
+                  key: DB_PASSWORD
+            - name: DATABASE_URL
+              value: {{ include "eliza.databaseUrl" . | quote }}
+            - name: REDIS_URL
+              value: "redis://{{ include "eliza.redisHost" . }}:{{ include "eliza.redisPort" . }}"
+            - name: CELERY_BROKER_URL
+              value: "redis://{{ include "eliza.redisHost" . }}:{{ include "eliza.redisPort" . }}/0"
+            - name: CELERY_RESULT_BACKEND
+              value: "redis://{{ include "eliza.redisHost" . }}:{{ include "eliza.redisPort" . }}/1"
+          resources:
+            {{- toYaml .Values.celeryWorker.resources | nindent 12 }}
+      {{- with .Values.celeryWorker.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.celeryWorker.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.celeryWorker.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

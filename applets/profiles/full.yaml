@@ -1,0 +1,13 @@
+profile: full
+display_name: "Full Platform"
+description: "All currently defined applets on top of base functionality."
+
+applets:
+  - adoption
+  - ai_console
+  - business_intelligence
+  - talent
+  - data_connections
+  - content
+  - retrieval
+  - ops

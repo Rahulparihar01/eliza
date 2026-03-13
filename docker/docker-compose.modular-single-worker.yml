@@ -1,0 +1,14 @@
+services:
+  # Primary worker path for modular deployments.
+  celery-worker:
+    command: celery -A src.celery_app worker --loglevel=info --concurrency=2 --max-tasks-per-child=50
+
+  # Keep auxiliary worker services disabled unless explicitly enabled.
+  celery-beat:
+    profiles: ["disabled-workers"]
+
+  celery-ingestion-worker:
+    profiles: ["disabled-workers"]
+
+  flower:
+    profiles: ["disabled-workers"]

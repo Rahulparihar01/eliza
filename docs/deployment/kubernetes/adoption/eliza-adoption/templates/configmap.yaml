@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "eliza.configMapName" . }}
+  labels:
+    {{- include "eliza.labels" . | nindent 4 }}
+data:
+  APPLETS: "adoption"
+  ENVIRONMENT: "production"
+  LOG_LEVEL: {{ .Values.config.logLevel | quote }}
+  PYTHONPATH: "/app"
+  CUSTOMER_ID: {{ .Values.config.customerId | quote }}
+  CUSTOMER_NAME: {{ .Values.config.customerName | quote }}
+  FRONTEND_URL: {{ .Values.config.frontendUrl | quote }}
+  ALLOWED_ORIGINS: {{ .Values.config.allowedOrigins | quote }}
+  ELASTICSEARCH_SYNC_ENABLED: "false"
+  NEO4J_SYNC_ENABLED: "false"
+  LOGSTASH_ENABLED: "false"
+  LANGFUSE_ENABLED: "false"
+  LOG_TO_FILE: "false"
+  LOG_JSON_FORMAT: "true"

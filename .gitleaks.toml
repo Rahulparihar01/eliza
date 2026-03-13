@@ -1,0 +1,211 @@
+# =============================================================================
+# Gitleaks Configuration - Eliza Platform
+# =============================================================================
+# This file configures gitleaks secret detection for the repository.
+# Documentation: https://github.com/gitleaks/gitleaks
+#
+# Run locally: gitleaks detect --source . --config .gitleaks.toml -v
+# =============================================================================
+
+title = "Eliza Platform Gitleaks Config"
+
+# Use the default gitleaks rules as a baseline
+# These detect common patterns like AWS keys, GitHub tokens, etc.
+
+# =============================================================================
+# Custom Rules
+# =============================================================================
+# Add project-specific secret patterns here
+
+[[rules]]
+id = "hardcoded-password-assignment"
+description = "Hardcoded password in assignment"
+regex = '''(?i)(password|passwd|pwd)\s*=\s*['""][^'""]{8,}['""]'''
+keywords = ["password", "passwd", "pwd"]
+
+[[rules]]
+id = "hardcoded-secret-assignment"
+description = "Hardcoded secret in assignment"
+regex = '''(?i)(secret|api_key|apikey|api-key|token|auth_token|access_token)\s*=\s*['""][^'""]{8,}['""]'''
+keywords = ["secret", "api_key", "apikey", "token", "auth_token", "access_token"]
+
+[[rules]]
+id = "database-connection-string"
+description = "Database connection string with credentials"
+regex = '''(?i)(postgres|postgresql|mysql|mongodb|redis):\/\/[^:]+:[^@]+@[^/]+'''
+keywords = ["postgres", "postgresql", "mysql", "mongodb", "redis"]
+
+[[rules]]
+id = "private-key-header"
+description = "Private key detected"
+regex = '''-----BEGIN (RSA |DSA |EC |OPENSSH |PGP )?PRIVATE KEY( BLOCK)?-----'''
+keywords = ["BEGIN", "PRIVATE KEY"]
+
+[[rules]]
+id = "jwt-token"
+description = "JWT token detected"
+regex = '''eyJ[A-Za-z0-9_-]*\.eyJ[A-Za-z0-9_-]*\.[A-Za-z0-9_-]*'''
+keywords = ["eyJ"]
+
+[[rules]]
+id = "anthropic-api-key"
+description = "Anthropic API key"
+regex = '''sk-ant-[a-zA-Z0-9_-]{20,}'''
+keywords = ["sk-ant-"]
+
+[[rules]]
+id = "openai-api-key"
+description = "OpenAI API key"
+regex = '''sk-[a-zA-Z0-9]{20,}'''
+keywords = ["sk-"]
+
+[[rules]]
+id = "aws-access-key"
+description = "AWS Access Key ID"
+regex = '''AKIA[0-9A-Z]{16}'''
+keywords = ["AKIA"]
+
+[[rules]]
+id = "slack-webhook"
+description = "Slack webhook URL"
+regex = '''https://hooks\.slack\.com/services/T[A-Z0-9]{8,}/B[A-Z0-9]{8,}/[a-zA-Z0-9]{24}'''
+keywords = ["hooks.slack.com"]
+
+[[rules]]
+id = "github-token"
+description = "GitHub personal access token"
+regex = '''gh[pousr]_[A-Za-z0-9_]{36,}'''
+keywords = ["ghp_", "gho_", "ghu_", "ghs_", "ghr_"]
+
+[[rules]]
+id = "stripe-api-key"
+description = "Stripe API key"
+regex = '''(?i)(sk|pk)_(live|test)_[a-zA-Z0-9]{24,}'''
+keywords = ["sk_live", "sk_test", "pk_live", "pk_test"]
+
+[[rules]]
+id = "sendgrid-api-key"
+description = "SendGrid API key"
+regex = '''SG\.[a-zA-Z0-9_-]{22}\.[a-zA-Z0-9_-]{43}'''
+keywords = ["SG."]
+
+[[rules]]
+id = "twilio-api-key"
+description = "Twilio API key"
+regex = '''SK[a-fA-F0-9]{32}'''
+keywords = ["SK"]
+
+# =============================================================================
+# Allowlist - False Positives
+# =============================================================================
+# Add paths, patterns, or specific strings that should be ignored
+
+[allowlist]
+
+# Description of what's being allowlisted
+description = "Global allowlist for false positives"
+
+# Files/paths to completely skip scanning
+paths = [
+    # Test files may contain mock secrets
+    '''tests/.*''',
+    # Lock files
+    '''.*package-lock\.json$''',
+    '''.*yarn\.lock$''',
+    # Documentation
+    '''.*\.md$''',
+    # Compiled/generated files
+    '''frontend/build/.*''',
+    '''.*\.min\.js$''',
+    # Schema files that might have example values
+    '''.*\.schema\.json$''',
+    # Migration files (may reference old config patterns)
+    '''alembic/versions/.*''',
+    # OpenAPI generated files
+    '''frontend/src/api/eliza-api\.ts$''',
+    # Environment templates (contain placeholder patterns, not real secrets)
+    '''.*\.env\.template$''',
+    '''.*\.env\.example$''',
+    '''.*\.env\.sample$''',
+    # Orval/API generated types
+    '''frontend/src/api/.*''',
+    # Docker compose files (contain local dev passwords, not production)
+    '''docker/docker-compose\.yml$''',
+    '''docker/docker-compose\..*\.yml$''',
+    '''docker-compose\.yml$''',
+    '''docker-compose\..*\.yml$''',
+    # RBAC initialization scripts (contain default dev passwords)
+    '''scripts/init_rbac.*''',
+    '''permissions/.*\.sql$''',
+    # Test specification files
+    '''docs/specs/.*''',
+]
+
+# Specific regex patterns to allow (use sparingly)
+regexes = [
+    # Example/placeholder values commonly used in docs
+    '''your[-_]?(api[-_]?key|secret|password|token)[-_]?here''',
+    '''example[-_]?(api[-_]?key|secret|password|token)''',
+    '''<your[-_]?.*[-_]?here>''',
+    '''placeholder''',
+    '''xxxxxxxx''',
+    '''\*{6,}''',
+    # Common test/dev passwords (used in local docker-compose and test scripts)
+    '''changeme''',
+    '''password123''',
+    '''test[-_]?secret''',
+    '''dummy[-_]?(key|secret|password|token)''',
+    '''admin123''',
+    '''admin:admin123''',
+    ''':password@''',
+    '''POSTGRES_PASSWORD.*password''',
+    '''NEO4J_PASSWORD.*password''',
+    # Database URLs with local dev credentials (user:password pattern for localhost)
+    '''localhost:5432''',
+    '''127\.0\.0\.1:5432''',
+    '''user:password@postgres''',
+    '''user:password@localhost''',
+    # JWT example tokens from documentation (truncated examples)
+    '''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ''',
+    '''eyJhbGciOiJIUzI1NiIs\.\.\.''',
+    # API key placeholders used in Bedrock provider
+    '''api_key.*bedrock''',
+]
+
+# Specific commits to ignore (use if a secret was accidentally committed and already rotated)
+# commits = [
+#     "abc123def456...",
+# ]
+
+# =============================================================================
+# Entropy Settings
+# =============================================================================
+# High entropy string detection settings
+# Lower = more strict, may have more false positives
+# Higher = less strict, may miss some secrets
+
+# [entropy]
+# These use defaults which work well for most cases:
+# - Hex strings with Shannon entropy > 3.5
+# - Base64 strings with Shannon entropy > 4.0
+
+# =============================================================================
+# Additional Notes
+# =============================================================================
+# 
+# If you get false positives:
+# 1. First check if the value is actually a secret that should be removed
+# 2. If it's a test fixture or example, add to allowlist.paths or allowlist.regexes
+# 3. For specific known-safe strings, add to allowlist.regexes
+#
+# Common patterns that trigger false positives:
+# - Base64 encoded strings in tests
+# - Hash values in lock files
+# - Example API keys in documentation
+# - Generated code with unique identifiers
+#
+# To test this config locally:
+#   gitleaks detect --source . --config .gitleaks.toml -v
+#
+# To scan only staged changes:
+#   gitleaks protect --source . --config .gitleaks.toml -v --staged

@@ -1,0 +1,41 @@
+applet: _base
+display_name: "Platform Core"
+description: "Core platform routes required by every modular deployment, including Chat + RAG + Workspaces."
+
+routes:
+  - health
+  - auth
+  - models
+  - config
+  - mcp
+  - settings
+  - companies
+  - audit
+  - permissions
+  - mfa
+  - providers
+  - agents
+  - bedrock
+  - tenant_admin
+  - platform_admin
+  - tenant_settings
+  # Base Chat platform capability
+  - documents
+  - ragflow
+  - workspace
+  - workspace_templates
+  - workspace_chat
+
+tasks:
+  # Base Chat platform capability
+  - documents
+  - ragflow_tasks
+  - ragflow_source_sync_tasks
+services: []
+models: []
+flows: []
+pages: []
+migration_tags:
+  - core
+  - auth
+  - tenancy

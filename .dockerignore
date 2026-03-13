@@ -1,0 +1,129 @@
+# =============================================================================
+# .dockerignore - Reduce Docker build context size for Northflank builds
+# =============================================================================
+
+# Git (huge - ~60MB+)
+.git
+.gitignore
+.gitattributes
+
+# macOS
+**/.DS_Store
+
+# ============================================
+# FRONTEND - NOT NEEDED FOR BACKEND (saves ~900MB)
+# ============================================
+frontend/
+**/node_modules
+
+# ============================================
+# PYTHON CACHES
+# ============================================
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+.venv
+venv
+env
+.env
+.env.*
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+**/*.egg-info
+
+# ============================================
+# IDE / EDITOR
+# ============================================
+.vscode
+.idea
+*.swp
+*.swo
+.cursor
+
+# ============================================
+# RUNTIME DATA (local only, not in container)
+# ============================================
+*.log
+logs/
+data/
+cache/
+*.sqlite3
+
+# ============================================
+# TESTS (mounted via volume, not copied)
+# ============================================
+tests/
+
+# ============================================
+# BUILD ARTIFACTS
+# ============================================
+dist/
+build/
+*.tar
+*.tar.gz
+*.zip
+
+# ============================================
+# DOCUMENTATION (not needed at runtime - saves ~2MB+)
+# ============================================
+docs/
+SOWs/
+UserDocumentation/
+dev_onboarding/
+cookbook/
+design_docs/
+permissions/
+# Note: scripts/ is NOT ignored - needed for init_tenant.py
+
+# ============================================
+# MARKDOWN FILES (status reports, etc.)
+# ============================================
+*.md
+!README.md
+
+# ============================================
+# APPLET PROFILE HYGIENE
+# ============================================
+# Keep customer-specific deployment profiles out of runtime images.
+applets/profiles/*.yaml
+# Allow generic runtime profile(s) only.
+!applets/profiles/full.yaml
+
+# ============================================
+# DEVELOPMENT FILES
+# ============================================
+Makefile
+# Only exclude root-level sh/py/txt files (NOT scripts/ or docker/ subdirs)
+/*.sh
+/*.py
+/*.txt
+!requirements.txt
+!requirements-*.txt
+
+# Docker compose files
+docker-compose*.yml
+
+# Misc
+*.tmp
+*.bak
+*.orig
+
+# MCP folder (if exists)
+Eliza-platform-talent-mcp/
+
+# ============================================
+# ADDITIONAL EXCLUSIONS (not needed in container)
+# ============================================
+orch/
+secure_retrieval_orchestration_spec/
+northflank/
+skills/
+features/
+agent_runs/
+PRD.md
+.pre-commit-config.yaml
+.cursorrules
+AGENTS.md
+uv.lock.bak

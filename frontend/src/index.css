@@ -1,0 +1,430 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================
+   Eliza Forge Themeable Brand Colors
+   These CSS variables power the design system
+   and can be overridden per-tenant
+   ========================================== */
+:root {
+  /* Primary Brand Color (buttons, logo accent, main highlights) */
+  --color-primary: 177 30 76;           /* #b11e4c */
+  
+  /* Primary Light (accessible text on dark, hover states) */
+  --color-primary-light: 221 108 102;   /* #dd6c66 */
+  
+  /* Accent Color (gradients, warm accents) */
+  --color-accent: 237 101 69;           /* #ed6545 */
+  
+  /* Text Color */
+  --color-text: 67 67 67;               /* #434343 */
+  
+  /* Dark Mode Surfaces (slate palette) */
+  --color-dark-bg: 15 23 42;            /* #0F172A slate-900 */
+  --color-dark-surface: 30 41 59;       /* #1E293B slate-800 */
+  --color-dark-surface-2: 51 65 85;     /* #334155 slate-700 */
+  --color-dark-border: 71 85 105;       /* #475569 slate-600 */
+}
+
+/* AI Enablement Platform Design Tokens (Legacy) */
+:root {
+  /* Neutrals - Updated to DS gray palette */
+  --bg: #F9FAFB;                           /* gray-50 - DS background */
+  --bg-gradient: linear-gradient(180deg, #F9FAFB 0%, #F3F4F6 100%); /* gray-50 to gray-100 */
+  --surface: rgba(255, 255, 255, 0.95);    /* Glass surface - more opaque */
+  --surface-2: rgba(255, 255, 255, 0.98);  /* Secondary glass - more opaque */
+  --text: #2B1420;                         /* Almost Black (warm) */
+  --muted: #8B3A52;                        /* Burgundy muted */
+  --muted-2: #C96B75;                      /* Dusty rose muted */
+  --border: rgba(43, 20, 32, 0.14);        /* Soft warm border */
+  --border-strong: rgba(43, 20, 32, 0.26); /* Strong warm border */
+
+  /* Brand Colors (coral/rose spectrum) */
+  --brand: #FF9580;            /* Coral Pink */
+  --brand-strong: #FF7B6B;     /* Salmon */
+  --brand-soft: rgba(255,149,128,0.15); /* Coral tint */
+  --on-brand: #FFFFFF;         /* Text on brand */
+
+  /* AI States */
+  --ai-success: #19C37D;
+  --ai-warning: #F4C542;
+  --ai-danger: #EF4444;
+  --ai-info: #3AA0FF;
+  --ai-purple: #8B5CF6;
+  --ai-teal: #14B8A6;
+
+  /* Dropdown Surfaces */
+  --dropdown-surface: #FFFFFF;
+  --dropdown-surface-muted: #F9F5F2;
+  --dropdown-border: rgba(43, 20, 32, 0.18);
+  --dropdown-shadow: 0 24px 48px rgba(43, 20, 32, 0.22);
+  --dropdown-item-surface: #FFFFFF;
+  --dropdown-item-surface-hover: #FFF2ED;
+  --dropdown-item-disabled: #F0E6E2;
+
+  /* Department Colors */
+  --dept-sales: #10B981;
+  --dept-marketing: #F59E0B;
+  --dept-engineering: #6366F1;
+  --dept-hr: #EC4899;
+  --dept-finance: #8B5CF6;
+  --dept-operations: #14B8A6;
+
+  /* ROI Status */
+  --roi-high: #059669;
+  --roi-medium: #D97706;
+  --roi-low: #DC2626;
+  --roi-unknown: #6B7280;
+
+  /* Progress */
+  --progress-not-started: #E5E7EB;
+  --progress-in-progress: #FF7B6B;
+  --progress-completed: #19C37D;
+  --progress-blocked: #EF4444;
+
+  /* Typography */
+  --font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  /* Shadows (warmer) */
+  --shadow-1: 0 1px 2px rgba(43, 20, 32, 0.10);
+  --shadow-2: 0 8px 28px rgba(43, 20, 32, 0.18);
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.2, 0, 0, 1);
+  --transition-normal: 200ms cubic-bezier(0.2, 0, 0, 1);
+  --transition-slow: 250ms cubic-bezier(0.2, 0, 0, 1);
+
+  /* Glass controls */
+  --glass-blur: 12px;
+}
+
+/* Text selection styling */
+::selection {
+  background-color: rgba(201, 80, 107, 0.25); /* Eliza red at 25% opacity */
+  color: inherit;
+}
+
+::-moz-selection {
+  background-color: rgba(201, 80, 107, 0.25);
+  color: inherit;
+}
+
+/* Dark mode selection */
+.dark ::selection,
+:root[data-theme='dark'] ::selection {
+  background-color: rgba(232, 165, 152, 0.3); /* Primary light at 30% opacity */
+  color: inherit;
+}
+
+.dark ::-moz-selection,
+:root[data-theme='dark'] ::-moz-selection {
+  background-color: rgba(232, 165, 152, 0.3);
+  color: inherit;
+}
+
+/* Base styles */
+html, body, #root {
+  height: 100%;
+  overflow: hidden; /* Prevent document-level scroll */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+code { font-family: var(--font-mono); }
+
+/* Custom scrollbar - auto-hide style */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+*:hover {
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+/* Stable scrollbar gutter - prevents layout shift when scrollbar appears/disappears */
+.scrollbar-stable {
+  scrollbar-gutter: stable;
+}
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { 
+  background: transparent; 
+  border-radius: var(--radius-full); 
+  transition: background 0.2s ease;
+}
+*:hover::-webkit-scrollbar-thumb { background: var(--border-strong); }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* Slim, hover-only scrollbars for content panes and lists */
+.scroll-slim { scrollbar-width: none; }
+.scroll-slim:hover { scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+.scroll-slim::-webkit-scrollbar { width: 4px; height: 4px; background: transparent; }
+.scroll-slim::-webkit-scrollbar-track { background: transparent; }
+.scroll-slim::-webkit-scrollbar-thumb { background: transparent; border-radius: var(--radius-full); }
+.scroll-slim:hover::-webkit-scrollbar-thumb { background: var(--border-strong); }
+
+/* iOS/Touch momentum scrolling */
+.ios-momentum { -webkit-overflow-scrolling: touch; }
+
+/* Overscroll behavior - allows bounce while preventing scroll chaining */
+.overscroll-contain {
+  overscroll-behavior-x: contain; /* Prevent horizontal scroll chaining */
+  overscroll-behavior-y: auto;    /* Allow vertical bounce/rubberband */
+}
+
+/* Force minimum scrollability for UX feedback */
+.always-scrollable {
+  /* Add padding for noticeable rubberband effect when reaching bottom */
+  padding-bottom: 15vh; /* Enough padding to ensure scrollability and rubberband */
+  padding-top: 2px;     /* Small top padding to enable pull-down bounce */
+}
+
+/* Bounce inner wrapper for subtle edge feedback */
+.bounce-inner { will-change: transform; transition: transform var(--transition-fast); }
+
+/* Focus styles */
+.focus-ring { @apply focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2; }
+
+/* Remove default focus outlines from inputs inside containers that handle their own focus */
+.focus-within\:ring-2 textarea:focus,
+.focus-within\:ring-2 input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+/* Button variants */
+.btn-primary { @apply bg-brand text-on-brand hover:bg-brand-strong focus:ring-brand; }
+.btn-secondary { @apply bg-surface border border-border text-text hover:bg-surface-2 focus:ring-brand; }
+.btn-danger { @apply bg-ai-danger text-white hover:bg-red-600 focus:ring-ai-danger; }
+
+/* Status indicators */
+.status-success { @apply bg-green-100 text-green-800 border-green-200; }
+.status-warning { @apply bg-yellow-100 text-yellow-800 border-yellow-200; }
+.status-danger { @apply bg-red-100 text-red-800 border-red-200; }
+.status-info { @apply bg-blue-100 text-blue-800 border-blue-200; }
+
+/* Loading shimmer effect */
+.shimmer { position: relative; overflow: hidden; }
+.shimmer::after {
+  content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 1.2s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Shimmer text effect - gradient sweeps across text */
+@keyframes shimmer-text {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* Indeterminate progress bar animation */
+@keyframes progress-indeterminate {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+
+.animate-progress-indeterminate {
+  animation: progress-indeterminate 1.5s ease-in-out infinite;
+}
+
+/* Card hover effects */
+.card-hover { @apply transition-all duration-normal hover:shadow-2 hover:-translate-y-0.5; }
+
+/* Glass surfaces */
+.glass-surface { background: var(--surface); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--border); box-shadow: var(--shadow-1); }
+.glass-surface-2 { background: var(--surface-2); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--border); }
+
+/* Dark theme overrides */
+:root[data-theme='dark'] {
+  --bg: #0F172A;                           /* slate-900 - DS dark background */
+  --bg-gradient: linear-gradient(180deg, #0F172A 0%, #1E293B 100%); /* slate-900 to slate-800 */
+  --surface: rgba(43, 20, 32, 0.98);       /* Glass surface - more opaque */
+  --surface-2: rgba(43, 20, 32, 0.99);     /* Secondary glass - more opaque */
+  --text: #F8F5F0;
+  --muted: #E8D5C8;
+  --muted-2: #D4BFB0;
+  --border: rgba(248, 245, 240, 0.10); /* softened */
+  --border-strong: rgba(248, 245, 240, 0.18); /* softened */
+  --brand: #FF7B6B;
+  --brand-strong: #FF9580;
+  --brand-soft: rgba(255, 149, 128, 0.18);
+  --on-brand: #1a0d13;
+  --shadow-1: 0 1px 2px rgba(0,0,0,0.35);
+  --shadow-2: 0 12px 32px rgba(0,0,0,0.45);
+
+  --dropdown-surface: #2B1420;
+  --dropdown-surface-muted: #3A1B2A;
+  --dropdown-border: rgba(248, 245, 240, 0.24);
+  --dropdown-shadow: 0 24px 48px rgba(0, 0, 0, 0.42);
+  --dropdown-item-surface: #381A27;
+  --dropdown-item-surface-hover: #462134;
+  --dropdown-item-disabled: rgba(56, 26, 39, 0.72);
+}
+
+/* Navigation active state (legacy) */
+.nav-active { @apply bg-brand-soft text-brand border-l-2 border-brand; }
+
+/* Form styles */
+.form-input { @apply block w-full rounded-md border-border bg-surface px-3 py-2 text-text placeholder-muted-2 focus:border-brand focus:ring-brand sm:text-sm; }
+.form-label { @apply block text-sm font-medium text-text mb-1; }
+
+/* Table styles */
+.table-header { @apply bg-surface-2 border-b border-border-strong text-left text-xs font-medium text-muted-2 uppercase tracking-wider; }
+.table-row { @apply bg-surface hover:bg-surface-2 border-b border-border; }
+.table-cell { @apply px-6 py-4 whitespace-nowrap text-sm text-text; }
+
+/* Reusable clean list styles (Linear-inspired) */
+.ui-list {
+  --ui-item-radius: var(--radius-md);
+  --ui-item-py: 0.625rem; /* 10px */
+  --ui-item-px: 0.75rem;  /* 12px */
+  --ui-gap: 2px;
+}
+.ui-list .ui-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--ui-item-py) var(--ui-item-px);
+  border-radius: var(--ui-item-radius);
+  border: 1px solid transparent;
+  background: transparent;
+  transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  position: relative;
+  z-index: 0;
+}
+.ui-list .ui-item:hover { background: var(--surface-2); border-color: var(--border); }
+.ui-list .ui-item-active {
+  background: transparent;
+  color: var(--brand);
+  border-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+}
+.ui-list .ui-item-active::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: -9999px; right: -9999px;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--brand) 14%, transparent), transparent);
+  z-index: -1;
+  pointer-events: none;
+}
+.ui-list .ui-item-title { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+.ui-list .ui-item-meta { font-size: 0.75rem; color: var(--muted); }
+.ui-list .ui-item-icon { width: 1rem; height: 1rem; color: var(--muted-2); }
+
+/* Two-line clamp utility */
+.line-clamp-2 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+
+/* Table variant for clean lists */
+.ui-list-table table { width: 100%; border-collapse: separate; border-spacing: 0; }
+.ui-list-table thead th {
+  padding: 0.625rem 1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+.ui-list-table tbody td { padding: 0.625rem 1rem; font-size: 0.875rem; }
+.ui-list-table tbody tr { transition: background var(--transition-fast); }
+.ui-list-table tbody tr:hover { background: var(--surface-2); }
+.ui-list-table tfoot td { padding: 0.625rem 1rem; }
+
+/* Draggable vertical divider hit area */
+.drag-divider { position: relative; cursor: col-resize; }
+.drag-divider .drag-line { position: absolute; inset: 0 auto 0 50%; margin-left: -0.5px; width: 1px; background: var(--border); }
+.drag-divider:hover .drag-line { background: var(--border-strong); }
+
+/* Overlay right/aux panes that float visually above list */
+.overlay-pane { position: relative; background: var(--surface-2); box-shadow: var(--shadow-2); z-index: 10; }
+/* Softer variant */
+.overlay-pane-soft { position: relative; background: var(--surface-2); box-shadow: var(--shadow-1); z-index: 10; }
+/* Make the pane-edge line same color as the pane for a fused look */
+.overlay-pane::before, .overlay-pane-soft::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--surface-2); }
+
+/* Utility classes */
+.text-gradient { background: linear-gradient(135deg, var(--brand), var(--ai-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.border-gradient { border-image: linear-gradient(135deg, var(--brand), var(--ai-purple)) 1; }
+.w-var { width: var(--w); }
+.min-w-detail-pane { min-width: var(--detail-pane-min-width); }
+
+/* ---- App Navigation (Linear-style) ---- */
+.nav-rail {
+  position: relative;
+  background:
+    radial-gradient(900px 600px at -200px -200px, color-mix(in oklab, var(--brand) 20%, transparent) 0%, transparent 55%),
+    linear-gradient(180deg, color-mix(in oklab, var(--surface-2) 92%, transparent) 0%, var(--bg) 100%);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border-right: 1px solid var(--border);
+}
+
+.nav-section-title {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+.nav-item {
+  display: flex; align-items: center;
+  padding: 0.375rem 0.5rem; /* tighter height */
+  margin: 0 0.25rem;
+  border-radius: 0.5rem;
+  color: var(--muted);
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.2;
+}
+.nav-item:hover { background: var(--surface-2); color: var(--text); border-color: var(--border); }
+.nav-item-active {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--brand) 18%, transparent), transparent);
+  border-color: color-mix(in oklab, var(--brand) 40%, var(--border));
+  color: var(--brand);
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--brand) 35%, transparent) inset, 0 6px 12px -8px color-mix(in oklab, var(--brand) 35%, transparent);
+}
+.nav-item-collapsed { justify-content: center; }
+
+/* Role badge dark theme refinement */
+:root[data-theme='dark'] .role-badge {
+  border-color: var(--border) !important;
+}

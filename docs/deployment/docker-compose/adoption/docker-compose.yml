@@ -1,0 +1,275 @@
+version: "3.8"
+
+# =============================================================================
+# ELIZA Accelerate - Adoption Analytics Deployment
+# =============================================================================
+# This compose file runs the Adoption Analytics applet only.
+# It includes all required infrastructure (PostgreSQL, Redis) and
+# application services (API, frontend, background workers).
+#
+# Quick start:
+#   1. Copy .env.template to .env and fill in values
+#   2. docker compose up -d
+#   3. Open http://localhost:3000
+# =============================================================================
+
+services:
+
+  # ---------------------------------------------------------------------------
+  # Frontend (React SPA served by nginx)
+  # ---------------------------------------------------------------------------
+  # Nginx proxies /v1/* API requests to the app service automatically.
+  # Users access the platform through this service on port 3000.
+  frontend:
+    image: ${ELIZA_IMAGE_REGISTRY:-}eliza-frontend:${ELIZA_IMAGE_TAG:-latest}
+    ports:
+      - "${FRONTEND_PORT:-3000}:80"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      app:
+        condition: service_healthy
+    networks:
+      - eliza
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
+        reservations:
+          cpus: "0.25"
+          memory: 256M
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # ---------------------------------------------------------------------------
+  # App (FastAPI API server)
+  # ---------------------------------------------------------------------------
+  # Runs database migrations on first boot, initializes tenant + admin user,
+  # and serves the REST API on port 5001.
+  app:
+    image: ${ELIZA_IMAGE_REGISTRY:-}eliza-backend:${ELIZA_IMAGE_TAG:-latest}
+    ports:
+      - "${APP_PORT:-5001}:5001"
+    environment:
+      # --- Applet selection (adoption only) ---
+      - APPLETS=adoption
+      - ENVIRONMENT=production
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONPATH=/app
+
+      # --- Database migrations (app container only) ---
+      - RUN_MIGRATIONS=true
+
+      # --- First-time tenant setup ---
+      # Set INIT_TENANT=true on first deploy, then change to false.
+      - INIT_TENANT=${INIT_TENANT:-true}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - CUSTOMER_ID=${CUSTOMER_ID}
+      - CUSTOMER_NAME=${CUSTOMER_NAME}
+      - FRONTEND_URL=${FRONTEND_URL:-http://localhost:3000}
+
+      # --- Data stores ---
+      - DATABASE_URL=postgresql://${DB_USER:-eliza}:${DB_PASSWORD}@${DB_HOST:-postgres}:${DB_PORT:-5432}/${DB_NAME:-ai_enablement}
+      - REDIS_URL=redis://${REDIS_HOST:-redis}:${REDIS_PORT:-6379}
+      - CELERY_BROKER_URL=redis://${REDIS_HOST:-redis}:${REDIS_PORT:-6379}/0
+      - CELERY_RESULT_BACKEND=redis://${REDIS_HOST:-redis}:${REDIS_PORT:-6379}/1
+
+      # --- API keys ---
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+
+      # --- CORS (set to your actual domain in production) ---
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-http://localhost:3000}
+
+      # --- Disabled features (not needed for adoption) ---
+      - ELASTICSEARCH_SYNC_ENABLED=false
+      - NEO4J_SYNC_ENABLED=false
+      - LOGSTASH_ENABLED=false
+      - LANGFUSE_ENABLED=false
+      - LOG_TO_FILE=false
+      - LOG_JSON_FORMAT=true
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - app_data:/app/data
+      - app_logs:/app/logs
+      - app_cache:/app/cache
+    networks:
+      - eliza
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 4G
+        reservations:
+          cpus: "1.0"
+          memory: 2G
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/health/ready"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
+
+  # ---------------------------------------------------------------------------
+  # Celery Worker (background task processor)
+  # ---------------------------------------------------------------------------
+  # Executes adoption sync tasks: pulls data from OpenAI Compliance API,
+  # computes daily metrics, and writes to PostgreSQL.
+  celery-worker:
+    image: ${ELIZA_IMAGE_REGISTRY:-}eliza-backend:${ELIZA_IMAGE_TAG:-latest}
+    command: celery -A src.celery_app worker --loglevel=info --concurrency=2 --max-tasks-per-child=50
+    environment:
+      - APPLETS=adoption
+      - ENVIRONMENT=production
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONPATH=/app
+      - DATABASE_URL=postgresql://${DB_USER:-eliza}:${DB_PASSWORD}@${DB_HOST:-postgres}:${DB_PORT:-5432}/${DB_NAME:-ai_enablement}
+      - REDIS_URL=redis://${REDIS_HOST:-redis}:${REDIS_PORT:-6379}
+      - CELERY_BROKER_URL=redis://${REDIS_HOST:-redis}:${REDIS_PORT:-6379}/0
+      - CELERY_RESULT_BACKEND=redis://${REDIS_HOST:-redis}:${REDIS_PORT:-6379}/1
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - CUSTOMER_ID=${CUSTOMER_ID}
+      - ELASTICSEARCH_SYNC_ENABLED=false
+      - NEO4J_SYNC_ENABLED=false
+      - LOGSTASH_ENABLED=false
+      - LANGFUSE_ENABLED=false
+      - LOG_TO_FILE=false
+      - LOG_JSON_FORMAT=true
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      app:
+        condition: service_healthy
+    volumes:
+      - app_data:/app/data
+      - app_logs:/app/logs
+      - app_cache:/app/cache
+    networks:
+      - eliza
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 4G
+        reservations:
+          cpus: "1.0"
+          memory: 2G
+    healthcheck:
+      test: ["CMD-SHELL", "celery -A src.celery_app inspect ping -d celery@$$HOSTNAME"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # ---------------------------------------------------------------------------
+  # Celery Beat (cron scheduler)
+  # ---------------------------------------------------------------------------
+  # Dispatches adoption sync jobs on a schedule (default: every 60 seconds it
+  # checks tenant cron configs and triggers syncs for tenants that are due).
+  # IMPORTANT: Only ever run ONE instance of this service.
+  celery-beat:
+    image: ${ELIZA_IMAGE_REGISTRY:-}eliza-backend:${ELIZA_IMAGE_TAG:-latest}
+    command: celery -A src.celery_app beat --loglevel=info --pidfile=/tmp/celerybeat.pid
+    environment:
+      - APPLETS=adoption
+      - ENVIRONMENT=production
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - PYTHONPATH=/app
+      - DATABASE_URL=postgresql://${DB_USER:-eliza}:${DB_PASSWORD}@${DB_HOST:-postgres}:${DB_PORT:-5432}/${DB_NAME:-ai_enablement}
+      - REDIS_URL=redis://${REDIS_HOST:-redis}:${REDIS_PORT:-6379}
+      - CELERY_BROKER_URL=redis://${REDIS_HOST:-redis}:${REDIS_PORT:-6379}/0
+      - CELERY_RESULT_BACKEND=redis://${REDIS_HOST:-redis}:${REDIS_PORT:-6379}/1
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - app_logs:/app/logs
+    networks:
+      - eliza
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 1G
+        reservations:
+          cpus: "0.25"
+          memory: 512M
+
+  # ---------------------------------------------------------------------------
+  # PostgreSQL 15
+  # ---------------------------------------------------------------------------
+  # Primary data store. All adoption metrics, user accounts, tenant config,
+  # and sync state are stored here.
+  #
+  # FOR PRODUCTION: Replace this with Amazon RDS for automated backups,
+  # Multi-AZ failover, and managed patching. Remove this service and set
+  # DB_HOST / DB_PORT / DB_USER / DB_PASSWORD / DB_NAME in your .env
+  # to point at your RDS instance.
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: ${DB_NAME:-ai_enablement}
+      POSTGRES_USER: ${DB_USER:-eliza}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - eliza
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-eliza} -d ${DB_NAME:-ai_enablement}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Redis 7
+  # ---------------------------------------------------------------------------
+  # Used as the Celery message broker (db 0) and result backend (db 1).
+  #
+  # FOR PRODUCTION: Replace this with Amazon ElastiCache for Redis.
+  # Remove this service and set REDIS_HOST / REDIS_PORT in your .env.
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - eliza
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+  app_data:
+  app_logs:
+  app_cache:
+
+networks:
+  eliza:
+    driver: bridge

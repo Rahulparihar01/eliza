@@ -1,0 +1,17 @@
+applet: adoption
+display_name: "Adoption Dashboard"
+description: "Adoption dashboard API routes and background sync."
+
+routes:
+  - adoption
+
+tasks:
+  - adoption_sync_tasks
+
+services: []
+models: []
+flows: []
+pages:
+  - adoption
+migration_tags:
+  - adoption

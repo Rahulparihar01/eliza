@@ -1,0 +1,242 @@
+# ============================================================
+# ALEMBIC MIGRATION TEMPLATE
+# ============================================================
+# 
+# Usage:
+#   1. Run: alembic revision -m "add_[feature]_tables"
+#   2. Replace the generated file content with this template
+#   3. Replace all [PLACEHOLDERS] with actual values
+#   4. Run: alembic upgrade head
+#
+# Skill Reference: skills/database-migrations/DATABASE_MIGRATION_GUIDE.md
+# ============================================================
+
+"""add_[feature]_tables
+
+Create tables for [feature description].
+
+Revision ID: [auto-generated]
+Revises: [get from: alembic heads]
+Create Date: [auto-generated]
+"""
+from alembic import op
+import sqlalchemy as sa
+from sqlalchemy.dialects import postgresql
+
+# revision identifiers, used by Alembic.
+revision = '[auto-generated-id]'
+down_revision = '[previous-revision-id]'  # ← Get from: alembic heads
+branch_labels = None
+depends_on = None
+
+
+def upgrade() -> None:
+    """
+    Create [feature] tables.
+    
+    Tables:
+    - [feature_table_name]: Main entity table
+    - [feature]_events: Telemetry/audit events
+    """
+    
+    # ================================================================
+    # Main Entity Table
+    # ================================================================
+    op.create_table(
+        '[feature_table_name]',
+        
+        # Primary key (from BaseModel)
+        sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+        
+        # Unique identifier
+        sa.Column('[feature]_id', sa.String(100), nullable=False),
+        
+        # Multi-tenant isolation (REQUIRED)
+        sa.Column('customer_id', sa.String(100), nullable=False),
+        sa.Column('user_id', sa.Integer(), nullable=True),
+        
+        # Core fields
+        sa.Column('name', sa.String(255), nullable=False),
+        sa.Column('description', sa.Text(), nullable=True),
+        
+        # Status tracking
+        sa.Column('status', sa.String(50), nullable=False, server_default='pending'),
+        sa.Column('error_message', sa.Text(), nullable=True),
+        
+        # JSON fields
+        sa.Column('config', postgresql.JSON(astext_type=sa.Text()), nullable=True),
+        sa.Column('result', postgresql.JSON(astext_type=sa.Text()), nullable=True),
+        
+        # Metrics
+        sa.Column('progress_percentage', sa.Float(), server_default='0'),
+        sa.Column('items_processed', sa.Integer(), server_default='0'),
+        
+        # Timestamps (from BaseModel)
+        sa.Column('created_at', sa.DateTime(timezone=True), 
+                  server_default=sa.text('now()'), nullable=False),
+        sa.Column('updated_at', sa.DateTime(timezone=True), 
+                  server_default=sa.text('now()'), nullable=True),
+        
+        # Custom timing
+        sa.Column('started_at', sa.DateTime(timezone=True), nullable=True),
+        sa.Column('completed_at', sa.DateTime(timezone=True), nullable=True),
+        
+        # Celery task tracking
+        sa.Column('task_id', sa.String(100), nullable=True),
+        
+        # Constraints
+        sa.PrimaryKeyConstraint('id'),
+        sa.ForeignKeyConstraint(['customer_id'], ['customers.customer_id']),
+        sa.ForeignKeyConstraint(['user_id'], ['users.id']),
+        sa.UniqueConstraint('[feature]_id'),
+    )
+    
+    # Indexes for main table
+    op.create_index(
+        'ix_[feature]_customer_status',
+        '[feature_table_name]',
+        ['customer_id', 'status']
+    )
+    op.create_index(
+        'ix_[feature]_created_at',
+        '[feature_table_name]',
+        ['created_at']
+    )
+    op.create_index(
+        op.f('ix_[feature_table_name]_[feature]_id'),
+        '[feature_table_name]',
+        ['[feature]_id'],
+        unique=True
+    )
+    op.create_index(
+        op.f('ix_[feature_table_name]_task_id'),
+        '[feature_table_name]',
+        ['task_id']
+    )
+    
+    # ================================================================
+    # Events Table (for SSE telemetry)
+    # ================================================================
+    op.create_table(
+        '[feature]_events',
+        
+        sa.Column('id', sa.Integer(), autoincrement=True, nullable=False),
+        sa.Column('[feature]_id', sa.String(100), nullable=False),
+        
+        # Event details
+        sa.Column('event_type', sa.String(50), nullable=False),
+        sa.Column('agent_name', sa.String(100), nullable=True),
+        sa.Column('tool_name', sa.String(100), nullable=True),
+        sa.Column('stage_name', sa.String(100), nullable=True),
+        
+        # Messages
+        sa.Column('message', sa.Text(), nullable=True),
+        sa.Column('user_message', sa.Text(), nullable=True),
+        
+        # Progress
+        sa.Column('progress_percentage', sa.Float(), nullable=True),
+        
+        # Data payloads
+        sa.Column('data', postgresql.JSON(astext_type=sa.Text()), nullable=True),
+        sa.Column('error_details', postgresql.JSON(astext_type=sa.Text()), nullable=True),
+        
+        # Timing
+        sa.Column('duration_ms', sa.Integer(), nullable=True),
+        sa.Column('timestamp', sa.DateTime(timezone=True), 
+                  server_default=sa.text('now()'), nullable=False),
+        
+        # Constraints
+        sa.PrimaryKeyConstraint('id'),
+        sa.ForeignKeyConstraint(
+            ['[feature]_id'],
+            ['[feature_table_name].[feature]_id'],
+            ondelete='CASCADE'
+        ),
+    )
+    
+    # Indexes for events table
+    op.create_index(
+        'ix_[feature]_events_[feature]_timestamp',
+        '[feature]_events',
+        ['[feature]_id', 'timestamp']
+    )
+    op.create_index(
+        op.f('ix_[feature]_events_[feature]_id'),
+        '[feature]_events',
+        ['[feature]_id']
+    )
+    op.create_index(
+        op.f('ix_[feature]_events_timestamp'),
+        '[feature]_events',
+        ['timestamp']
+    )
+
+
+def downgrade() -> None:
+    """
+    Drop [feature] tables in reverse order.
+    """
+    # Drop events table indexes
+    op.drop_index(op.f('ix_[feature]_events_timestamp'), table_name='[feature]_events')
+    op.drop_index(op.f('ix_[feature]_events_[feature]_id'), table_name='[feature]_events')
+    op.drop_index('ix_[feature]_events_[feature]_timestamp', table_name='[feature]_events')
+    
+    # Drop main table indexes
+    op.drop_index(op.f('ix_[feature_table_name]_task_id'), table_name='[feature_table_name]')
+    op.drop_index(op.f('ix_[feature_table_name]_[feature]_id'), table_name='[feature_table_name]')
+    op.drop_index('ix_[feature]_created_at', table_name='[feature_table_name]')
+    op.drop_index('ix_[feature]_customer_status', table_name='[feature_table_name]')
+    
+    # Drop tables (events first due to FK)
+    op.drop_table('[feature]_events')
+    op.drop_table('[feature_table_name]')
+
+
+# ============================================================
+# COMMON MIGRATION OPERATIONS
+# ============================================================
+"""
+# Add column to existing table:
+def upgrade():
+    op.add_column('table_name', sa.Column('new_col', sa.String(100)))
+
+def downgrade():
+    op.drop_column('table_name', 'new_col')
+
+
+# Add index:
+def upgrade():
+    op.create_index('ix_table_column', 'table_name', ['column_name'])
+
+def downgrade():
+    op.drop_index('ix_table_column', table_name='table_name')
+
+
+# Rename column:
+def upgrade():
+    op.alter_column('table_name', 'old_name', new_column_name='new_name')
+
+def downgrade():
+    op.alter_column('table_name', 'new_name', new_column_name='old_name')
+"""
+
+
+# ============================================================
+# COMMANDS
+# ============================================================
+"""
+# Create migration:
+alembic revision -m "add_[feature]_tables"
+
+# Apply migration:
+alembic upgrade head
+
+# Rollback:
+alembic downgrade -1
+
+# Check current version:
+alembic current
+
+# View history:
+alembic history
+"""

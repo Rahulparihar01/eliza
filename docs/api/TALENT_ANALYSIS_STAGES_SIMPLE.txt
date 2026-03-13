@@ -1,0 +1,134 @@
+TALENT INTELLIGENCE ANALYSIS - 10 STAGES
+==========================================
+
+STAGE 1: RESUME PARSING
+------------------------
+Description: Extract structured data from PDF resumes (name, experience, education, skills)
+Technology: Docling VLM Parser
+Agentic: YES - Uses VLM (Vision Language Model) for intelligent document understanding
+Duration: ~25 seconds (45 resumes)
+Input: PDF files from connector
+Output: List[ParsedResume] objects
+
+
+STAGE 2: DIAGNOSTIC ANALYSIS
+-----------------------------
+Description: Analyze job description to identify required competencies and skill weights
+Technology: DiagnosticAgentService (AI Agent)
+Agentic: YES - LLM-powered analysis to extract requirements and determine importance
+Duration: ~12 seconds
+Input: Job description + Ideal candidate description
+Output: DiagnosticReport (competencies, attribute weights)
+
+
+STAGE 3: BASELINE PROFILE BUILDING
+-----------------------------------
+Description: Build statistical profile from top-performing employees
+Technology: BaselineBuilderService (Statistical Analysis)
+Agentic: NO - Pure statistical aggregation (skill frequencies, experience ranges)
+Duration: ~3 seconds
+Input: Baseline employee IDs or top performers
+Output: BaselineProfile (statistical ranges, skill frequencies)
+
+
+STAGE 4: APPLICANT SCORING
+---------------------------
+Description: Score all applicants against baseline using multi-dimensional scoring
+Technology: MultiDimensionalScoringEngine
+Agentic: NO - Algorithmic scoring based on defined dimensions and weights
+Duration: ~20 seconds (45 candidates)
+Input: ParsedResumes + DiagnosticReport + BaselineProfile
+Output: List[CandidateScore] for applicants
+
+
+STAGE 5: PDL QUERY BUILDING
+----------------------------
+Description: Build People Data Labs search query from diagnostic report
+Technology: PDLQueryBuilder (Rule-based)
+Agentic: NO - Rule-based query construction using empirical guidelines
+Duration: ~2 seconds
+Input: DiagnosticReport
+Output: PDLQueryParams (job_title, skills, location, size)
+
+
+STAGE 6: MARKET SEARCH
+----------------------
+Description: Search for market candidates using People Data Labs API
+Technology: PeopleDataLabsConnector + ConnectorService
+Agentic: NO - API call with structured query (Elasticsearch DSL)
+Duration: ~5 seconds
+Input: PDLQueryParams + API credentials
+Output: List[ParsedResume] market candidates
+
+
+STAGE 7: MARKET CANDIDATE SCORING
+----------------------------------
+Description: Score market candidates using same multi-dimensional approach
+Technology: MultiDimensionalScoringEngine
+Agentic: NO - Same algorithmic scoring as Stage 4
+Duration: ~8 seconds (10 candidates)
+Input: Market ParsedResumes + DiagnosticReport + BaselineProfile
+Output: List[CandidateScore] for market candidates
+
+
+STAGE 8: TOP CANDIDATES RANKING
+--------------------------------
+Description: Combine and rank all candidates (applicants + market) by overall score
+Technology: Simple merge and sort
+Agentic: NO - Pure algorithmic ranking (sort by score descending)
+Duration: ~2 seconds
+Input: Applicant scores + Market scores
+Output: Top 10 overall candidates (List[CandidateScore])
+
+
+STAGE 9: SYNTHESIS REPORT
+--------------------------
+Description: Generate executive summary, insights, and hiring recommendations
+Technology: SynthesisAgentService (AI Agent)
+Agentic: YES - LLM-powered synthesis to create narrative report and recommendations
+Duration: ~25 seconds
+Input: DiagnosticReport + BaselineProfile + All candidate scores + Top candidates
+Output: SynthesisReport (executive summary, insights, recommendations)
+
+
+STAGE 10: FINALIZE & STORE
+---------------------------
+Description: Package complete results and store in database
+Technology: MLTalentService (Database operations)
+Agentic: NO - Data serialization and storage
+Duration: ~2 seconds
+Input: All analysis components
+Output: TalentAnalysisResult stored in database
+
+
+SUMMARY
+=======
+Total Stages: 10
+Agentic Stages: 3 (Stages 1, 2, 9)
+  - Stage 1: VLM for resume parsing
+  - Stage 2: LLM for job requirement analysis
+  - Stage 9: LLM for synthesis and recommendations
+
+Non-Agentic Stages: 7 (Stages 3, 4, 5, 6, 7, 8, 10)
+  - Statistical analysis
+  - Algorithmic scoring
+  - Rule-based query building
+  - API calls
+  - Ranking/sorting
+  - Data storage
+
+Total Duration: ~105 seconds (~2 minutes)
+Agentic Duration: ~62 seconds (59% of total time)
+Non-Agentic Duration: ~43 seconds (41% of total time)
+
+
+KEY INSIGHT
+===========
+The pipeline uses AI strategically at critical decision points:
+  - Understanding unstructured data (resumes)
+  - Interpreting requirements (job descriptions)
+  - Generating insights (recommendations)
+
+The rest relies on fast, deterministic algorithms for scoring and ranking.
+This hybrid approach balances AI capabilities with speed and cost efficiency.
+

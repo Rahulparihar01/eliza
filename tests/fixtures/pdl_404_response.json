@@ -1,0 +1,8 @@
+{
+  "status": 404,
+  "error": {
+    "type": "not_found",
+    "message": "No records were found matching your search"
+  },
+  "total": 0
+}

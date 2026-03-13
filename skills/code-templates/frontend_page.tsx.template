@@ -1,0 +1,204 @@
+{/* ============================================================
+ * FRONTEND PAGE TEMPLATE
+ * ============================================================
+ * 
+ * Usage:
+ *   1. Copy to frontend/src/pages/[FeatureName]Page.tsx
+ *   2. Replace all [PLACEHOLDERS] with actual values
+ *   3. Add route in App.tsx
+ *   4. Create API hooks using Orval or custom hooks
+ *
+ * Skill Reference: skills/design-system/DESIGN_SYSTEM_GUIDE.md
+ * ============================================================ */}
+
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  PlusIcon,
+  ArrowPathIcon,
+  MagnifyingGlassIcon,
+} from '@heroicons/react/24/outline';
+
+// API hooks (generate with Orval or create custom)
+// import { useGet[Features], useCreate[Feature] } from '../api/eliza-api';
+
+// Components
+import { PageLayout } from '../components/ui/PageLayout';
+import { Toolbar } from '../components/ui/Toolbar';
+import { DataTable } from '../components/ui/DataTable';
+import { EmptyState } from '../components/ui/EmptyState';
+import { LoadingSpinner } from '../components/ui/LoadingSpinner';
+import { useToast } from '../components/ui/Toast';
+
+// Types
+interface [Feature] {
+  id: number;
+  [feature]_id: string;
+  name: string;
+  status: string;
+  created_at: string;
+}
+
+export function [Feature]Page() {
+  const navigate = useNavigate();
+  const { addToast } = useToast();
+  
+  // State
+  const [searchQuery, setSearchQuery] = useState('');
+  const [statusFilter, setStatusFilter] = useState<string | null>(null);
+  
+  // API hooks
+  // const { data, isLoading, refetch } = useGet[Features]({
+  //   status: statusFilter,
+  //   search: searchQuery,
+  // });
+  
+  // Placeholder data - replace with actual API call
+  const isLoading = false;
+  const data = { items: [], total: 0 };
+  const refetch = () => {};
+  
+  // Handlers
+  const handleCreate = () => {
+    navigate('/[features]/new');
+  };
+  
+  const handleRowClick = ([feature]: [Feature]) => {
+    navigate(`/[features]/${[feature].[feature]_id}`);
+  };
+  
+  const handleRefresh = () => {
+    refetch();
+    addToast({ kind: 'success', message: 'Data refreshed' });
+  };
+  
+  // Table columns
+  const columns = [
+    {
+      key: 'name',
+      header: 'Name',
+      render: ([feature]: [Feature]) => (
+        <span className="font-medium text-text">{[feature].name}</span>
+      ),
+    },
+    {
+      key: 'status',
+      header: 'Status',
+      render: ([feature]: [Feature]) => (
+        <StatusBadge status={[feature].status} />
+      ),
+    },
+    {
+      key: 'created_at',
+      header: 'Created',
+      render: ([feature]: [Feature]) => (
+        <span className="text-muted">
+          {new Date([feature].created_at).toLocaleDateString()}
+        </span>
+      ),
+    },
+  ];
+  
+  return (
+    <PageLayout
+      title="[Features]"
+      description="Manage your [features]"
+    >
+      {/* Toolbar */}
+      <Toolbar>
+        {/* Search */}
+        <div className="relative flex-1 max-w-md">
+          <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" />
+          <input
+            type="text"
+            placeholder="Search [features]..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 border border-border rounded-lg bg-bg text-text placeholder-muted focus:outline-none focus:ring-2 focus:ring-brand"
+          />
+        </div>
+        
+        {/* Filters */}
+        <select
+          value={statusFilter || ''}
+          onChange={(e) => setStatusFilter(e.target.value || null)}
+          className="px-4 py-2 border border-border rounded-lg bg-bg text-text"
+        >
+          <option value="">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="processing">Processing</option>
+          <option value="completed">Completed</option>
+          <option value="failed">Failed</option>
+        </select>
+        
+        {/* Actions */}
+        <button
+          onClick={handleRefresh}
+          className="p-2 text-muted hover:text-text rounded-lg hover:bg-surface-2"
+          title="Refresh"
+        >
+          <ArrowPathIcon className="w-5 h-5" />
+        </button>
+        
+        <button
+          onClick={handleCreate}
+          className="flex items-center gap-2 px-4 py-2 bg-brand text-white rounded-lg hover:bg-brand-hover"
+        >
+          <PlusIcon className="w-5 h-5" />
+          New [Feature]
+        </button>
+      </Toolbar>
+      
+      {/* Content */}
+      {isLoading ? (
+        <div className="flex items-center justify-center h-64">
+          <LoadingSpinner size="lg" />
+        </div>
+      ) : data?.items?.length === 0 ? (
+        <EmptyState
+          title="No [features] yet"
+          description="Create your first [feature] to get started."
+          action={{
+            label: 'Create [Feature]',
+            onClick: handleCreate,
+          }}
+        />
+      ) : (
+        <DataTable
+          data={data?.items || []}
+          columns={columns}
+          onRowClick={handleRowClick}
+          keyField="[feature]_id"
+        />
+      )}
+    </PageLayout>
+  );
+}
+
+
+// Status Badge Component
+function StatusBadge({ status }: { status: string }) {
+  const styles = {
+    pending: 'bg-yellow-100 text-yellow-800',
+    processing: 'bg-blue-100 text-blue-800',
+    completed: 'bg-green-100 text-green-800',
+    failed: 'bg-red-100 text-red-800',
+  };
+  
+  return (
+    <span className={`px-2 py-1 text-xs font-medium rounded-full ${styles[status as keyof typeof styles] || 'bg-gray-100 text-gray-800'}`}>
+      {status}
+    </span>
+  );
+}
+
+
+{/* ============================================================
+ * ROUTE REGISTRATION (add to App.tsx)
+ * ============================================================ */}
+{/*
+import { [Feature]Page } from './pages/[Feature]Page';
+
+<Route path="/[features]" element={<[Feature]Page />} />
+<Route path="/[features]/:id" element={<[Feature]DetailPage />} />
+*/}

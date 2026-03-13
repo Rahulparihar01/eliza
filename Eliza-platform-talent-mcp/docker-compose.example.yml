@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  eliza-talent-mcp:
+    build: .
+    container_name: eliza-talent-mcp
+    environment:
+      # API base URL - update to match your backend
+      ELIZA_API_BASE: "http://backend:5001"
+      
+      # Optional: Set API key directly (not recommended for production)
+      # ELIZA_API_KEY: "uak_your_api_key_here"
+    
+    # Recommended: Use Docker secrets for API key
+    secrets:
+      - eliza_api_key
+    
+    # Keep container running for stdio communication
+    stdin_open: true
+    tty: true
+    
+    # Optional: Connect to backend network
+    networks:
+      - eliza-network
+
+# Docker secrets configuration
+secrets:
+  eliza_api_key:
+    file: ./secrets/eliza_api_key.txt
+
+networks:
+  eliza-network:
+    external: true
+

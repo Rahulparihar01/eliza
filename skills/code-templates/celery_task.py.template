@@ -1,0 +1,232 @@
+# ============================================================
+# CELERY TASK TEMPLATE
+# ============================================================
+# 
+# Usage:
+#   1. Copy this file to src/tasks/[feature_name]_tasks.py
+#   2. Replace all [PLACEHOLDERS] with actual values
+#   3. Create API endpoint to trigger the task
+#
+# Skill Reference: skills/celery-tasks/CELERY_TASK_DEVELOPMENT.md
+# ============================================================
+
+"""
+[FEATURE_NAME] Celery Tasks
+
+Async tasks for processing [describe what this processes].
+"""
+from datetime import datetime, timezone
+from typing import Dict, Any, Optional
+from celery import Task
+from celery.exceptions import SoftTimeLimitExceeded
+
+from src.celery_app import celery_app
+from src.models import database  # ✅ CRITICAL: Module import, not direct import
+from src.models.[feature_name] import [Feature]Status
+from src.services.[feature_name]_service import [Feature]Service
+from src.core.logging import get_logger, LogCategory, bind_context
+
+logger = get_logger(__name__, LogCategory.BUSINESS)
+
+
+class [Feature]Task(Task):
+    """Base task class with retry logic."""
+    autoretry_for = (Exception,)
+    retry_kwargs = {'max_retries': 3, 'countdown': 5}
+    retry_backoff = True
+    retry_backoff_max = 600
+    retry_jitter = True
+
+
+@celery_app.task(
+    base=[Feature]Task,
+    bind=True,
+    name="process_[feature]",
+    soft_time_limit=300,  # 5 minute soft limit
+    time_limit=360        # 6 minute hard limit
+)
+def process_[feature](
+    self,
+    [feature]_id: str,
+    user_id: int,
+    customer_id: str,
+    company_hr_dataset: Optional[str] = None
+) -> Dict[str, Any]:
+    """
+    Process [feature] asynchronously.
+    
+    Args:
+        [feature]_id: Unique identifier for the [feature]
+        user_id: User who initiated the request
+        customer_id: Customer organization ID
+        company_hr_dataset: Target company for data filtering (if applicable)
+        
+    Returns:
+        Dict with processing results
+    """
+    # ========================================
+    # Logging Context
+    # ========================================
+    bind_context(
+        task="process_[feature]",
+        [feature]_id=[feature]_id,
+        user_id=user_id,
+        customer_id=customer_id
+    )
+    
+    logger.info(
+        "task_start",
+        [feature]_id=[feature]_id,
+        task_id=self.request.id
+    )
+    
+    # ========================================
+    # Database Session Setup (CRITICAL!)
+    # ========================================
+    # ✅ MUST use module import pattern
+    if database.SessionLocal is None:
+        logger.info("initializing_database")
+        database.init_database()
+    
+    if database.SessionLocal is None:
+        raise RuntimeError("SessionLocal is still None after init - check config")
+    
+    db = database.SessionLocal()
+    
+    try:
+        service = [Feature]Service(db)
+        
+        # ========================================
+        # 1. Validate Entity
+        # ========================================
+        entity = service.get([feature]_id)
+        if not entity:
+            logger.error("entity_not_found", [feature]_id=[feature]_id)
+            return {"success": False, "error": "[Feature] not found"}
+        
+        if entity.status == [Feature]Status.FAILED:
+            logger.warning("entity_already_failed", [feature]_id=[feature]_id)
+            return {"success": False, "error": entity.error_message}
+        
+        # ========================================
+        # 2. Update Status to Processing
+        # ========================================
+        service.update_status([feature]_id, [Feature]Status.PROCESSING)
+        
+        # ========================================
+        # 3. Main Processing Logic
+        # ========================================
+        logger.info("processing_start", [feature]_id=[feature]_id)
+        
+        try:
+            # TODO: Add your processing logic here
+            # Example:
+            # result = service.do_processing(entity)
+            
+            # Add telemetry events for progress tracking (if using SSE)
+            # service.add_telemetry_event(
+            #     [feature]_id=[feature]_id,
+            #     event_type="progress",
+            #     user_message="Processing step 1...",
+            #     progress_percentage=25.0
+            # )
+            
+            result = {"processed": True}  # Replace with actual result
+            
+            # ========================================
+            # 4. Save Results
+            # ========================================
+            # service.save_result([feature]_id, result)
+            
+            # ========================================
+            # 5. Update Status to Completed
+            # ========================================
+            service.update_status([feature]_id, [Feature]Status.COMPLETED)
+            
+            logger.info("task_complete", [feature]_id=[feature]_id)
+            
+            return {
+                "success": True,
+                "[feature]_id": [feature]_id,
+                "status": "completed"
+            }
+            
+        except SoftTimeLimitExceeded:
+            logger.error("task_timeout", [feature]_id=[feature]_id)
+            service.update_status(
+                [feature]_id,
+                [Feature]Status.FAILED,
+                error_message="Processing exceeded time limit"
+            )
+            return {"success": False, "error": "Task timed out"}
+            
+    except Exception as e:
+        logger.error("task_exception", error=str(e), exc_info=True)
+        try:
+            service.update_status(
+                [feature]_id,
+                [Feature]Status.FAILED,
+                error_message=f"Processing failed: {str(e)}"
+            )
+        except:
+            pass
+        return {"success": False, "error": str(e)}
+    
+    finally:
+        db.close()  # ✅ ALWAYS close in finally
+
+
+# ============================================================
+# API ENDPOINT TO TRIGGER TASK (add to routes file)
+# ============================================================
+"""
+from celery.exceptions import CeleryError
+from src.tasks.[feature_name]_tasks import process_[feature]
+
+@router.post(
+    "/",
+    response_model=[Feature]SubmitResponse,
+    status_code=status.HTTP_202_ACCEPTED,  # 202 for async
+)
+async def submit_[feature](
+    request: [Feature]SubmitRequest,
+    db: Session = Depends(get_db),
+    current_user = Depends(require_permission("[feature]:write"))
+):
+    service = [Feature]Service(db)
+    
+    # Create record with PENDING status
+    entity = service.create(
+        user_id=current_user.user_id,
+        customer_id=current_user.customer_id,
+        **request.dict()
+    )
+    
+    # Queue Celery task
+    try:
+        async_result = process_[feature].delay(
+            [feature]_id=entity.[feature]_id,
+            user_id=current_user.user_id,
+            customer_id=current_user.customer_id
+        )
+    except CeleryError as e:
+        logger.error("task_enqueue_failed", error=str(e))
+        service.update_status(entity.[feature]_id, [Feature]Status.FAILED)
+        raise HTTPException(status_code=503, detail="Workers unavailable")
+    
+    return [Feature]SubmitResponse(
+        [feature]_id=entity.[feature]_id,
+        status=entity.status,
+        message="Submitted for processing",
+        task_id=async_result.id
+    )
+"""
+
+
+# ============================================================
+# REMEMBER: Rebuild containers after changes!
+# ============================================================
+"""
+docker-compose build app celery-worker
+docker-compose up -d app celery-worker
+"""

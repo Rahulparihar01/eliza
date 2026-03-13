@@ -1,0 +1,306 @@
+2025-09-28 23:06:36 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:06:36 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0008s
+2025-09-28 23:07:06 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:07:06 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0055s
+2025-09-28 23:07:36 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:07:36 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0030s
+2025-09-28 23:08:06 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:08:06 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0066s
+2025-09-28 23:08:36 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:08:36 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0017s
+2025-09-28 23:09:06 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:09:06 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0073s
+2025-09-28 23:09:36 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:09:36 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0033s
+2025-09-28 23:10:06 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:10:06 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0064s
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.main             | Request: POST /v1/documents/upload
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_begin with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_field with data[50:69]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_value with data[71:133]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_end with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_field with data[135:147]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_value with data[149:159]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_end with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_headers_finished with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_data with data[163:3464]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_end with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_begin with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_field with data[3516:3535]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_value with data[3537:3572]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_end with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_headers_finished with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_data with data[3576:3584]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_end with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_begin with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_field with data[3636:3655]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_value with data[3657:3685]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_end with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_headers_finished with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_data with data[3689:3693]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_end with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_begin with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_field with data[3745:3764]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_value with data[3766:3797]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_end with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_headers_finished with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_data with data[3801:3804]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_end with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_begin with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_field with data[3856:3875]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_value with data[3877:3915]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_header_end with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_headers_finished with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_data with data[3919:3923]
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_part_end with no data
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | python_multipart.multipart | Calling on_end with no data
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.models.database  | Database initialized successfully
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | Created upload batch batch_197d72bfa9d4 for customer local-dev
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | 🔍 DEBUG: process_uploaded_file called for comprehensive_test_doc.txt
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | 🔍 DEBUG: SessionLocal in process_uploaded_file: None
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | [DOCUMENT_PROCESSING] Starting file processing for comprehensive_test_doc.txt
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | [DOCUMENT_PROCESSING] Step 1: Validating file comprehensive_test_doc.txt
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | [DOCUMENT_PROCESSING] Step 2: Saving file comprehensive_test_doc.txt to disk
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | [DOCUMENT_PROCESSING] Step 3: File comprehensive_test_doc.txt saved successfully
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | [DOCUMENT_PROCESSING] Step 4: Creating document record for comprehensive_test_doc.txt
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | 🔍 DEBUG: Starting document record creation for 20250928_231007_e8d33940_comprehensive_test_doc.txt
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | 🔍 DEBUG: SessionLocal type: <class 'NoneType'>, value: None
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.models.database  | Database initialized successfully
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | 🔍 DEBUG: Session created successfully: <sqlalchemy.orm.session.Session object at 0xffff15c47af0>
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | 🔍 DEBUG: Creating Document object...
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | 🔍 DEBUG: Document object created successfully
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | 🔍 DEBUG: Adding document to session...
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | 🔍 DEBUG: Document added to session, flushing...
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | 🔍 DEBUG: Session flushed, getting document ID...
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | 🔍 DEBUG: Document ID obtained: 38
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | Document 38 created successfully
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | [DOCUMENT_PROCESSING] Step 5: Document record created successfully with ID 38
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | Document 38 uploaded successfully, starting async processing
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.api.routes.documents | Document upload batch batch_197d72bfa9d4 created with 1 files
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.models.database  | Database initialized successfully
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.document_processor | Starting processing for document 38: comprehensive_test_doc.txt
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.main             | Response: 202 in 0.1050s
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | src.services.chunking_service | Chunking document with strategy: semantic
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | sentence_transformers.SentenceTransformer | Use pytorch device_name: cpu
+2025-09-28 23:10:07 | [32mINFO[0m | local-dev    | sentence_transformers.SentenceTransformer | Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json HTTP/1.1" 307 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json HTTP/1.1" 200 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json HTTP/1.1" 307 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json HTTP/1.1" 200 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json HTTP/1.1" 307 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json HTTP/1.1" 200 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md HTTP/1.1" 307 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md HTTP/1.1" 200 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json HTTP/1.1" 307 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json HTTP/1.1" 200 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json HTTP/1.1" 307 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json HTTP/1.1" 200 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json HTTP/1.1" 404 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json HTTP/1.1" 307 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json HTTP/1.1" 200 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json HTTP/1.1" 307 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json HTTP/1.1" 200 0
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "GET /api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=False&expand=False HTTP/1.1" 404 64
+2025-09-28 23:10:07 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json HTTP/1.1" 307 0
+2025-09-28 23:10:08 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "HEAD /api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json HTTP/1.1" 200 0
+2025-09-28 23:10:08 | [36mDEBUG[0m | local-dev    | urllib3.connectionpool | https://huggingface.co:443 "GET /api/models/sentence-transformers/all-MiniLM-L6-v2 HTTP/1.1" 200 6857
+2025-09-28 23:10:08 | [33mWARNING[0m | local-dev    | src.services.chunking_service | spaCy model not found, using simple sentence splitting
+2025-09-28 23:10:08 | [32mINFO[0m | local-dev    | src.services.chunking_service | Semantic chunking created 2 chunks
+2025-09-28 23:10:08 | [32mINFO[0m | local-dev    | src.services.document_processor | Saved 2 chunks for document 38
+2025-09-28 23:10:08 | [31mERROR[0m | local-dev    | src.services.vector_service | Failed to generate embeddings for document 38: local variable 'added_count' referenced before assignment
+2025-09-28 23:10:08 | [32mINFO[0m | local-dev    | src.services.document_processor | Successfully processed document 38: 2 chunks created
+2025-09-28 23:10:08 | [31mERROR[0m | local-dev    | src.services.document_processor | Critical error in document processing 38: (psycopg2.errors.UndefinedColumn) column "semantic_density" of relation "document_chunks" does not exist
+LINE 1: ...unt, token_count, embedding_model, quality_score, semantic_d...
+                                                             ^
+
+[SQL: INSERT INTO document_chunks (document_id, chunk_index, chunk_id, text, start_char, end_char, character_count, token_count, embedding_model, quality_score, semantic_density, section_title, section_level, parent_chunk_id, qa_quality_score) SELECT p0::I ... 959 characters truncated ... ument_chunks.id, document_chunks.created_at, document_chunks.updated_at, document_chunks.id AS id__1]
+[parameters: {'end_char__0': 2783, 'character_count__0': 2783, 'token_count__0': 363, 'semantic_density__0': None, 'section_title__0': None, 'chunk_id__0': 'chunk_25a77d3f', 'parent_chunk_id__0': None, 'qa_quality_score__0': None, 'document_id__0': 38, 'text__0': "AI Enablement Platform - Comprehensive Test Document\n\nIntroduction\nThis document serves as a comprehensive test for the AI Enablement Platform's d ... (2550 characters truncated) ... rios\nThis document will test the following scenarios:\n1. Multi-paragraph semantic chunking\n2. Technical terminology handling\n3. Structured conten", 'section_level__0': None, 'quality_score__0': 0.9, 'embedding_model__0': None, 'chunk_index__0': 0, 'start_char__0': 0, 'end_char__1': 3295, 'character_count__1': 496, 'token_count__1': 64, 'semantic_density__1': None, 'section_title__1': None, 'chunk_id__1': 'chunk_f1b0e0cf', 'parent_chunk_id__1': None, 'qa_quality_score__1': None, 'document_id__1': 38, 'text__1': 'Vector similarity calculations\n5. Index storage and retrieval operations\n\nConclusion\nThis comprehensive test document provides sufficient content ... (204 characters truncated) ... enterprise documents.\n\nTechnical specifications and implementation details can be found in the accompanying design documentation and API specificat', 'section_level__1': None, 'quality_score__1': 0.9, 'embedding_model__1': None, 'chunk_index__1': 1, 'start_char__1': 2799}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2118, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+psycopg2.errors.UndefinedColumn: column "semantic_density" of relation "document_chunks" does not exist
+LINE 1: ...unt, token_count, embedding_model, quality_score, semantic_d...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/src/services/document_processor.py", line 323, in _process_document_async
+    with self.get_db_session() as db:
+  File "/usr/local/lib/python3.10/contextlib.py", line 142, in __exit__
+    next(self.gen)
+  File "/app/src/services/document_processor.py", line 80, in get_db_session
+    session.commit()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2032, in commit
+    trans.commit(_to_root=True)
+  File "<string>", line 2, in commit
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1313, in commit
+    self._prepare_impl()
+  File "<string>", line 2, in _prepare_impl
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+    ret_value = fn(self, *arg, **kw)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1288, in _prepare_impl
+    self.session.flush()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4345, in flush
+    self._flush(objects)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4480, in _flush
+    with util.safe_reraise():
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 4441, in _flush
+    flush_context.execute()
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 466, in execute
+    rec.execute(self)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 642, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 93, in save_obj
+    _emit_insert_statements(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1143, in _emit_insert_statements
+    result = connection.execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+    return meth(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 526, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_context
+    return self._exec_insertmany_context(dialect, context)
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2126, in _exec_insertmany_context
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2355, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2118, in _exec_insertmany_context
+    dialect.do_execute(
+  File "/usr/local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 951, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.ProgrammingError: (psycopg2.errors.UndefinedColumn) column "semantic_density" of relation "document_chunks" does not exist
+LINE 1: ...unt, token_count, embedding_model, quality_score, semantic_d...
+                                                             ^
+
+[SQL: INSERT INTO document_chunks (document_id, chunk_index, chunk_id, text, start_char, end_char, character_count, token_count, embedding_model, quality_score, semantic_density, section_title, section_level, parent_chunk_id, qa_quality_score) SELECT p0::I ... 959 characters truncated ... ument_chunks.id, document_chunks.created_at, document_chunks.updated_at, document_chunks.id AS id__1]
+[parameters: {'end_char__0': 2783, 'character_count__0': 2783, 'token_count__0': 363, 'semantic_density__0': None, 'section_title__0': None, 'chunk_id__0': 'chunk_25a77d3f', 'parent_chunk_id__0': None, 'qa_quality_score__0': None, 'document_id__0': 38, 'text__0': "AI Enablement Platform - Comprehensive Test Document\n\nIntroduction\nThis document serves as a comprehensive test for the AI Enablement Platform's d ... (2550 characters truncated) ... rios\nThis document will test the following scenarios:\n1. Multi-paragraph semantic chunking\n2. Technical terminology handling\n3. Structured conten", 'section_level__0': None, 'quality_score__0': 0.9, 'embedding_model__0': None, 'chunk_index__0': 0, 'start_char__0': 0, 'end_char__1': 3295, 'character_count__1': 496, 'token_count__1': 64, 'semantic_density__1': None, 'section_title__1': None, 'chunk_id__1': 'chunk_f1b0e0cf', 'parent_chunk_id__1': None, 'qa_quality_score__1': None, 'document_id__1': 38, 'text__1': 'Vector similarity calculations\n5. Index storage and retrieval operations\n\nConclusion\nThis comprehensive test document provides sufficient content ... (204 characters truncated) ... enterprise documents.\n\nTechnical specifications and implementation details can be found in the accompanying design documentation and API specificat', 'section_level__1': None, 'quality_score__1': 0.9, 'embedding_model__1': None, 'chunk_index__1': 1, 'start_char__1': 2799}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-09-28 23:10:23 | [32mINFO[0m | local-dev    | src.main             | Request: GET /v1/documents/stats/index
+2025-09-28 23:10:23 | [32mINFO[0m | local-dev    | src.main             | Response: 200 in 0.0040s
+2025-09-28 23:10:36 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:10:36 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0007s
+2025-09-28 23:10:44 | [32mINFO[0m | local-dev    | src.main             | Request: GET /v1/documents/stats/index
+2025-09-28 23:10:44 | [32mINFO[0m | local-dev    | src.main             | Response: 200 in 0.0074s
+2025-09-28 23:11:06 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:11:06 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0006s
+2025-09-28 23:11:36 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:11:36 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0019s
+2025-09-28 23:12:06 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:12:06 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0010s
+2025-09-28 23:12:36 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:12:36 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0008s
+2025-09-28 23:13:07 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:13:07 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0091s
+2025-09-28 23:13:37 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:13:37 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0009s
+2025-09-28 23:14:07 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:14:07 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0025s
+2025-09-28 23:14:37 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:14:37 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0007s
+2025-09-28 23:15:07 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:15:07 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0012s
+2025-09-28 23:15:37 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:15:37 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0007s
+2025-09-28 23:16:07 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:16:07 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0047s
+2025-09-28 23:16:37 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:16:37 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0023s
+2025-09-28 23:17:07 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:17:07 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0011s
+2025-09-28 23:17:37 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:17:37 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0009s
+2025-09-28 23:18:07 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:18:07 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0022s
+2025-09-28 23:18:37 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:18:37 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0009s
+2025-09-28 23:19:07 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:19:07 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0030s
+2025-09-28 23:19:37 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:19:37 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0006s
+2025-09-28 23:20:07 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:20:07 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0012s
+2025-09-28 23:20:38 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:20:38 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0269s
+2025-09-28 23:21:08 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:21:08 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0010s
+2025-09-28 23:21:38 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:21:38 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0060s
+2025-09-28 23:22:08 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:22:08 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0036s
+2025-09-28 23:22:38 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:22:38 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0009s
+2025-09-28 23:23:08 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:23:08 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0046s
+2025-09-28 23:23:38 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:23:38 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0013s
+2025-09-28 23:24:08 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:24:08 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0030s
+2025-09-28 23:24:38 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:24:38 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0008s
+2025-09-28 23:25:08 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:25:08 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0021s
+2025-09-28 23:25:38 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:25:38 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0382s
+2025-09-28 23:26:08 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:26:08 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0188s
+2025-09-28 23:26:38 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:26:38 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0012s
+2025-09-28 23:27:09 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:27:09 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0095s
+2025-09-28 23:27:39 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:27:39 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0029s
+2025-09-28 23:28:09 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:28:09 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0008s
+2025-09-28 23:28:39 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:28:39 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0133s
+2025-09-28 23:28:46 | [32mINFO[0m | local-dev    | src.main             | Request: GET /v1/documents/stats/index
+2025-09-28 23:28:46 | [32mINFO[0m | local-dev    | src.main             | Response: 200 in 0.0094s
+2025-09-28 23:29:09 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:29:09 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0009s
+2025-09-28 23:29:37 | [32mINFO[0m | local-dev    | src.main             | Request: GET /v1/documents/stats/index
+2025-09-28 23:29:37 | [32mINFO[0m | local-dev    | src.main             | Response: 200 in 0.0111s
+2025-09-28 23:29:39 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:29:39 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0015s
+2025-09-28 23:30:09 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:30:09 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0022s
+2025-09-28 23:30:12 | [32mINFO[0m | local-dev    | src.main             | Request: GET /v1/documents/stats/index
+2025-09-28 23:30:12 | [32mINFO[0m | local-dev    | src.main             | Response: 200 in 0.0049s
+2025-09-28 23:30:12 | [32mINFO[0m | local-dev    | src.main             | Request: GET /v1/documents/health
+2025-09-28 23:30:12 | [32mINFO[0m | local-dev    | src.main             | Response: 200 in 0.0026s
+2025-09-28 23:30:34 | [32mINFO[0m | local-dev    | src.main             | Request: GET /v1/documents/stats/index
+2025-09-28 23:30:34 | [32mINFO[0m | local-dev    | src.main             | Response: 200 in 0.0028s
+2025-09-28 23:30:34 | [32mINFO[0m | local-dev    | src.main             | Request: POST /v1/documents/search
+2025-09-28 23:30:34 | [33mWARNING[0m | local-dev    | src.services.vector_service | FAISS index is empty
+2025-09-28 23:30:34 | [32mINFO[0m | local-dev    | src.main             | Response: 200 in 0.0056s
+2025-09-28 23:30:39 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:30:39 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0022s
+2025-09-28 23:31:09 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:31:09 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0062s
+2025-09-28 23:31:39 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:31:39 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0011s
+2025-09-28 23:32:09 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:32:09 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0239s
+2025-09-28 23:32:39 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:32:39 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0010s
+2025-09-28 23:33:10 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:33:10 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0254s
+2025-09-28 23:33:40 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:33:40 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0102s
+2025-09-28 23:34:10 | [32mINFO[0m | local-dev    | src.main             | Request: GET /health
+2025-09-28 23:34:10 | [32mINFO[0m | local-dev    | src.main             | Response: 307 in 0.0018s
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2025-09-28 23:34:15 | [32mINFO[0m | local-dev    | src.main             | 🛑 Shutting down AI Enablement Platform API
+INFO:     Application shutdown complete.
+INFO:     Finished server process [1]

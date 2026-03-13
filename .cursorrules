@@ -1,0 +1,783 @@
+# Cursor AI Agent Rules - Eliza Platform
+
+## Database Session Management Rules
+
+### Rule 1: Never Store Database Sessions in Serializable State
+**Context:** SQLAlchemy sessions cannot be pickled/serialized. This breaks Celery tasks and CrewAI flows.
+
+**NEVER:**
+```python
+# ❌ BAD: Storing session in state that gets pickled
+class FlowState(BaseModel):
+    db_session: Session  # This will cause pickle errors!
+    session_id: int
+```
+
+**ALWAYS:**
+```python
+# ✅ GOOD: Store only IDs, create sessions locally
+class FlowState(BaseModel):
+    session_id: int  # Only store the ID
+
+# Create sessions locally in methods:
+def my_method(self):
+    if SessionLocal is None:
+        init_database()
+    db = SessionLocal()
+    try:
+        # Use db here
+        pass
+    finally:
+        db.close()
+```
+
+### Rule 2: Always Check and Initialize SessionLocal Before Use
+**Context:** `SessionLocal` is initialized as `None` and only set when `init_database()` is called. Different execution contexts (main app, celery workers, flows) may not have it initialized.
+
+**ALWAYS:**
+```python
+# ✅ GOOD: Check and initialize before use
+from src.models.database import SessionLocal, init_database
+
+if SessionLocal is None:
+    init_database()
+db = SessionLocal()
+try:
+    # Use db
+    pass
+finally:
+    db.close()
+```
+
+**NEVER:**
+```python
+# ❌ BAD: Assuming SessionLocal is available
+from src.models.database import SessionLocal
+
+db = SessionLocal()  # This will fail if not initialized!
+```
+
+### Rule 3: Verify Import Paths - Don't Assume Module Locations
+**Context:** We lost hours to `ModuleNotFoundError: No module named 'src.core.database'` when `SessionLocal` was actually in `src.models.database`.
+
+**ALWAYS:**
+1. Use grep or file search to find where symbols are actually defined:
+   ```bash
+   grep -r "SessionLocal =" src/
+   ```
+
+2. Verify the import path exists before using it:
+   ```bash
+   ls -la src/core/database.py  # Does this file exist?
+   ```
+
+3. Check existing code for the correct import pattern:
+   ```bash
+   grep -r "from.*import SessionLocal" src/
+   ```
+
+**NEVER:**
+- Assume a module exists based on naming conventions
+- Add imports without verifying the file/module exists
+- Use dynamic imports (`from x import y` inside functions) in async contexts without testing
+
+### Rule 4: Import at Module Level, Not Inside Functions (For Async Code)
+**Context:** Dynamic imports inside CrewAI flow methods failed because the async execution context has different import resolution.
+
+**ALWAYS:**
+```python
+# ✅ GOOD: Import at top of file
+from src.models import database
+from src.services.business_intelligence_service import BusinessIntelligenceService
+
+class MyFlow(Flow):
+    def my_method(self):
+        if database.SessionLocal is None:
+            database.init_database()
+        db = database.SessionLocal()
+        bi_service = BusinessIntelligenceService(db)
+```
+
+**NEVER:**
+```python
+# ❌ BAD: Dynamic imports in async flow methods
+class MyFlow(Flow):
+    def my_method(self):
+        from src.models.database import SessionLocal  # May fail in async context!
+        db = SessionLocal()
+```
+
+### Rule 4b: Use Module Imports for Global Variables (Critical for Database Sessions)
+**Context:** When you import a variable directly (`from module import variable`), Python creates a LOCAL BINDING to that variable's value at import time. If the variable is later modified (like `SessionLocal = sessionmaker(...)`), your local binding doesn't update!
+
+**THE PROBLEM:**
+```python
+# ❌ BAD: Direct import creates local binding
+from src.models.database import SessionLocal, init_database
+
+# At import time, SessionLocal is None
+# This creates a local binding: SessionLocal = None
+
+if SessionLocal is None:
+    init_database()  # This sets database.SessionLocal = sessionmaker(...)
+    
+db = SessionLocal()  # ❌ FAILS! Your local SessionLocal is still None!
+```
+
+**THE SOLUTION:**
+```python
+# ✅ GOOD: Module import maintains reference to actual global
+from src.models import database
+
+if database.SessionLocal is None:
+    database.init_database()  # Sets database.SessionLocal = sessionmaker(...)
+    
+db = database.SessionLocal()  # ✅ WORKS! References the actual global variable
+```
+
+**WHY THIS MATTERS:**
+- Direct imports: `from X import Y` → Creates local copy of Y's value at import time
+- Module imports: `import X` or `from parent import X` → Always references X.Y in real-time
+- Global variables that get initialized after import (like SessionLocal) MUST use module imports
+- This is fundamental Python behavior, not specific to our codebase
+
+## Container and Docker Rules
+
+### Rule 5: Rebuild Containers After Code Changes
+**Context:** `docker-compose restart` only restarts containers with OLD images. Code changes require rebuild.
+
+**ALWAYS:**
+```bash
+# ✅ GOOD: Rebuild after code changes
+docker-compose build app celery-worker
+docker-compose up -d app celery-worker
+```
+
+**NEVER:**
+```bash
+# ❌ BAD: Restart without rebuild
+docker-compose restart celery-worker  # Uses old image!
+```
+
+### Rule 6: Use --no-cache When Troubleshooting Build Issues
+**Context:** Docker's build cache can hide missing files or outdated code.
+
+**When to use:**
+- Migration files not appearing in container
+- Suspicion that cached layers have wrong content
+- After fixing .dockerignore or COPY commands
+
+```bash
+docker-compose build --no-cache celery-worker
+```
+
+### Rule 7: Control Migration Execution with Environment Variables
+**Context:** Multiple containers running migrations simultaneously causes race conditions.
+
+**ALWAYS:**
+- Only ONE container should run migrations (typically `app`)
+- Use `RUN_MIGRATIONS=true` env var to control which container runs them
+- Other containers should have `RUN_MIGRATIONS` unset or false
+
+```yaml
+# docker-compose.yml
+app:
+  environment:
+    - RUN_MIGRATIONS=true  # Only app runs migrations
+    
+celery-worker:
+  environment:
+    # No RUN_MIGRATIONS - skips migrations
+```
+
+## Version Control Rules
+
+### Rule 8: Check .gitignore Before Assuming Files Are Missing
+**Context:** We had `models/` in .gitignore which was ignoring `src/models/*.py` files - critical Pydantic models were untracked!
+
+**ALWAYS:**
+1. When files seem "missing", check if they're being ignored:
+   ```bash
+   git status --ignored
+   git check-ignore -v src/models/auth.py
+   ```
+
+2. Be specific with .gitignore patterns:
+   ```gitignore
+   # ✅ GOOD: Specific patterns
+   downloaded_models/
+   *.pkl
+   *.bin
+   
+   # ❌ BAD: Too broad
+   models/  # Ignores ALL models directories!
+   ```
+
+3. Test .gitignore changes:
+   ```bash
+   git add src/models/
+   # Should NOT see "ignored by .gitignore" error
+   ```
+
+### Rule 9: Verify Frontend Needs Rebuild After Changes
+**Context:** Frontend container was created 10 hours ago, didn't have our ExecutionTimeline changes.
+
+**ALWAYS:**
+1. Check container creation time vs. last code change:
+   ```bash
+   docker image inspect docker-frontend:latest --format='{{.Created}}'
+   ```
+
+2. Check if frontend source files changed:
+   ```bash
+   git status frontend/src/
+   ```
+
+3. Rebuild if container is older than code changes:
+   ```bash
+   docker-compose build frontend --no-cache
+   docker-compose up -d frontend
+   ```
+
+## Debugging Rules
+
+### Rule 10: Use Comprehensive Stack Analysis for Failures
+**Context:** Issues often span multiple layers - database, task queue, flows, API, frontend.
+
+**ALWAYS investigate:**
+1. **Database Layer:** Migrations applied? Models defined correctly?
+2. **Task Layer:** Celery worker logs? Task arguments serializable?
+3. **Flow Layer:** State picklable? Imports resolved? Sessions managed?
+4. **Container Layer:** Images rebuilt? Correct environment variables?
+5. **Version Control:** Files tracked? Dependencies installed?
+
+**Debug checklist:**
+```bash
+# 1. Check recent task errors
+docker-compose logs celery-worker --tail=100 --since=5m | grep ERROR
+
+# 2. Check database
+docker exec docker-postgres-1 psql -U user -d ai_enablement -c "SELECT id, status, error_message FROM bi_questions ORDER BY created_at DESC LIMIT 5;"
+
+# 3. Check container health
+docker-compose ps
+
+# 4. Check recent code changes
+git log --oneline -10
+git diff HEAD~1
+
+# 5. Check if files are tracked
+git status --ignored
+```
+
+## Document Search and Vector Store Rules
+
+### Rule 11: Always Use `company_hr_dataset` for Document Filtering
+**Context:** Documents have both `customer_id` (who owns it) and `company_hr_dataset` (what company it's about). Searches must filter by `company_hr_dataset` to find the right documents.
+
+**ALWAYS:**
+```python
+# ✅ GOOD: Use company_hr_dataset for searches
+doc_tool = DocumentSearchTool(
+    customer_id=user.customer_id,  # For audit/ownership
+    company_hr_dataset=target_company,  # For data filtering
+    limit=10,
+    similarity_threshold=0.7
+)
+
+# ✅ GOOD: VectorService filters by company_hr_dataset
+results = await vector_service.search_similar_chunks(
+    query=query,
+    company_hr_dataset="caylent",  # Company-specific index
+    limit=10
+)
+```
+
+**NEVER:**
+```python
+# ❌ BAD: Filtering by customer_id instead of company_hr_dataset
+results = await vector_service.search_similar_chunks(
+    query=query,
+    customer_id="eliza",  # Wrong! Filters out documents from other companies
+    limit=10
+)
+```
+
+**WHY THIS MATTERS:**
+- `customer_id`: Who uploaded/owns the document (e.g., "eliza" organization)
+- `company_hr_dataset`: Which company's data is in the document (e.g., "caylent" company)
+- Multi-tenant systems need this separation for data access across companies
+
+### Rule 12: Document Search Returns Full Chunk Text
+**Context:** VectorService returns complete chunk text, not summaries or previews. Agents receive full context.
+
+**WHAT AGENTS RECEIVE:**
+```json
+{
+  "query": "database modernization",
+  "results_count": 3,
+  "results": [
+    {
+      "document_id": 8,
+      "document_name": "Database Modernization Report.pdf",
+      "chunk_text": "...FULL CHUNK TEXT (512-2048 chars)...",
+      "similarity_score": 0.552,
+      "section_title": "Challenges",
+      "metadata": {...}
+    }
+  ]
+}
+```
+
+**KEY POINTS:**
+- **Full text included**: `chunk_text` contains the complete chunk (no truncation)
+- **Chunk size**: Determined by chunking strategy (typically 512-2048 characters)
+- **Multiple chunks**: Up to `limit` results returned (default: 10)
+- **Sufficient context**: Each chunk has enough text for LLM comprehension
+- **Pydantic models**: Results are `DocumentSearchResult` models, use `.text` not `.get('text')`
+
+**CORRECT ACCESS PATTERN:**
+```python
+# ✅ GOOD: Access Pydantic model attributes
+for result in results:
+    doc_name = result.document_filename
+    full_text = result.text  # Complete chunk text
+    score = result.similarity_score
+```
+
+**NEVER:**
+```python
+# ❌ BAD: Using .get() on Pydantic models
+for result in results:
+    doc_name = result.get("document_name")  # AttributeError!
+    full_text = result.get("text")  # Won't work!
+```
+
+### Rule 13: Rebuild BOTH App and Celery-Worker After Tool Changes
+**Context:** Both `app` and `celery-worker` containers use the same tools. Code changes must be deployed to both.
+
+**ALWAYS:**
+```bash
+# ✅ GOOD: Rebuild both containers
+docker-compose build app celery-worker
+docker-compose up -d app celery-worker
+```
+
+**NEVER:**
+```bash
+# ❌ BAD: Only rebuilding one container
+docker-compose build celery-worker  # App container still has old code!
+docker-compose up -d celery-worker
+```
+
+## Configuration and Environment Management Rules
+
+### Rule 17: Use Flexible Types for Environment Variable Lists
+**Context:** Pydantic Settings can load list-type environment variables in multiple formats (JSON arrays, comma-separated strings). Type definitions must accommodate both formats to prevent parsing errors.
+
+**THE PROBLEM:**
+```python
+# ❌ BAD: Strict List type causes JSON parsing errors
+class Settings(BaseSettings):
+    allowed_origins: List[str] = Field(default=["*"], alias="ALLOWED_ORIGINS")
+    
+# When .env has: ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5001
+# Result: SettingsError: error parsing value for field "allowed_origins"
+# Pydantic tries to JSON parse it and fails
+```
+
+**THE SOLUTION:**
+```python
+# ✅ GOOD: Union type accepts both formats
+class Settings(BaseSettings):
+    allowed_origins: List[str] | str = Field(default=["*"], alias="ALLOWED_ORIGINS")
+    allowed_hosts: List[str] | str = Field(default=["*"], alias="ALLOWED_HOSTS")
+
+# Then handle conversion in application code:
+allowed_origins = settings.allowed_origins
+if isinstance(allowed_origins, str):
+    allowed_origins = [origin.strip() for origin in allowed_origins.split(",")]
+```
+
+**WHY THIS MATTERS:**
+- `.env` files typically use comma-separated strings: `VAR=value1,value2,value3`
+- Pydantic Settings tries to JSON parse List[str] fields
+- Comma-separated strings are NOT valid JSON
+- Using `List[str] | str` accepts both formats
+- Application code can normalize to the needed format
+
+**COMMON SCENARIOS:**
+```bash
+# Both of these should work:
+ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5001              # ✅ Works with union type
+ALLOWED_ORIGINS=["http://localhost:3000","http://localhost:5001"]        # ✅ Also works
+
+# This fails with strict List[str]:
+ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5001              # ❌ JSON parse error
+```
+
+**BEST PRACTICES:**
+1. Use `List[T] | str` for any list-type config that might come from `.env` files
+2. Handle string-to-list conversion in application startup code
+3. Document expected formats in field descriptions
+4. Test with both comma-separated and JSON array formats
+5. Avoid multiple `.env` files (check root AND docker/ directories)
+
+**FILES TO CHECK:**
+- `src/core/config.py` - Main settings class
+- `src/main.py` - Application startup (where conversion happens)
+- `.env` - Root environment file
+- `docker/.env` - Docker-specific environment file (remove duplicates)
+
+**DEBUGGING CHECKLIST:**
+If you see `SettingsError: error parsing value for field`:
+1. Check if the field is `List[str]` - change to `List[str] | str`
+2. Look for multiple `.env` files with conflicting values
+3. Verify the application code handles both string and list formats
+4. Test with comma-separated values in `.env`
+5. Rebuild Docker containers after config changes
+
+### Rule 18: NEVER Hardcode Placeholder Values in API Responses
+**Context:** We had `name=None` hardcoded in API responses even though the database field existed and had real values. This created a critical disconnect where the frontend couldn't access data that was properly stored in the database.
+
+**THE PROBLEM:**
+```python
+# ❌ BAD: Hardcoding placeholder values instead of returning database fields
+responses.append(ProviderConfigurationResponse(
+    id=provider.id,
+    customer_id=provider.customer_id,
+    provider_type=provider.provider_name,
+    name=None,  # Not stored yet, would need schema update  ← WRONG!
+    is_enabled=provider.is_enabled,
+))
+```
+
+**THE SOLUTION:**
+```python
+# ✅ GOOD: Always return actual database field values
+responses.append(ProviderConfigurationResponse(
+    id=provider.id,
+    customer_id=provider.customer_id,
+    provider_type=provider.provider_name,
+    name=provider.name,  # Return actual value from database
+    is_enabled=provider.is_enabled,
+))
+```
+
+**WHY THIS IS CRITICAL:**
+1. **Silent data loss**: Frontend has no idea the data exists in the database
+2. **Impossible to debug**: Database queries show correct data, but API doesn't return it
+3. **User confusion**: Changes don't appear to "save" even though they're persisted
+4. **Trust issues**: Creates disconnect between what users enter and what they see
+5. **Wastes hours**: Debugging cache, frontend code, when the real issue is backend
+
+**RED FLAGS TO WATCH FOR:**
+- Comments like "Not stored yet" or "TODO: add this field" in production code
+- Using `None` or empty strings as defaults when database field exists
+- Conditional logic that skips returning fields "until migration runs"
+- Response models that don't match database model fields
+- Any hardcoded placeholder: `None`, `""`, `[]`, `{}`, `"N/A"`, `"Unknown"`
+
+**ENFORCEMENT CHECKLIST:**
+When writing/reviewing API endpoints that return database records:
+
+1. **Verify field mapping**: Every database field should map to response field
+   ```python
+   # Check: Does provider.name exist in database?
+   # If YES → response must include: name=provider.name
+   # If NO → Add migration first, THEN add field to response
+   ```
+
+2. **Search for placeholder values**: Look for any hardcoded `None`, `""`, etc.
+   ```bash
+   grep -n "name=None" src/api/routes/
+   grep -n '""' src/api/routes/  # Look for empty strings
+   ```
+
+3. **Check database schema**: Verify the field exists in the SQLAlchemy model
+   ```bash
+   grep -A 10 "class CustomerAIProvider" src/models/
+   # Confirm: name = Column(String(255), nullable=True)
+   ```
+
+4. **Test with real data**: Create a record with values, verify API returns them
+   ```bash
+   # Create record with name
+   curl -X POST .../configurations -d '{"name": "Test Config", ...}'
+   
+   # Verify it's returned
+   curl -X GET .../configurations
+   # Response MUST include: "name": "Test Config"
+   ```
+
+5. **Look for TODO comments**: Search for incomplete implementations
+   ```bash
+   grep -r "TODO.*field" src/api/routes/
+   grep -r "Not implemented" src/api/routes/
+   grep -r "Not stored yet" src/api/routes/
+   ```
+
+**CORRECT APPROACH FOR NEW FIELDS:**
+```python
+# If field doesn't exist yet in database:
+# Step 1: Add migration to add the field
+# Step 2: Update database model
+# Step 3: Update API to accept/return the field
+# Step 4: Test end-to-end
+
+# ❌ NEVER do this:
+# Step 1: Add API response field with hardcoded None
+# Step 2: "TODO: add migration later"
+# Result: Field appears in API spec but never works!
+```
+
+**WHEN IN DOUBT:**
+- If database field exists → API MUST return it
+- If you want to add a new field → Add migration FIRST
+- If field is optional → Return `None` from database, not hardcoded `None`
+- If you see a comment about "not stored yet" → FIX IT or REMOVE the field
+
+**This rule applies to:**
+- All API GET endpoints returning database records
+- All LIST endpoints returning collections
+- All POST/PUT endpoints returning created/updated records
+- Any code that maps database models to Pydantic response models
+- Both REST APIs and GraphQL resolvers
+
+## Code Quality Rules
+
+### Rule 14: Add Type Hints and Validation
+**ALWAYS:**
+- Use Pydantic models for data validation
+- Add type hints to function signatures
+- Validate inputs at boundaries (API, tasks, flows)
+
+### Rule 15: Log at State Transitions
+**ALWAYS:**
+- Log when creating/updating database records
+- Log when starting/completing async operations
+- Include context: user_id, session_id, operation name
+
+### Rule 16: Use Try-Finally for Resource Cleanup
+**ALWAYS:**
+```python
+# ✅ GOOD: Guaranteed cleanup
+db = SessionLocal()
+try:
+    # Do work
+    pass
+finally:
+    db.close()
+```
+
+### Rule 19: Verify SQLAlchemy Model Inheritance Matches Database Schema
+**Context**: SQLAlchemy models that inherit from `BaseModel` automatically get `id`, `created_at`, and `updated_at` columns. If the actual database table has a different schema, queries will fail with "column does not exist" errors.
+
+**THE PROBLEM:**
+```python
+# src/models/database.py
+class BaseModel(Base):
+    __abstract__ = True
+    
+    id = Column(Integer, primary_key=True)
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())
+```
+
+```python
+# Your model inherits BaseModel
+class TalentAnalysis(BaseModel):  # ← Inherits id, created_at, updated_at
+    __tablename__ = "talent_analyses"
+    # ... your columns ...
+```
+
+```sql
+-- But your database table is missing updated_at!
+CREATE TABLE talent_analyses (
+    id INT PRIMARY KEY,
+    created_at TIMESTAMPTZ,
+    -- ❌ No updated_at column!
+    ...
+);
+```
+
+**When you query:**
+```python
+db.query(TalentAnalysis).filter(...)
+# SQLAlchemy generates:
+# SELECT id, created_at, updated_at, ... FROM talent_analyses
+#                         ^^^^^^^^^^
+#                         Column doesn't exist!
+```
+
+**ENFORCEMENT CHECKLIST:**
+
+When creating or modifying SQLAlchemy ORM models:
+
+1. **Check Database Schema First:**
+   ```bash
+   docker exec docker-postgres-1 psql -U user -d ai_enablement -c "\d table_name"
+   ```
+
+2. **Verify Column Alignment:**
+   - Does the table have `id`, `created_at`, AND `updated_at`?
+   - If **YES** → Use `BaseModel`
+   - If **NO** → Use `Base` or override missing columns
+
+3. **Override Missing Columns:**
+   ```python
+   class TalentAnalysis(BaseModel):
+       __tablename__ = "talent_analyses"
+       
+       # Table doesn't have updated_at, so explicitly exclude it
+       updated_at = None  # ✅ Override to tell SQLAlchemy it doesn't exist
+       
+       # ... your columns ...
+   ```
+
+4. **Use Base for Custom Schemas:**
+   ```python
+   class TalentAnalysisEvent(Base):  # ✅ NOT BaseModel
+       __tablename__ = "talent_analysis_events"
+       
+       id = Column(Integer, primary_key=True)
+       # Only define columns that actually exist in the table
+       timestamp = Column(DateTime, server_default=func.now())
+       # No created_at, no updated_at
+   ```
+
+**RED FLAGS TO WATCH FOR:**
+- Error: `column [table].[column_name] does not exist`
+- Model inherits `BaseModel` but table schema is custom
+- Model uses custom timestamp columns (`timestamp`, `started_at`, `completed_at`) instead of `created_at`/`updated_at`
+- Migration adds table without all three standard columns (`id`, `created_at`, `updated_at`)
+
+**CORRECT PATTERNS:**
+
+**Pattern 1: Standard Table → Use BaseModel**
+```python
+class Customer(BaseModel):  # ✅ Table has id, created_at, updated_at
+    __tablename__ = "customers"
+    customer_id = Column(String(100), unique=True)
+    name = Column(String(255))
+```
+
+**Pattern 2: Custom Schema → Use Base**
+```python
+class TalentAnalysisEvent(Base):  # ✅ Custom schema
+    __tablename__ = "talent_analysis_events"
+    
+    id = Column(Integer, primary_key=True)
+    analysis_id = Column(String(100), ForeignKey(...))
+    event_type = Column(String(50))
+    timestamp = Column(DateTime, server_default=func.now())  # Custom timestamp field
+```
+
+**Pattern 3: Partial Override → Override Missing Columns**
+```python
+class TalentAnalysis(BaseModel):  # ✅ Uses BaseModel but overrides
+    __tablename__ = "talent_analyses"
+    
+    # Table has id and created_at but NOT updated_at
+    created_at = Column(DateTime, server_default=func.now())  # Override with actual column
+    updated_at = None  # ✅ Exclude inherited column
+    
+    # Custom timing columns
+    started_at = Column(DateTime, nullable=True)
+    completed_at = Column(DateTime, nullable=True)
+```
+
+**WHY THIS ISN'T A FRONTEND ISSUE:**
+- ✅ Frontend uses Orval-generated types from OpenAPI spec
+- ✅ OpenAPI spec is generated from Pydantic response models
+- ✅ Pydantic models define the API contract (separate from SQLAlchemy)
+- ❌ Error occurs in SQLAlchemy → Database layer, not API layer
+- The frontend never requests `updated_at`; SQLAlchemy tries to load it automatically
+
+**TESTING:**
+```python
+# Test that your model can be queried
+def test_model_query():
+    with SessionLocal() as db:
+        result = db.query(YourModel).first()  # Should not raise column errors
+        assert result is not None
+```
+
+**WHEN IN DOUBT:**
+1. Check the actual table schema with `\d table_name` in psql
+2. Compare with SQLAlchemy model definition
+3. Override any columns that exist in the model but not in the table
+4. Use `Base` instead of `BaseModel` for tables with completely custom schemas
+
+## Summary Checklist for Common Tasks
+
+### Adding Database Access to a CrewAI Flow:
+- [ ] Import `SessionLocal, init_database` at module top
+- [ ] Check if `SessionLocal is None` before use
+- [ ] Call `init_database()` if None
+- [ ] Use try-finally to close sessions
+- [ ] Never store session in flow state
+- [ ] Rebuild and restart celery-worker container
+
+### Adding a New Frontend Component:
+- [ ] Add component to `frontend/src/components/`
+- [ ] Install any new dependencies: `npm install package-name`
+- [ ] Update `package-lock.json` by running `npm install`
+- [ ] Rebuild frontend: `docker-compose build frontend --no-cache`
+- [ ] Restart frontend: `docker-compose up -d frontend`
+- [ ] Clear browser cache or hard refresh
+
+### Adding a Database Migration:
+- [ ] Create migration: `alembic revision -m "description"`
+- [ ] Define upgrade() and downgrade() functions
+- [ ] Set correct down_revision to chain migrations
+- [ ] Test migration: `alembic upgrade head`
+- [ ] Ensure only `app` container has `RUN_MIGRATIONS=true`
+- [ ] Rebuild containers if they need new migration files
+- [ ] Verify in database: `SELECT * FROM alembic_version;`
+
+### Modifying Document Search or CrewAI Tools:
+- [ ] Update tool code (e.g., `src/crewai_custom_tools/`)
+- [ ] Use `company_hr_dataset` for filtering, NOT `customer_id`
+- [ ] Access Pydantic model attributes (`.text`), NOT dict methods (`.get()`)
+- [ ] Remember: Tools return FULL chunk text, not summaries
+- [ ] Rebuild BOTH containers: `docker-compose build app celery-worker`
+- [ ] Restart both: `docker-compose up -d app celery-worker`
+- [ ] Test search with a query to verify results
+
+### Adding Environment Variable Configuration:
+- [ ] For list-type vars, use `List[T] | str` in `src/core/config.py`
+- [ ] Add string-to-list conversion in `src/main.py` if needed
+- [ ] Document expected format in Field description
+- [ ] Check for duplicate `.env` files (root and `docker/`)
+- [ ] Test with comma-separated values: `VAR=value1,value2`
+- [ ] Test with JSON array: `VAR=["value1","value2"]`
+- [ ] Rebuild app: `docker-compose build app`
+- [ ] Verify settings load: `docker-compose logs app | grep -i settings`
+
+---
+
+## Emergency Recovery Commands
+
+If everything is broken:
+```bash
+# 1. Stop all containers
+docker-compose down
+
+# 2. Rebuild everything fresh
+docker-compose build --no-cache
+
+# 3. Start infrastructure first
+docker-compose up -d postgres redis neo4j elasticsearch logstash
+
+# 4. Wait for health checks, then start app
+sleep 30
+docker-compose up -d app
+
+# 5. Start workers
+docker-compose up -d celery-worker celery-beat flower frontend
+
+# 6. Check logs
+docker-compose logs -f app celery-worker
+```
+

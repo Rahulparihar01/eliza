@@ -1,0 +1,6 @@
+profile: cengage
+display_name: "Cengage Adoption Dashboard"
+description: "Minimal profile for adoption dashboard deployments."
+
+applets:
+  - adoption

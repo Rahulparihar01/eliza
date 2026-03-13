@@ -1,0 +1,117 @@
+customer_id: "default"
+customer_name: "Default Configuration"
+created_at: "2024-01-01T00:00:00Z"
+updated_at: "2024-01-01T00:00:00Z"
+
+branding:
+  company_name: "AI Enablement Platform"
+  logo_url: null
+  primary_color: "#2F6BFF"
+  secondary_color: "#8B5CF6"
+  custom_css: null
+
+data_sources:
+  - name: "HR System"
+    type: "hr"
+    enabled: true
+    connection_config:
+      format: "csv"
+      file_path: "/app/data/hr/"
+    chunking_strategy: "semantic"
+    qa_rag_enabled: false
+  
+  - name: "Financial Data"
+    type: "financial"
+    enabled: true
+    connection_config:
+      format: "xlsx"
+      file_path: "/app/data/financial/"
+    chunking_strategy: "fixed"
+    qa_rag_enabled: false
+  
+  - name: "Documents"
+    type: "documents"
+    enabled: true
+    connection_config:
+      formats: ["pdf", "docx", "txt"]
+      file_path: "/app/data/documents/"
+    chunking_strategy: "hierarchical"
+    qa_rag_enabled: true
+  
+  - name: "CRM Data"
+    type: "crm"
+    enabled: false
+    connection_config:
+      format: "json"
+      file_path: "/app/data/crm/"
+    chunking_strategy: "semantic"
+    qa_rag_enabled: false
+  
+  - name: "LinkedIn Data"
+    type: "linkedin"
+    enabled: false
+    connection_config:
+      format: "json"
+      file_path: "/app/data/linkedin/"
+    chunking_strategy: "semantic"
+    qa_rag_enabled: false
+  
+  - name: "Research Data"
+    type: "research"
+    enabled: false
+    connection_config:
+      format: "json"
+      file_path: "/app/data/research/"
+    chunking_strategy: "hierarchical"
+    qa_rag_enabled: true
+
+model_config:
+  default_provider: "openai"
+  models:
+    intent_analysis: "gpt-4o-mini"
+    context_enrichment: "gpt-4o"
+    prompt_generation: "gpt-4o"
+    embeddings: "text-embedding-3-small"
+    department_analysis: "gpt-4o"
+    skills_analysis: "gpt-4o"
+    roi_calculation: "gpt-4o-mini"
+    personality_matching: "gpt-4o"
+  fallback_providers:
+    - "anthropic"
+    - "groq"
+
+security_config:
+  jwt_secret_key: "default-secret-key-change-in-production"
+  session_timeout_minutes: 60
+  max_login_attempts: 5
+  require_2fa: false
+  allowed_domains: []
+
+business_rules:
+  departments:
+    - "Sales"
+    - "Marketing"
+    - "Engineering"
+    - "Product"
+    - "HR"
+    - "Finance"
+    - "Operations"
+    - "Customer Success"
+    - "Legal"
+    - "IT"
+  roles:
+    - "Individual Contributor"
+    - "Senior Individual Contributor"
+    - "Team Lead"
+    - "Manager"
+    - "Senior Manager"
+    - "Director"
+    - "Senior Director"
+    - "VP"
+    - "SVP"
+    - "C-Level"
+  custom_analysis_rules:
+    min_department_size: 5
+    max_recommendations: 10
+    confidence_threshold: 0.7
+  roi_calculation_method: "realistic"

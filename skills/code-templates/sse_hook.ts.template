@@ -1,0 +1,260 @@
+// ============================================================
+// SSE STREAMING HOOK TEMPLATE
+// ============================================================
+// 
+// Usage:
+//   1. Copy to frontend/src/hooks/use[Feature]Stream.ts
+//   2. Replace all [PLACEHOLDERS] with actual values
+//   3. Use in components that need real-time updates
+//
+// Skill Reference: skills/sse-realtime/SSE_REALTIME_UPDATES.md
+// ============================================================
+
+import { useEffect, useRef, useState, useCallback } from 'react';
+
+// Event type from backend
+interface [Feature]Event {
+  event_id: string;
+  event_type: string;
+  message?: string;
+  user_message?: string;
+  progress_percentage?: number;
+  agent_name?: string;
+  tool_name?: string;
+  stage_name?: string;
+  timestamp: string;
+  data?: Record<string, unknown>;
+}
+
+interface Use[Feature]StreamOptions {
+  [feature]Id: string;
+  token: string;
+  onEvent?: (event: [Feature]Event) => void;
+  onComplete?: () => void;
+  onError?: (error: Error) => void;
+  enabled?: boolean;
+}
+
+interface Use[Feature]StreamReturn {
+  events: [Feature]Event[];
+  isConnected: boolean;
+  progress: number;
+  currentStage: string | null;
+  latestMessage: string | null;
+  disconnect: () => void;
+  reconnect: () => void;
+}
+
+export function use[Feature]Stream({
+  [feature]Id,
+  token,
+  onEvent,
+  onComplete,
+  onError,
+  enabled = true,
+}: Use[Feature]StreamOptions): Use[Feature]StreamReturn {
+  const [events, setEvents] = useState<[Feature]Event[]>([]);
+  const [isConnected, setIsConnected] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [currentStage, setCurrentStage] = useState<string | null>(null);
+  const [latestMessage, setLatestMessage] = useState<string | null>(null);
+  
+  const eventSourceRef = useRef<EventSource | null>(null);
+  const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const connect = useCallback(() => {
+    if (!enabled || ![feature]Id || !token) return;
+
+    // Clean up existing connection
+    if (eventSourceRef.current) {
+      eventSourceRef.current.close();
+    }
+
+    // Build SSE URL with token in query param (EventSource limitation)
+    const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
+    const url = `${baseUrl}/v1/[feature]/${[feature]Id}/stream?token=${encodeURIComponent(token)}`;
+    
+    console.log('[SSE] Connecting to:', url);
+    const eventSource = new EventSource(url);
+    eventSourceRef.current = eventSource;
+
+    eventSource.onopen = () => {
+      console.log('[SSE] Connected');
+      setIsConnected(true);
+      
+      // Clear any pending reconnect
+      if (reconnectTimeoutRef.current) {
+        clearTimeout(reconnectTimeoutRef.current);
+        reconnectTimeoutRef.current = null;
+      }
+    };
+
+    eventSource.onmessage = (event) => {
+      try {
+        const data: [Feature]Event = JSON.parse(event.data);
+        console.log('[SSE] Event received:', data.event_type);
+        
+        // Update events list
+        setEvents((prev) => [...prev, data]);
+        
+        // Update progress
+        if (data.progress_percentage !== undefined) {
+          setProgress(data.progress_percentage);
+        }
+        
+        // Update stage
+        if (data.stage_name) {
+          setCurrentStage(data.stage_name);
+        }
+        
+        // Update message
+        if (data.user_message || data.message) {
+          setLatestMessage(data.user_message || data.message || null);
+        }
+        
+        // Call event handler
+        onEvent?.(data);
+        
+        // Handle terminal events
+        if (data.event_type === 'completed' || data.event_type === 'failed') {
+          console.log('[SSE] Terminal event, closing connection');
+          eventSource.close();
+          setIsConnected(false);
+          onComplete?.();
+        }
+      } catch (e) {
+        console.error('[SSE] Failed to parse event:', e);
+      }
+    };
+
+    eventSource.onerror = (error) => {
+      console.error('[SSE] Error:', error);
+      setIsConnected(false);
+      
+      // Check if this is a normal close or an error
+      if (eventSource.readyState === EventSource.CLOSED) {
+        console.log('[SSE] Connection closed');
+      } else {
+        onError?.(new Error('SSE connection failed'));
+        
+        // Attempt reconnect after delay
+        reconnectTimeoutRef.current = setTimeout(() => {
+          console.log('[SSE] Attempting reconnect...');
+          connect();
+        }, 3000);
+      }
+      
+      eventSource.close();
+    };
+
+    return () => {
+      eventSource.close();
+      setIsConnected(false);
+    };
+  }, [[feature]Id, token, enabled, onEvent, onComplete, onError]);
+
+  // Connect on mount
+  useEffect(() => {
+    const cleanup = connect();
+    
+    return () => {
+      cleanup?.();
+      if (reconnectTimeoutRef.current) {
+        clearTimeout(reconnectTimeoutRef.current);
+      }
+    };
+  }, [connect]);
+
+  // Disconnect function
+  const disconnect = useCallback(() => {
+    if (eventSourceRef.current) {
+      eventSourceRef.current.close();
+      setIsConnected(false);
+    }
+    if (reconnectTimeoutRef.current) {
+      clearTimeout(reconnectTimeoutRef.current);
+      reconnectTimeoutRef.current = null;
+    }
+  }, []);
+
+  // Reconnect function
+  const reconnect = useCallback(() => {
+    disconnect();
+    setEvents([]);
+    setProgress(0);
+    setCurrentStage(null);
+    setLatestMessage(null);
+    connect();
+  }, [disconnect, connect]);
+
+  return {
+    events,
+    isConnected,
+    progress,
+    currentStage,
+    latestMessage,
+    disconnect,
+    reconnect,
+  };
+}
+
+
+// ============================================================
+// USAGE EXAMPLE
+// ============================================================
+/*
+import { use[Feature]Stream } from '../hooks/use[Feature]Stream';
+import { useAuthStore } from '../stores/authStore';
+
+function [Feature]Progress({ [feature]Id }: { [feature]Id: string }) {
+  const { token } = useAuthStore();
+  
+  const {
+    events,
+    isConnected,
+    progress,
+    currentStage,
+    latestMessage,
+  } = use[Feature]Stream({
+    [feature]Id,
+    token,
+    onComplete: () => {
+      console.log('Processing completed!');
+    },
+  });
+
+  return (
+    <div>
+      <div className="flex items-center gap-2">
+        <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500' : 'bg-gray-400'}`} />
+        <span>{isConnected ? 'Connected' : 'Disconnected'}</span>
+      </div>
+      
+      <div className="mt-4">
+        <div className="flex justify-between text-sm">
+          <span>{currentStage || 'Initializing...'}</span>
+          <span>{progress.toFixed(0)}%</span>
+        </div>
+        <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+          <div 
+            className="h-full bg-brand transition-all duration-300"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+      </div>
+      
+      {latestMessage && (
+        <p className="mt-2 text-sm text-muted">{latestMessage}</p>
+      )}
+      
+      <div className="mt-4 max-h-40 overflow-y-auto">
+        {events.map((event) => (
+          <div key={event.event_id} className="text-xs p-2 bg-surface-2 rounded mb-1">
+            {event.user_message || event.message}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+*/

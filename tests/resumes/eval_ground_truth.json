@@ -1,0 +1,4104 @@
+[
+  {
+    "_meta": {
+      "id": "2183d3ebb18e",
+      "filename": "resume_ml_01.pdf",
+      "seniority": "junior",
+      "years_experience": 1,
+      "tracks": [
+        "NLP",
+        "Tabular"
+      ],
+      "projects": [
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        },
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        },
+        {
+          "name": "Churn Model",
+          "track": "Tabular"
+        },
+        {
+          "name": "Fraud Scoring",
+          "track": "Tabular"
+        }
+      ]
+    },
+    "full_name": "Emerson Johnson",
+    "email": "emersonjohnson925@outlook.com",
+    "phone": "(707) 669-2185",
+    "location": "San Francisco, CA",
+    "linkedin_url": "linkedin.com/in/emersonjohnson925",
+    "github_url": "github.com/emersonjohnson925",
+    "current_title": "Staff ML Engineer",
+    "current_company": "Helios Finance",
+    "summary": "Junior staff ml engineer with 1+ years experience across RecSys, TimeSeries. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Airflow",
+      "CUDA",
+      "DVC",
+      "Drift detection",
+      "Hugging Face",
+      "Imbalanced learning",
+      "Kafka",
+      "Kubernetes",
+      "PyTorch",
+      "RAG",
+      "Redis",
+      "Transformers",
+      "Triton kernels",
+      "XGBoost"
+    ],
+    "certifications": [
+      "Databricks ML Practitioner"
+    ],
+    "experience": [
+      {
+        "title": "Staff ML Engineer",
+        "company": "Helios Finance",
+        "start_date": "2012",
+        "end_date": "2013",
+        "duration_months": 12,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "Ph.D.",
+        "field_of_study": "Computer Science",
+        "school": "MIT",
+        "graduation_year": 2017
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "466f2b0215d4",
+      "filename": "resume_ml_02.pdf",
+      "seniority": "senior",
+      "years_experience": 8,
+      "tracks": [
+        "TimeSeries",
+        "NLP"
+      ],
+      "projects": [
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        },
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        }
+      ]
+    },
+    "full_name": "Rowan Wright",
+    "email": "rowanwright853@outlook.com",
+    "phone": "(572) 214-5284",
+    "location": "San Francisco, CA",
+    "linkedin_url": "linkedin.com/in/rowanwright853",
+    "github_url": "github.com/rowanwright853",
+    "current_title": "MLOps Engineer",
+    "current_company": "Quanta Health",
+    "summary": "Senior mlops engineer with 8+ years experience across RecSys, CV. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Airflow",
+      "CUDA",
+      "JAX",
+      "Kalman Filters",
+      "LSTMs",
+      "LangChain",
+      "LightGBM",
+      "MLflow",
+      "PyTorch",
+      "ROCm",
+      "TensorFlow",
+      "Tokenization",
+      "Transformers",
+      "Weights & Biases"
+    ],
+    "certifications": [
+      "AWS Certified ML – Specialty"
+    ],
+    "experience": [
+      {
+        "title": "MLOps Engineer",
+        "company": "Quanta Health",
+        "start_date": "2018",
+        "end_date": "2022",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "MLOps Engineer",
+        "company": "DataForge",
+        "start_date": "2020",
+        "end_date": "2024",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Electrical Engineering",
+        "school": "Cornell University",
+        "graduation_year": 2015
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "2e349b0836ee",
+      "filename": "resume_ml_03.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 5,
+      "tracks": [
+        "TimeSeries",
+        "MLOps"
+      ],
+      "projects": [
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        },
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        }
+      ]
+    },
+    "full_name": "Finley Johnson",
+    "email": "finleyjohnson277@proton.me",
+    "phone": "(311) 250-2627",
+    "location": "Austin, TX",
+    "linkedin_url": "linkedin.com/in/finleyjohnson277",
+    "github_url": "github.com/finleyjohnson277",
+    "current_title": "Senior Machine Learning Engineer",
+    "current_company": "Catalyst Retail",
+    "summary": "Mid‑level senior machine learning engineer with 5+ years experience across Tabular, RecSys. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Airflow",
+      "CI/CD",
+      "DVC",
+      "Docker",
+      "Faiss",
+      "Kalman Filters",
+      "Kubernetes",
+      "Observability",
+      "Prophet",
+      "SQL",
+      "TensorFlow",
+      "Weights & Biases",
+      "XGBoost",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "AWS Certified ML – Specialty, Databricks ML Practitioner"
+    ],
+    "experience": [
+      {
+        "title": "Senior Machine Learning Engineer",
+        "company": "Catalyst Retail",
+        "start_date": "2015",
+        "end_date": "2019",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Electrical Engineering",
+        "school": "Stanford University",
+        "graduation_year": 2011
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "7f20b9b387cb",
+      "filename": "resume_ml_04.pdf",
+      "seniority": "junior",
+      "years_experience": 3,
+      "tracks": [
+        "RecSys",
+        "CV"
+      ],
+      "projects": [
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        }
+      ]
+    },
+    "full_name": "Devon Perez",
+    "email": "devonperez647@proton.me",
+    "phone": "(468) 502-3216",
+    "location": "New York, NY",
+    "linkedin_url": "linkedin.com/in/devonperez647",
+    "github_url": "github.com/devonperez647",
+    "current_title": "ML Platform Engineer",
+    "current_company": "VectorWorks",
+    "summary": "Junior ml platform engineer with 3+ years experience across CV, MLOps. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "A/B testing",
+      "Bandits",
+      "CNNs",
+      "CUDA",
+      "Docker",
+      "Hugging Face",
+      "JAX",
+      "Kafka",
+      "Kubernetes",
+      "LangChain",
+      "MLflow",
+      "Redis",
+      "XGBoost",
+      "YOLO"
+    ],
+    "certifications": [
+      "TensorFlow Developer Certificate"
+    ],
+    "experience": [
+      {
+        "title": "ML Platform Engineer",
+        "company": "VectorWorks",
+        "start_date": "2021",
+        "end_date": "2024",
+        "duration_months": 36,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Computer Science",
+        "school": "University of Illinois Urbana‑Champaign",
+        "graduation_year": 2016
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "314deefb20c0",
+      "filename": "resume_ml_05.pdf",
+      "seniority": "junior",
+      "years_experience": 3,
+      "tracks": [
+        "NLP",
+        "RecSys"
+      ],
+      "projects": [
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        },
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        },
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        }
+      ]
+    },
+    "full_name": "Morgan Johnson",
+    "email": "morganjohnson970@gmail.com",
+    "phone": "(464) 206-1038",
+    "location": "Los Angeles, CA",
+    "linkedin_url": "linkedin.com/in/morganjohnson970",
+    "github_url": "github.com/morganjohnson970",
+    "current_title": "Data Scientist (ML)",
+    "current_company": "Lattice Solutions",
+    "summary": "Junior data scientist (ml) with 3+ years experience across Tabular, MLOps. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Bandits",
+      "Beam search",
+      "Docker",
+      "Faiss",
+      "LLMs",
+      "Matrix Factorization",
+      "ONNX",
+      "PostgreSQL",
+      "PyTorch",
+      "Python",
+      "ROCm",
+      "Ray",
+      "SQL",
+      "Triton kernels"
+    ],
+    "certifications": [
+      "—"
+    ],
+    "experience": [
+      {
+        "title": "Data Scientist (ML)",
+        "company": "Lattice Solutions",
+        "start_date": "2013",
+        "end_date": "2016",
+        "duration_months": 36,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Mathematics",
+        "school": "Stanford University",
+        "graduation_year": 2023
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "b38d8bc36ac5",
+      "filename": "resume_ml_06.pdf",
+      "seniority": "junior",
+      "years_experience": 1,
+      "tracks": [
+        "MLOps",
+        "CV"
+      ],
+      "projects": [
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        },
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        }
+      ]
+    },
+    "full_name": "Taylor Anderson",
+    "email": "tayloranderson554@gmail.com",
+    "phone": "(538) 242-2978",
+    "location": "Seattle, WA",
+    "linkedin_url": "linkedin.com/in/tayloranderson554",
+    "github_url": "github.com/tayloranderson554",
+    "current_title": "ML Platform Engineer",
+    "current_company": "NeuroNova",
+    "summary": "Junior ml platform engineer with 1+ years experience across Tabular, CV. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Batch & Streaming",
+      "CI/CD",
+      "CNNs",
+      "CUDA",
+      "DVC",
+      "Docker",
+      "JAX",
+      "LangChain",
+      "LightGBM",
+      "OpenCV",
+      "PyTorch",
+      "Spark",
+      "Vector DBs",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "Databricks ML Practitioner"
+    ],
+    "experience": [
+      {
+        "title": "ML Platform Engineer",
+        "company": "NeuroNova",
+        "start_date": "2017",
+        "end_date": "2018",
+        "duration_months": 12,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.S.",
+        "field_of_study": "Data Science",
+        "school": "Carnegie Mellon University",
+        "graduation_year": 2011
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "6cb0c2557a04",
+      "filename": "resume_ml_07.pdf",
+      "seniority": "junior",
+      "years_experience": 3,
+      "tracks": [
+        "MLOps",
+        "TimeSeries"
+      ],
+      "projects": [
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        },
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        },
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        }
+      ]
+    },
+    "full_name": "Emerson Martin",
+    "email": "emersonmartin223@outlook.com",
+    "phone": "(421) 918-5358",
+    "location": "San Francisco, CA",
+    "linkedin_url": "linkedin.com/in/emersonmartin223",
+    "github_url": "github.com/emersonmartin223",
+    "current_title": "Data Scientist (ML)",
+    "current_company": "Lattice Solutions",
+    "summary": "Junior data scientist (ml) with 3+ years experience across TimeSeries, MLOps. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ARIMA",
+      "Anomaly detection",
+      "Batch & Streaming",
+      "Canary deploys",
+      "DVC",
+      "Hugging",
+      "Face",
+      "Kafka",
+      "ONNX",
+      "PostgreSQL",
+      "PyTorch",
+      "ROCm",
+      "TensorFlow",
+      "Vector DBs",
+      "XGBoost"
+    ],
+    "certifications": [
+      "AWS Certified ML – Specialty"
+    ],
+    "experience": [
+      {
+        "title": "Data Scientist (ML)",
+        "company": "Lattice Solutions",
+        "start_date": "2017",
+        "end_date": "2020",
+        "duration_months": 36,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Computer Science",
+        "school": "Stanford University",
+        "graduation_year": 2015
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "24f7f61b3cc1",
+      "filename": "resume_ml_08.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 4,
+      "tracks": [
+        "TimeSeries",
+        "CV"
+      ],
+      "projects": [
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        }
+      ]
+    },
+    "full_name": "Avery Johnson",
+    "email": "averyjohnson485@gmail.com",
+    "phone": "(599) 934-4758",
+    "location": "Los Angeles, CA",
+    "linkedin_url": "linkedin.com/in/averyjohnson485",
+    "github_url": "github.com/averyjohnson485",
+    "current_title": "Applied Scientist",
+    "current_company": "Orbit Media",
+    "summary": "Mid‑level applied scientist with 4+ years experience across NLP, CV. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ARIMA",
+      "CUDA",
+      "DVC",
+      "Kalman Filters",
+      "Kubernetes",
+      "LightGBM",
+      "ONNX",
+      "PyTorch",
+      "Python",
+      "Redis",
+      "Segmentation",
+      "TensorFlow",
+      "XGBoost",
+      "YOLO"
+    ],
+    "certifications": [
+      "Google Professional ML Engineer, Databricks ML Practitioner"
+    ],
+    "experience": [
+      {
+        "title": "Applied Scientist",
+        "company": "Orbit Media",
+        "start_date": "2013",
+        "end_date": "2017",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Computer Science",
+        "school": "Georgia Tech",
+        "graduation_year": 2015
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "c15df239cee4",
+      "filename": "resume_ml_09.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 6,
+      "tracks": [
+        "MLOps",
+        "NLP"
+      ],
+      "projects": [
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        },
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        },
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        },
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        }
+      ]
+    },
+    "full_name": "Morgan Martin",
+    "email": "morganmartin581@gmail.com",
+    "phone": "(427) 681-5207",
+    "location": "Chicago, IL",
+    "linkedin_url": "linkedin.com/in/morganmartin581",
+    "github_url": "github.com/morganmartin581",
+    "current_title": "Applied Scientist",
+    "current_company": "Lattice Solutions",
+    "summary": "Mid‑level applied scientist with 6+ years experience across NLP, CV. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "BERT",
+      "CI/CD",
+      "DVC",
+      "Docker",
+      "JAX",
+      "Model Registry",
+      "PostgreSQL",
+      "PyTorch",
+      "Python",
+      "RAG",
+      "ROCm",
+      "TensorFlow",
+      "Triton kernels",
+      "Weights & Biases"
+    ],
+    "certifications": [
+      "Google Professional ML Engineer, Azure AI Engineer Associate"
+    ],
+    "experience": [
+      {
+        "title": "Applied Scientist",
+        "company": "Lattice Solutions",
+        "start_date": "2017",
+        "end_date": "2021",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Applied Scientist",
+        "company": "Catalyst Retail",
+        "start_date": "2019",
+        "end_date": "2023",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Electrical Engineering",
+        "school": "Harvard University",
+        "graduation_year": 2023
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "510d5fc80896",
+      "filename": "resume_ml_10.pdf",
+      "seniority": "senior",
+      "years_experience": 6,
+      "tracks": [
+        "NLP",
+        "RecSys"
+      ],
+      "projects": [
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        },
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        },
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        }
+      ]
+    },
+    "full_name": "Sam Johnson",
+    "email": "samjohnson571@yahoo.com",
+    "phone": "(607) 975-9460",
+    "location": "San Francisco, CA",
+    "linkedin_url": "linkedin.com/in/samjohnson571",
+    "github_url": "github.com/samjohnson571",
+    "current_title": "Applied Scientist",
+    "current_company": "Strato Cloud",
+    "summary": "Senior applied scientist with 6+ years experience across Tabular, TimeSeries. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ANN search",
+      "Airflow",
+      "Bandits",
+      "Hugging Face",
+      "Kubernetes",
+      "MLflow",
+      "ONNX",
+      "PyTorch",
+      "Python",
+      "RAG",
+      "ROCm",
+      "Ray",
+      "Tokenization",
+      "XGBoost"
+    ],
+    "certifications": [
+      "NVIDIA Deep Learning Institute"
+    ],
+    "experience": [
+      {
+        "title": "Applied Scientist",
+        "company": "Strato Cloud",
+        "start_date": "2020",
+        "end_date": "2024",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Applied Scientist",
+        "company": "DataForge",
+        "start_date": "2019",
+        "end_date": "2023",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.S.",
+        "field_of_study": "Computer Science",
+        "school": "University of Illinois Urbana‑Champaign",
+        "graduation_year": 2021
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "1cbc8a8e33af",
+      "filename": "resume_ml_11.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 5,
+      "tracks": [
+        "Tabular",
+        "NLP"
+      ],
+      "projects": [
+        {
+          "name": "Fraud Scoring",
+          "track": "Tabular"
+        },
+        {
+          "name": "Churn Model",
+          "track": "Tabular"
+        },
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        },
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        }
+      ]
+    },
+    "full_name": "Elliot White",
+    "email": "elliotwhite719@proton.me",
+    "phone": "(501) 841-8114",
+    "location": "San Francisco, CA",
+    "linkedin_url": "linkedin.com/in/elliotwhite719",
+    "github_url": "github.com/elliotwhite719",
+    "current_title": "Senior Machine Learning Engineer",
+    "current_company": "VectorWorks",
+    "summary": "Mid‑level senior machine learning engineer with 5+ years experience across RecSys, Tabular. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "BERT",
+      "CUDA",
+      "Drift detection",
+      "Faiss",
+      "Feature engineering",
+      "Hugging Face",
+      "JAX",
+      "LightGBM",
+      "MLflow",
+      "Redis",
+      "SQL",
+      "Spacy",
+      "Weights & Biases",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "Databricks ML Practitioner, Azure AI Engineer Associate"
+    ],
+    "experience": [
+      {
+        "title": "Senior Machine Learning Engineer",
+        "company": "VectorWorks",
+        "start_date": "2020",
+        "end_date": "2024",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Mathematics",
+        "school": "Stanford University",
+        "graduation_year": 2022
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "e48a0c03cbd7",
+      "filename": "resume_ml_12.pdf",
+      "seniority": "senior",
+      "years_experience": 8,
+      "tracks": [
+        "CV",
+        "Tabular"
+      ],
+      "projects": [
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        },
+        {
+          "name": "Fraud Scoring",
+          "track": "Tabular"
+        },
+        {
+          "name": "Churn Model",
+          "track": "Tabular"
+        }
+      ]
+    },
+    "full_name": "Jules White",
+    "email": "juleswhite644@proton.me",
+    "phone": "(412) 203-3805",
+    "location": "Seattle, WA",
+    "linkedin_url": "linkedin.com/in/juleswhite644",
+    "github_url": "github.com/juleswhite644",
+    "current_title": "ML Platform Engineer",
+    "current_company": "Orbit Media",
+    "summary": "Senior ml platform engineer with 8+ years experience across RecSys, Tabular. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Docker",
+      "Feature engineering",
+      "Hugging Face",
+      "Imbalanced learning",
+      "JAX",
+      "Kubernetes",
+      "LightGBM",
+      "PostgreSQL",
+      "ROCm",
+      "Redis",
+      "SAM",
+      "Spark",
+      "Weights & Biases",
+      "YOLO"
+    ],
+    "certifications": [
+      "NVIDIA Deep Learning Institute"
+    ],
+    "experience": [
+      {
+        "title": "ML Platform Engineer",
+        "company": "Orbit Media",
+        "start_date": "2012",
+        "end_date": "2016",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "ML Platform Engineer",
+        "company": "Catalyst Retail",
+        "start_date": "2013",
+        "end_date": "2017",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Mathematics",
+        "school": "Carnegie Mellon University",
+        "graduation_year": 2013
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "4c0ed24a7ad0",
+      "filename": "resume_ml_13.pdf",
+      "seniority": "junior",
+      "years_experience": 3,
+      "tracks": [
+        "TimeSeries",
+        "RecSys"
+      ],
+      "projects": [
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        },
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        }
+      ]
+    },
+    "full_name": "Skyler Moore",
+    "email": "skylermoore139@proton.me",
+    "phone": "(735) 277-5281",
+    "location": "Los Angeles, CA",
+    "linkedin_url": "linkedin.com/in/skylermoore139",
+    "github_url": "github.com/skylermoore139",
+    "current_title": "ML Platform Engineer",
+    "current_company": "Catalyst Retail",
+    "summary": "Junior ml platform engineer with 3+ years experience across TimeSeries, CV. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ANN search",
+      "ARIMA",
+      "Airflow",
+      "Anomaly detection",
+      "Bandits",
+      "Docker",
+      "JAX",
+      "Kubernetes",
+      "LightGBM",
+      "PostgreSQL",
+      "Spark",
+      "Triton kernels",
+      "Weights & Biases",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "TensorFlow Developer Certificate"
+    ],
+    "experience": [
+      {
+        "title": "ML Platform Engineer",
+        "company": "Catalyst Retail",
+        "start_date": "2013",
+        "end_date": "2016",
+        "duration_months": 36,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "Ph.D.",
+        "field_of_study": "Computer Science",
+        "school": "University of Texas at Austin",
+        "graduation_year": 2022
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "cd2086d87b12",
+      "filename": "resume_ml_14.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 5,
+      "tracks": [
+        "RecSys",
+        "NLP"
+      ],
+      "projects": [
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        },
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        },
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        }
+      ]
+    },
+    "full_name": "Cameron Wright",
+    "email": "cameronwright475@proton.me",
+    "phone": "(945) 682-2884",
+    "location": "San Francisco, CA",
+    "linkedin_url": "linkedin.com/in/cameronwright475",
+    "github_url": "github.com/cameronwright475",
+    "current_title": "ML Platform Engineer",
+    "current_company": "Synapse Systems",
+    "summary": "Mid‑level ml platform engineer with 5+ years experience across TimeSeries, NLP. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "A/B testing",
+      "ANN search",
+      "BERT",
+      "CUDA",
+      "DVC",
+      "Docker",
+      "Faiss",
+      "Hugging Face",
+      "JAX",
+      "Python",
+      "Redis",
+      "TensorFlow",
+      "Tokenization",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "NVIDIA Deep Learning Institute"
+    ],
+    "experience": [
+      {
+        "title": "ML Platform Engineer",
+        "company": "Synapse Systems",
+        "start_date": "2017",
+        "end_date": "2021",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.Eng.",
+        "field_of_study": "Computer Engineering",
+        "school": "Cornell University",
+        "graduation_year": 2017
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "30205c4af10b",
+      "filename": "resume_ml_15.pdf",
+      "seniority": "senior",
+      "years_experience": 9,
+      "tracks": [
+        "TimeSeries",
+        "RecSys"
+      ],
+      "projects": [
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        },
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        }
+      ]
+    },
+    "full_name": "Quinn Martin",
+    "email": "quinnmartin767@proton.me",
+    "phone": "(712) 397-3083",
+    "location": "Denver, CO",
+    "linkedin_url": "linkedin.com/in/quinnmartin767",
+    "github_url": "github.com/quinnmartin767",
+    "current_title": "MLOps Engineer",
+    "current_company": "NeuroNova",
+    "summary": "Senior mlops engineer with 9+ years experience across Tabular, TimeSeries. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ARIMA",
+      "Airflow",
+      "Implicit feedback",
+      "JAX",
+      "Kafka",
+      "LangChain",
+      "LightGBM",
+      "Matrix",
+      "Factorization",
+      "ONNX",
+      "Prophet",
+      "PyTorch",
+      "Python",
+      "Redis",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "Databricks ML Practitioner"
+    ],
+    "experience": [
+      {
+        "title": "MLOps Engineer",
+        "company": "NeuroNova",
+        "start_date": "2018",
+        "end_date": "2022",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "MLOps Engineer",
+        "company": "Catalyst Retail",
+        "start_date": "2020",
+        "end_date": "2024",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "MLOps Engineer",
+        "company": "BlueWave Analytics",
+        "start_date": "2014",
+        "end_date": "2018",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.S.",
+        "field_of_study": "Data Science",
+        "school": "University of Illinois Urbana‑Champaign",
+        "graduation_year": 2017
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "e059fabe5189",
+      "filename": "resume_ml_16.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 6,
+      "tracks": [
+        "RecSys",
+        "CV"
+      ],
+      "projects": [
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        }
+      ]
+    },
+    "full_name": "Hayden Hernandez",
+    "email": "haydenhernandez972@gmail.com",
+    "phone": "(606) 477-6268",
+    "location": "Los Angeles, CA",
+    "linkedin_url": "linkedin.com/in/haydenhernandez972",
+    "github_url": "github.com/haydenhernandez972",
+    "current_title": "MLOps Engineer",
+    "current_company": "Lattice Solutions",
+    "summary": "Mid‑level mlops engineer with 6+ years experience across RecSys, TimeSeries. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "A/B testing",
+      "CUDA",
+      "Docker",
+      "Faiss",
+      "Kafka",
+      "Matrix Factorization",
+      "ONNX",
+      "PostgreSQL",
+      "ROCm",
+      "Segmentation",
+      "Triton kernels",
+      "Vector DBs",
+      "Weights & Biases",
+      "YOLO"
+    ],
+    "certifications": [
+      "TensorFlow Developer Certificate, Google Professional ML Engineer"
+    ],
+    "experience": [
+      {
+        "title": "MLOps Engineer",
+        "company": "Lattice Solutions",
+        "start_date": "2018",
+        "end_date": "2022",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "MLOps Engineer",
+        "company": "VectorWorks",
+        "start_date": "2014",
+        "end_date": "2018",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.S.",
+        "field_of_study": "Computer Science",
+        "school": "Cornell University",
+        "graduation_year": 2018
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "d3ab1cf7dc96",
+      "filename": "resume_ml_17.pdf",
+      "seniority": "junior",
+      "years_experience": 2,
+      "tracks": [
+        "TimeSeries",
+        "RecSys"
+      ],
+      "projects": [
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        },
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        }
+      ]
+    },
+    "full_name": "Alex Johnson",
+    "email": "alexjohnson640@gmail.com",
+    "phone": "(978) 481-1737",
+    "location": "Denver, CO",
+    "linkedin_url": "linkedin.com/in/alexjohnson640",
+    "github_url": "github.com/alexjohnson640",
+    "current_title": "Applied Scientist",
+    "current_company": "Aurora Robotics",
+    "summary": "Junior applied scientist with 2+ years experience across TimeSeries, MLOps. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Airflow",
+      "Bandits",
+      "Hugging Face",
+      "Implicit feedback",
+      "Kalman Filters",
+      "LSTMs",
+      "LangChain",
+      "ONNX",
+      "PostgreSQL",
+      "ROCm",
+      "Triton kernels",
+      "Vector DBs",
+      "Weights &",
+      "Biases",
+      "XGBoost"
+    ],
+    "certifications": [
+      "—"
+    ],
+    "experience": [
+      {
+        "title": "Applied Scientist",
+        "company": "Aurora Robotics",
+        "start_date": "2020",
+        "end_date": "2022",
+        "duration_months": 24,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.Eng.",
+        "field_of_study": "Computer Engineering",
+        "school": "University of Illinois Urbana‑Champaign",
+        "graduation_year": 2016
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "5a550d6683f6",
+      "filename": "resume_ml_18.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 3,
+      "tracks": [
+        "Tabular",
+        "MLOps"
+      ],
+      "projects": [
+        {
+          "name": "Fraud Scoring",
+          "track": "Tabular"
+        },
+        {
+          "name": "Churn Model",
+          "track": "Tabular"
+        },
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        },
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        }
+      ]
+    },
+    "full_name": "Elliot Hall",
+    "email": "elliothall423@gmail.com",
+    "phone": "(259) 267-1001",
+    "location": "Seattle, WA",
+    "linkedin_url": "linkedin.com/in/elliothall423",
+    "github_url": "github.com/elliothall423",
+    "current_title": "Senior Machine Learning Engineer",
+    "current_company": "Synapse Systems",
+    "summary": "Mid‑level senior machine learning engineer with 3+ years experience across TimeSeries, NLP. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Airflow",
+      "CI/CD",
+      "CUDA",
+      "CatBoost",
+      "DVC",
+      "Drift detection",
+      "Hugging Face",
+      "MLflow",
+      "Model Registry",
+      "Redis",
+      "SQL",
+      "Triton kernels",
+      "XGBoost",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "Google Professional ML Engineer, TensorFlow Developer Certificate"
+    ],
+    "experience": [
+      {
+        "title": "Senior Machine Learning Engineer",
+        "company": "Synapse Systems",
+        "start_date": "2020",
+        "end_date": "2023",
+        "duration_months": 36,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.S.",
+        "field_of_study": "Computer Science",
+        "school": "Georgia Tech",
+        "graduation_year": 2024
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "80bd6c993a38",
+      "filename": "resume_ml_19.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 3,
+      "tracks": [
+        "CV",
+        "NLP"
+      ],
+      "projects": [
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        },
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        }
+      ]
+    },
+    "full_name": "Rowan Martinez",
+    "email": "rowanmartinez252@outlook.com",
+    "phone": "(944) 458-3326",
+    "location": "Boston, MA",
+    "linkedin_url": "linkedin.com/in/rowanmartinez252",
+    "github_url": "github.com/rowanmartinez252",
+    "current_title": "MLOps Engineer",
+    "current_company": "Aurora Robotics",
+    "summary": "Mid‑level mlops engineer with 3+ years experience across RecSys, CV. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Augmentations",
+      "Docker",
+      "Faiss",
+      "Kafka",
+      "Kubernetes",
+      "MLflow",
+      "PyTorch",
+      "RAG",
+      "SQL",
+      "Tokenization",
+      "Triton kernels",
+      "Vector DBs",
+      "YOLO",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "Azure AI Engineer Associate, AWS Certified ML – Specialty"
+    ],
+    "experience": [
+      {
+        "title": "MLOps Engineer",
+        "company": "Aurora Robotics",
+        "start_date": "2015",
+        "end_date": "2018",
+        "duration_months": 36,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "Ph.D.",
+        "field_of_study": "Computer Science",
+        "school": "MIT",
+        "graduation_year": 2019
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "7660fe00922e",
+      "filename": "resume_ml_20.pdf",
+      "seniority": "junior",
+      "years_experience": 2,
+      "tracks": [
+        "RecSys",
+        "Tabular"
+      ],
+      "projects": [
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        },
+        {
+          "name": "Churn Model",
+          "track": "Tabular"
+        },
+        {
+          "name": "Fraud Scoring",
+          "track": "Tabular"
+        }
+      ]
+    },
+    "full_name": "Micah Smith",
+    "email": "micahsmith954@yahoo.com",
+    "phone": "(485) 362-8872",
+    "location": "New York, NY",
+    "linkedin_url": "linkedin.com/in/micahsmith954",
+    "github_url": "github.com/micahsmith954",
+    "current_title": "Data Scientist (ML)",
+    "current_company": "Strato Cloud",
+    "summary": "Junior data scientist (ml) with 2+ years experience across TimeSeries, NLP. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "CatBoost",
+      "Feature engineering",
+      "Implicit feedback",
+      "LangChain",
+      "LightGBM",
+      "Matrix",
+      "Factorization",
+      "ONNX",
+      "PyTorch",
+      "Python",
+      "ROCm",
+      "Ray",
+      "Redis",
+      "Triton kernels",
+      "Vector DBs"
+    ],
+    "certifications": [
+      "—"
+    ],
+    "experience": [
+      {
+        "title": "Data Scientist (ML)",
+        "company": "Strato Cloud",
+        "start_date": "2012",
+        "end_date": "2014",
+        "duration_months": 24,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.Eng.",
+        "field_of_study": "Computer Engineering",
+        "school": "Stanford University",
+        "graduation_year": 2014
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "07b317eed96c",
+      "filename": "resume_ml_21.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 6,
+      "tracks": [
+        "MLOps",
+        "TimeSeries"
+      ],
+      "projects": [
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        },
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        },
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        }
+      ]
+    },
+    "full_name": "Micah Lewis",
+    "email": "micahlewis483@yahoo.com",
+    "phone": "(761) 701-2690",
+    "location": "Denver, CO",
+    "linkedin_url": "linkedin.com/in/micahlewis483",
+    "github_url": "github.com/micahlewis483",
+    "current_title": "Senior Machine Learning Engineer",
+    "current_company": "Pixeltree",
+    "summary": "Mid‑level senior machine learning engineer with 6+ years experience across TimeSeries, NLP. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ARIMA",
+      "Airflow",
+      "Batch & Streaming",
+      "CUDA",
+      "DVC",
+      "Docker",
+      "Feature Store",
+      "Hugging",
+      "Face",
+      "Kubernetes",
+      "LSTMs",
+      "MLflow",
+      "ONNX",
+      "PyTorch",
+      "TensorFlow"
+    ],
+    "certifications": [
+      "NVIDIA Deep Learning Institute, AWS Certified ML – Specialty"
+    ],
+    "experience": [
+      {
+        "title": "Senior Machine Learning Engineer",
+        "company": "Pixeltree",
+        "start_date": "2012",
+        "end_date": "2016",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Senior Machine Learning Engineer",
+        "company": "AcmeAI",
+        "start_date": "2018",
+        "end_date": "2022",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.S.",
+        "field_of_study": "Data Science",
+        "school": "University of Illinois Urbana‑Champaign",
+        "graduation_year": 2017
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "a22380c2fce3",
+      "filename": "resume_ml_22.pdf",
+      "seniority": "junior",
+      "years_experience": 1,
+      "tracks": [
+        "TimeSeries",
+        "RecSys"
+      ],
+      "projects": [
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        }
+      ]
+    },
+    "full_name": "Avery King",
+    "email": "averyking816@gmail.com",
+    "phone": "(912) 526-4154",
+    "location": "Denver, CO",
+    "linkedin_url": "linkedin.com/in/averyking816",
+    "github_url": "github.com/averyking816",
+    "current_title": "Senior Machine Learning Engineer",
+    "current_company": "Orbit Media",
+    "summary": "Junior senior machine learning engineer with 1+ years experience across NLP, RecSys. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ARIMA",
+      "Anomaly detection",
+      "DVC",
+      "Docker",
+      "Faiss",
+      "Implicit feedback",
+      "Kafka",
+      "LightGBM",
+      "Matrix Factorization",
+      "PyTorch",
+      "Python",
+      "ROCm",
+      "Ray",
+      "XGBoost"
+    ],
+    "certifications": [
+      "Google Professional ML Engineer"
+    ],
+    "experience": [
+      {
+        "title": "Senior Machine Learning Engineer",
+        "company": "Orbit Media",
+        "start_date": "2021",
+        "end_date": "2022",
+        "duration_months": 12,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Computer Science",
+        "school": "Georgia Tech",
+        "graduation_year": 2023
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "464b2b41c74f",
+      "filename": "resume_ml_23.pdf",
+      "seniority": "junior",
+      "years_experience": 2,
+      "tracks": [
+        "MLOps",
+        "TimeSeries"
+      ],
+      "projects": [
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        },
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        },
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        }
+      ]
+    },
+    "full_name": "Drew Moore",
+    "email": "drewmoore402@outlook.com",
+    "phone": "(523) 731-3071",
+    "location": "Los Angeles, CA",
+    "linkedin_url": "linkedin.com/in/drewmoore402",
+    "github_url": "github.com/drewmoore402",
+    "current_title": "Data Scientist (ML)",
+    "current_company": "AcmeAI",
+    "summary": "Junior data scientist (ml) with 2+ years experience across NLP, TimeSeries. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ARIMA",
+      "Batch & Streaming",
+      "CUDA",
+      "DVC",
+      "Faiss",
+      "Hugging Face",
+      "Kafka",
+      "MLflow",
+      "Model Registry",
+      "PostgreSQL",
+      "Prophet",
+      "SQL",
+      "Triton kernels",
+      "Vector DBs"
+    ],
+    "certifications": [
+      "NVIDIA Deep Learning Institute, AWS Certified ML – Specialty"
+    ],
+    "experience": [
+      {
+        "title": "Data Scientist (ML)",
+        "company": "AcmeAI",
+        "start_date": "2013",
+        "end_date": "2015",
+        "duration_months": 24,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Electrical Engineering",
+        "school": "Carnegie Mellon University",
+        "graduation_year": 2016
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "3748b8b4c524",
+      "filename": "resume_ml_24.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 3,
+      "tracks": [
+        "MLOps",
+        "NLP"
+      ],
+      "projects": [
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        },
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        },
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        },
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        }
+      ]
+    },
+    "full_name": "Kai Martinez",
+    "email": "kaimartinez336@proton.me",
+    "phone": "(250) 977-5584",
+    "location": "New York, NY",
+    "linkedin_url": "linkedin.com/in/kaimartinez336",
+    "github_url": "github.com/kaimartinez336",
+    "current_title": "MLOps Engineer",
+    "current_company": "AcmeAI",
+    "summary": "Mid‑level mlops engineer with 3+ years experience across MLOps, RecSys. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Airflow",
+      "BERT",
+      "Batch & Streaming",
+      "CI/CD",
+      "Faiss",
+      "JAX",
+      "LangChain",
+      "MLflow",
+      "PostgreSQL",
+      "Python",
+      "ROCm",
+      "Spacy",
+      "TensorFlow",
+      "Triton kernels"
+    ],
+    "certifications": [
+      "AWS Certified ML – Specialty, Google Professional ML Engineer"
+    ],
+    "experience": [
+      {
+        "title": "MLOps Engineer",
+        "company": "AcmeAI",
+        "start_date": "2018",
+        "end_date": "2021",
+        "duration_months": 36,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "Ph.D.",
+        "field_of_study": "Computer Science",
+        "school": "University of Washington",
+        "graduation_year": 2022
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "dc574ff0d135",
+      "filename": "resume_ml_25.pdf",
+      "seniority": "senior",
+      "years_experience": 8,
+      "tracks": [
+        "Tabular",
+        "TimeSeries"
+      ],
+      "projects": [
+        {
+          "name": "Fraud Scoring",
+          "track": "Tabular"
+        },
+        {
+          "name": "Churn Model",
+          "track": "Tabular"
+        },
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        }
+      ]
+    },
+    "full_name": "Casey Lee",
+    "email": "caseylee546@yahoo.com",
+    "phone": "(203) 641-5881",
+    "location": "Seattle, WA",
+    "linkedin_url": "linkedin.com/in/caseylee546",
+    "github_url": "github.com/caseylee546",
+    "current_title": "ML Platform Engineer",
+    "current_company": "AcmeAI",
+    "summary": "Senior ml platform engineer with 8+ years experience across Tabular, RecSys. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ARIMA",
+      "Anomaly detection",
+      "CatBoost",
+      "Docker",
+      "Faiss",
+      "Feature engineering",
+      "Kubernetes",
+      "LangChain",
+      "PostgreSQL",
+      "Redis",
+      "SQL",
+      "Spark",
+      "Triton kernels",
+      "Vector",
+      "DBs"
+    ],
+    "certifications": [
+      "NVIDIA Deep Learning Institute"
+    ],
+    "experience": [
+      {
+        "title": "ML Platform Engineer",
+        "company": "AcmeAI",
+        "start_date": "2021",
+        "end_date": "2025",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "ML Platform Engineer",
+        "company": "BlueWave Analytics",
+        "start_date": "2019",
+        "end_date": "2023",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.S.",
+        "field_of_study": "Computer Science",
+        "school": "Georgia Tech",
+        "graduation_year": 2024
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "a3ebc4d4a605",
+      "filename": "resume_ml_26.pdf",
+      "seniority": "senior",
+      "years_experience": 12,
+      "tracks": [
+        "TimeSeries",
+        "CV"
+      ],
+      "projects": [
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        }
+      ]
+    },
+    "full_name": "Finley Garcia",
+    "email": "finleygarcia806@proton.me",
+    "phone": "(581) 946-8906",
+    "location": "San Francisco, CA",
+    "linkedin_url": "linkedin.com/in/finleygarcia806",
+    "github_url": "github.com/finleygarcia806",
+    "current_title": "Data Scientist (ML)",
+    "current_company": "Lattice Solutions",
+    "summary": "Senior data scientist (ml) with 12+ years experience across RecSys, NLP. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ARIMA",
+      "Airflow",
+      "Augmentations",
+      "CNNs",
+      "DVC",
+      "Kalman Filters",
+      "Kubernetes",
+      "LangChain",
+      "PostgreSQL",
+      "Python",
+      "ROCm",
+      "Redis",
+      "SQL",
+      "Weights & Biases"
+    ],
+    "certifications": [
+      "AWS Certified ML – Specialty"
+    ],
+    "experience": [
+      {
+        "title": "Data Scientist (ML)",
+        "company": "Lattice Solutions",
+        "start_date": "2013",
+        "end_date": "2017",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Data Scientist (ML)",
+        "company": "Orbit Media",
+        "start_date": "2021",
+        "end_date": "2025",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Data Scientist (ML)",
+        "company": "VectorWorks",
+        "start_date": "2013",
+        "end_date": "2017",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "Ph.D.",
+        "field_of_study": "Computer Science",
+        "school": "Harvard University",
+        "graduation_year": 2018
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "76bbb0f16432",
+      "filename": "resume_ml_27.pdf",
+      "seniority": "senior",
+      "years_experience": 10,
+      "tracks": [
+        "Tabular",
+        "MLOps"
+      ],
+      "projects": [
+        {
+          "name": "Fraud Scoring",
+          "track": "Tabular"
+        },
+        {
+          "name": "Churn Model",
+          "track": "Tabular"
+        },
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        },
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        }
+      ]
+    },
+    "full_name": "Reese Smith",
+    "email": "reesesmith342@gmail.com",
+    "phone": "(337) 632-6369",
+    "location": "Boston, MA",
+    "linkedin_url": "linkedin.com/in/reesesmith342",
+    "github_url": "github.com/reesesmith342",
+    "current_title": "Applied Scientist",
+    "current_company": "NeuroNova",
+    "summary": "Senior applied scientist with 10+ years experience across TimeSeries, MLOps. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Airflow",
+      "Drift detection",
+      "Feature Store",
+      "Imbalanced learning",
+      "JAX",
+      "Kafka",
+      "Kubernetes",
+      "LangChain",
+      "LightGBM",
+      "Observability",
+      "Python",
+      "ROCm",
+      "SQL",
+      "TensorFlow"
+    ],
+    "certifications": [
+      "Google Professional ML Engineer"
+    ],
+    "experience": [
+      {
+        "title": "Applied Scientist",
+        "company": "NeuroNova",
+        "start_date": "2020",
+        "end_date": "2024",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Applied Scientist",
+        "company": "Nimbus Labs",
+        "start_date": "2016",
+        "end_date": "2020",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Applied Scientist",
+        "company": "Quanta Health",
+        "start_date": "2019",
+        "end_date": "2023",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.Eng.",
+        "field_of_study": "Computer Engineering",
+        "school": "MIT",
+        "graduation_year": 2023
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "d525785b4d54",
+      "filename": "resume_ml_28.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 3,
+      "tracks": [
+        "MLOps",
+        "CV"
+      ],
+      "projects": [
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        },
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        }
+      ]
+    },
+    "full_name": "Jules Thompson",
+    "email": "julesthompson125@outlook.com",
+    "phone": "(563) 713-8257",
+    "location": "Los Angeles, CA",
+    "linkedin_url": "linkedin.com/in/julesthompson125",
+    "github_url": "github.com/julesthompson125",
+    "current_title": "Staff ML Engineer",
+    "current_company": "Strato Cloud",
+    "summary": "Mid‑level staff ml engineer with 3+ years experience across Tabular, RecSys. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "CI/CD",
+      "CUDA",
+      "DVC",
+      "JAX",
+      "MLflow",
+      "Model Registry",
+      "ROCm",
+      "Ray",
+      "Redis",
+      "Spark",
+      "TensorFlow",
+      "ViT",
+      "YOLO",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "Google Professional ML Engineer"
+    ],
+    "experience": [
+      {
+        "title": "Staff ML Engineer",
+        "company": "Strato Cloud",
+        "start_date": "2017",
+        "end_date": "2020",
+        "duration_months": 36,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Mathematics",
+        "school": "MIT",
+        "graduation_year": 2024
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "6c37cb8f5d84",
+      "filename": "resume_ml_29.pdf",
+      "seniority": "senior",
+      "years_experience": 12,
+      "tracks": [
+        "Tabular",
+        "CV"
+      ],
+      "projects": [
+        {
+          "name": "Churn Model",
+          "track": "Tabular"
+        },
+        {
+          "name": "Fraud Scoring",
+          "track": "Tabular"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        }
+      ]
+    },
+    "full_name": "Blake Miller",
+    "email": "blakemiller115@yahoo.com",
+    "phone": "(857) 985-8049",
+    "location": "San Francisco, CA",
+    "linkedin_url": "linkedin.com/in/blakemiller115",
+    "github_url": "github.com/blakemiller115",
+    "current_title": "MLOps Engineer",
+    "current_company": "Orbit Media",
+    "summary": "Senior mlops engineer with 12+ years experience across NLP, RecSys. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Airflow",
+      "Drift detection",
+      "Feature engineering",
+      "Hugging Face",
+      "Kafka",
+      "Kubernetes",
+      "MLflow",
+      "Python",
+      "ROCm",
+      "SAM",
+      "Weights & Biases",
+      "XGBoost",
+      "YOLO",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "—"
+    ],
+    "experience": [
+      {
+        "title": "MLOps Engineer",
+        "company": "Orbit Media",
+        "start_date": "2015",
+        "end_date": "2019",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "MLOps Engineer",
+        "company": "Synapse Systems",
+        "start_date": "2016",
+        "end_date": "2020",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "MLOps Engineer",
+        "company": "Lattice Solutions",
+        "start_date": "2017",
+        "end_date": "2021",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.S.",
+        "field_of_study": "Data Science",
+        "school": "Georgia Tech",
+        "graduation_year": 2018
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "be5aecb3e424",
+      "filename": "resume_ml_30.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 3,
+      "tracks": [
+        "TimeSeries",
+        "NLP"
+      ],
+      "projects": [
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        },
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        }
+      ]
+    },
+    "full_name": "Devon Martinez",
+    "email": "devonmartinez694@gmail.com",
+    "phone": "(475) 687-5463",
+    "location": "Atlanta, GA",
+    "linkedin_url": "linkedin.com/in/devonmartinez694",
+    "github_url": "github.com/devonmartinez694",
+    "current_title": "ML Platform Engineer",
+    "current_company": "Pixeltree",
+    "summary": "Mid‑level ml platform engineer with 3+ years experience across RecSys, TimeSeries. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ARIMA",
+      "Beam search",
+      "DVC",
+      "Docker",
+      "Faiss",
+      "Kafka",
+      "LLMs",
+      "LSTMs",
+      "LangChain",
+      "LightGBM",
+      "MLflow",
+      "ROCm",
+      "Redis",
+      "SQL"
+    ],
+    "certifications": [
+      "—"
+    ],
+    "experience": [
+      {
+        "title": "ML Platform Engineer",
+        "company": "Pixeltree",
+        "start_date": "2017",
+        "end_date": "2020",
+        "duration_months": 36,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Electrical Engineering",
+        "school": "University of Washington",
+        "graduation_year": 2019
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "4d6128a9892c",
+      "filename": "resume_ml_31.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 6,
+      "tracks": [
+        "Tabular",
+        "CV"
+      ],
+      "projects": [
+        {
+          "name": "Churn Model",
+          "track": "Tabular"
+        },
+        {
+          "name": "Fraud Scoring",
+          "track": "Tabular"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        }
+      ]
+    },
+    "full_name": "Jamie Hall",
+    "email": "jamiehall581@yahoo.com",
+    "phone": "(326) 962-9687",
+    "location": "Atlanta, GA",
+    "linkedin_url": "linkedin.com/in/jamiehall581",
+    "github_url": "github.com/jamiehall581",
+    "current_title": "MLOps Engineer",
+    "current_company": "NeuroNova",
+    "summary": "Mid‑level mlops engineer with 6+ years experience across TimeSeries, CV. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Airflow",
+      "CUDA",
+      "Docker",
+      "Faiss",
+      "Feature engineering",
+      "Imbalanced learning",
+      "MLflow",
+      "Python",
+      "ROCm",
+      "SQL",
+      "Segmentation",
+      "Spark",
+      "TensorFlow",
+      "ViT"
+    ],
+    "certifications": [
+      "NVIDIA Deep Learning Institute"
+    ],
+    "experience": [
+      {
+        "title": "MLOps Engineer",
+        "company": "NeuroNova",
+        "start_date": "2015",
+        "end_date": "2019",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "MLOps Engineer",
+        "company": "VectorWorks",
+        "start_date": "2021",
+        "end_date": "2025",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Mathematics",
+        "school": "MIT",
+        "graduation_year": 2014
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "e7621bdc953d",
+      "filename": "resume_ml_32.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 5,
+      "tracks": [
+        "NLP",
+        "MLOps"
+      ],
+      "projects": [
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        },
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        },
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        },
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        }
+      ]
+    },
+    "full_name": "Jordan Garcia",
+    "email": "jordangarcia438@proton.me",
+    "phone": "(347) 913-2642",
+    "location": "Atlanta, GA",
+    "linkedin_url": "linkedin.com/in/jordangarcia438",
+    "github_url": "github.com/jordangarcia438",
+    "current_title": "Machine Learning Engineer",
+    "current_company": "Strato Cloud",
+    "summary": "Mid‑level machine learning engineer with 5+ years experience across CV, MLOps. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Batch & Streaming",
+      "Beam search",
+      "CUDA",
+      "Feature Store",
+      "LLMs",
+      "MLflow",
+      "PostgreSQL",
+      "Python",
+      "ROCm",
+      "Ray",
+      "SQL",
+      "TensorFlow",
+      "Weights & Biases",
+      "XGBoost"
+    ],
+    "certifications": [
+      "—"
+    ],
+    "experience": [
+      {
+        "title": "Machine Learning Engineer",
+        "company": "Strato Cloud",
+        "start_date": "2014",
+        "end_date": "2018",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.Eng.",
+        "field_of_study": "Computer Engineering",
+        "school": "Harvard University",
+        "graduation_year": 2022
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "ae4c32e4906e",
+      "filename": "resume_ml_33.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 6,
+      "tracks": [
+        "MLOps",
+        "CV"
+      ],
+      "projects": [
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        },
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        }
+      ]
+    },
+    "full_name": "Parker Hall",
+    "email": "parkerhall167@outlook.com",
+    "phone": "(946) 568-4761",
+    "location": "San Francisco, CA",
+    "linkedin_url": "linkedin.com/in/parkerhall167",
+    "github_url": "github.com/parkerhall167",
+    "current_title": "Senior Machine Learning Engineer",
+    "current_company": "Pixeltree",
+    "summary": "Mid‑level senior machine learning engineer with 6+ years experience across MLOps, RecSys. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "CI/CD",
+      "CNNs",
+      "CUDA",
+      "Canary deploys",
+      "JAX",
+      "Kafka",
+      "LangChain",
+      "MLflow",
+      "ONNX",
+      "Ray",
+      "Triton kernels",
+      "XGBoost",
+      "YOLO",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "AWS Certified ML – Specialty"
+    ],
+    "experience": [
+      {
+        "title": "Senior Machine Learning Engineer",
+        "company": "Pixeltree",
+        "start_date": "2019",
+        "end_date": "2023",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Senior Machine Learning Engineer",
+        "company": "Nimbus Labs",
+        "start_date": "2013",
+        "end_date": "2017",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.S.",
+        "field_of_study": "Computer Science",
+        "school": "Carnegie Mellon University",
+        "graduation_year": 2016
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "daf0c7fa8471",
+      "filename": "resume_ml_34.pdf",
+      "seniority": "senior",
+      "years_experience": 12,
+      "tracks": [
+        "CV",
+        "RecSys"
+      ],
+      "projects": [
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        },
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        }
+      ]
+    },
+    "full_name": "Casey Clark",
+    "email": "caseyclark581@proton.me",
+    "phone": "(556) 880-4971",
+    "location": "Austin, TX",
+    "linkedin_url": "linkedin.com/in/caseyclark581",
+    "github_url": "github.com/caseyclark581",
+    "current_title": "ML Platform Engineer",
+    "current_company": "Aurora Robotics",
+    "summary": "Senior ml platform engineer with 12+ years experience across NLP, TimeSeries. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "A/B testing",
+      "CUDA",
+      "Faiss",
+      "LightGBM",
+      "MLflow",
+      "Matrix Factorization",
+      "PyTorch",
+      "ROCm",
+      "Ray",
+      "Segmentation",
+      "TensorFlow",
+      "ViT",
+      "Weights & Biases",
+      "XGBoost"
+    ],
+    "certifications": [
+      "NVIDIA Deep Learning Institute"
+    ],
+    "experience": [
+      {
+        "title": "ML Platform Engineer",
+        "company": "Aurora Robotics",
+        "start_date": "2014",
+        "end_date": "2018",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "ML Platform Engineer",
+        "company": "BlueWave Analytics",
+        "start_date": "2019",
+        "end_date": "2023",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "ML Platform Engineer",
+        "company": "Catalyst Retail",
+        "start_date": "2021",
+        "end_date": "2025",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Computer Science",
+        "school": "Cornell University",
+        "graduation_year": 2018
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "79f49e85969b",
+      "filename": "resume_ml_35.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 4,
+      "tracks": [
+        "MLOps",
+        "RecSys"
+      ],
+      "projects": [
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        },
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        },
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        }
+      ]
+    },
+    "full_name": "Blake Young",
+    "email": "blakeyoung753@gmail.com",
+    "phone": "(317) 473-7152",
+    "location": "Atlanta, GA",
+    "linkedin_url": "linkedin.com/in/blakeyoung753",
+    "github_url": "github.com/blakeyoung753",
+    "current_title": "Senior Machine Learning Engineer",
+    "current_company": "DataForge",
+    "summary": "Mid‑level senior machine learning engineer with 4+ years experience across CV, MLOps. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Batch & Streaming",
+      "CUDA",
+      "Feature Store",
+      "Hugging Face",
+      "Implicit feedback",
+      "Kafka",
+      "MLflow",
+      "Matrix Factorization",
+      "ONNX",
+      "SQL",
+      "Spark",
+      "TensorFlow",
+      "Triton",
+      "kernels",
+      "Weights & Biases"
+    ],
+    "certifications": [
+      "—"
+    ],
+    "experience": [
+      {
+        "title": "Senior Machine Learning Engineer",
+        "company": "DataForge",
+        "start_date": "2018",
+        "end_date": "2022",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Computer Science",
+        "school": "University of Texas at Austin",
+        "graduation_year": 2022
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "23271c5b1a52",
+      "filename": "resume_ml_36.pdf",
+      "seniority": "senior",
+      "years_experience": 11,
+      "tracks": [
+        "RecSys",
+        "CV"
+      ],
+      "projects": [
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        }
+      ]
+    },
+    "full_name": "Avery Smith",
+    "email": "averysmith614@outlook.com",
+    "phone": "(430) 540-1988",
+    "location": "Denver, CO",
+    "linkedin_url": "linkedin.com/in/averysmith614",
+    "github_url": "github.com/averysmith614",
+    "current_title": "Machine Learning Engineer",
+    "current_company": "Lattice Solutions",
+    "summary": "Senior machine learning engineer with 11+ years experience across RecSys, Tabular. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "A/B testing",
+      "Airflow",
+      "CNNs",
+      "CUDA",
+      "JAX",
+      "Kafka",
+      "Matrix Factorization",
+      "ONNX",
+      "PostgreSQL",
+      "PyTorch",
+      "ROCm",
+      "TensorFlow",
+      "YOLO",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "Databricks ML Practitioner"
+    ],
+    "experience": [
+      {
+        "title": "Machine Learning Engineer",
+        "company": "Lattice Solutions",
+        "start_date": "2012",
+        "end_date": "2016",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Machine Learning Engineer",
+        "company": "Strato Cloud",
+        "start_date": "2021",
+        "end_date": "2025",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Machine Learning Engineer",
+        "company": "Synapse Systems",
+        "start_date": "2020",
+        "end_date": "2024",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.S.",
+        "field_of_study": "Data Science",
+        "school": "Georgia Tech",
+        "graduation_year": 2024
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "6c5a4a50a36d",
+      "filename": "resume_ml_37.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 5,
+      "tracks": [
+        "CV",
+        "RecSys"
+      ],
+      "projects": [
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        },
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        }
+      ]
+    },
+    "full_name": "Riley Brown",
+    "email": "rileybrown980@outlook.com",
+    "phone": "(682) 860-5428",
+    "location": "Boston, MA",
+    "linkedin_url": "linkedin.com/in/rileybrown980",
+    "github_url": "github.com/rileybrown980",
+    "current_title": "Machine Learning Engineer",
+    "current_company": "NeuroNova",
+    "summary": "Mid‑level machine learning engineer with 5+ years experience across Tabular, MLOps. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ANN search",
+      "Bandits",
+      "CUDA",
+      "Docker",
+      "JAX",
+      "Kafka",
+      "LightGBM",
+      "ONNX",
+      "OpenCV",
+      "Spark",
+      "Triton kernels",
+      "Vector DBs",
+      "ViT",
+      "XGBoost"
+    ],
+    "certifications": [
+      "Azure AI Engineer Associate"
+    ],
+    "experience": [
+      {
+        "title": "Machine Learning Engineer",
+        "company": "NeuroNova",
+        "start_date": "2021",
+        "end_date": "2025",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Electrical Engineering",
+        "school": "Cornell University",
+        "graduation_year": 2024
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "9aeda802d907",
+      "filename": "resume_ml_38.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 6,
+      "tracks": [
+        "CV",
+        "NLP"
+      ],
+      "projects": [
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        },
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        },
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        }
+      ]
+    },
+    "full_name": "Finley Wright",
+    "email": "finleywright729@outlook.com",
+    "phone": "(901) 271-4495",
+    "location": "Chicago, IL",
+    "linkedin_url": "linkedin.com/in/finleywright729",
+    "github_url": "github.com/finleywright729",
+    "current_title": "Machine Learning Engineer",
+    "current_company": "Pixeltree",
+    "summary": "Mid‑level machine learning engineer with 6+ years experience across Tabular, CV. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Airflow",
+      "CNNs",
+      "CUDA",
+      "Kubernetes",
+      "LLMs",
+      "LangChain",
+      "OpenCV",
+      "PyTorch",
+      "ROCm",
+      "SQL",
+      "Spacy",
+      "Spark",
+      "Vector DBs",
+      "Weights & Biases"
+    ],
+    "certifications": [
+      "—"
+    ],
+    "experience": [
+      {
+        "title": "Machine Learning Engineer",
+        "company": "Pixeltree",
+        "start_date": "2013",
+        "end_date": "2017",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Machine Learning Engineer",
+        "company": "NeuroNova",
+        "start_date": "2016",
+        "end_date": "2020",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Computer Science",
+        "school": "Harvard University",
+        "graduation_year": 2017
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "a13b6abcedc1",
+      "filename": "resume_ml_39.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 5,
+      "tracks": [
+        "Tabular",
+        "RecSys"
+      ],
+      "projects": [
+        {
+          "name": "Fraud Scoring",
+          "track": "Tabular"
+        },
+        {
+          "name": "Churn Model",
+          "track": "Tabular"
+        },
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        }
+      ]
+    },
+    "full_name": "Hayden Harris",
+    "email": "haydenharris605@outlook.com",
+    "phone": "(963) 602-5327",
+    "location": "New York, NY",
+    "linkedin_url": "linkedin.com/in/haydenharris605",
+    "github_url": "github.com/haydenharris605",
+    "current_title": "Staff ML Engineer",
+    "current_company": "DataForge",
+    "summary": "Mid‑level staff ml engineer with 5+ years experience across CV, TimeSeries. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "A/B testing",
+      "CatBoost",
+      "DVC",
+      "Feature engineering",
+      "Implicit feedback",
+      "JAX",
+      "LangChain",
+      "ONNX",
+      "PostgreSQL",
+      "PyTorch",
+      "Python",
+      "ROCm",
+      "XGBoost",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "TensorFlow Developer Certificate, AWS Certified ML – Specialty"
+    ],
+    "experience": [
+      {
+        "title": "Staff ML Engineer",
+        "company": "DataForge",
+        "start_date": "2015",
+        "end_date": "2019",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.S.",
+        "field_of_study": "Computer Science",
+        "school": "University of Texas at Austin",
+        "graduation_year": 2023
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "db5ced763fbe",
+      "filename": "resume_ml_40.pdf",
+      "seniority": "junior",
+      "years_experience": 1,
+      "tracks": [
+        "RecSys",
+        "TimeSeries"
+      ],
+      "projects": [
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        },
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        }
+      ]
+    },
+    "full_name": "Kai Allen",
+    "email": "kaiallen109@outlook.com",
+    "phone": "(628) 434-2161",
+    "location": "Chicago, IL",
+    "linkedin_url": "linkedin.com/in/kaiallen109",
+    "github_url": "github.com/kaiallen109",
+    "current_title": "Machine Learning Engineer",
+    "current_company": "Strato Cloud",
+    "summary": "Junior machine learning engineer with 1+ years experience across NLP, TimeSeries. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ANN search",
+      "Airflow",
+      "Anomaly detection",
+      "DVC",
+      "Implicit feedback",
+      "Kafka",
+      "Kubernetes",
+      "LightGBM",
+      "ONNX",
+      "Prophet",
+      "Python",
+      "Vector DBs",
+      "Weights & Biases",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "Databricks ML Practitioner, Azure AI Engineer Associate"
+    ],
+    "experience": [
+      {
+        "title": "Machine Learning Engineer",
+        "company": "Strato Cloud",
+        "start_date": "2018",
+        "end_date": "2019",
+        "duration_months": 12,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Mathematics",
+        "school": "University of Texas at Austin",
+        "graduation_year": 2014
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "416f2a2b6e07",
+      "filename": "resume_ml_41.pdf",
+      "seniority": "junior",
+      "years_experience": 2,
+      "tracks": [
+        "CV",
+        "NLP"
+      ],
+      "projects": [
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        },
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        }
+      ]
+    },
+    "full_name": "Skyler Martin",
+    "email": "skylermartin716@outlook.com",
+    "phone": "(608) 389-7597",
+    "location": "Seattle, WA",
+    "linkedin_url": "linkedin.com/in/skylermartin716",
+    "github_url": "github.com/skylermartin716",
+    "current_title": "Machine Learning Engineer",
+    "current_company": "Pixeltree",
+    "summary": "Junior machine learning engineer with 2+ years experience across MLOps, Tabular. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Augmentations",
+      "BERT",
+      "CUDA",
+      "DVC",
+      "Hugging Face",
+      "LangChain",
+      "LightGBM",
+      "MLflow",
+      "ONNX",
+      "Spark",
+      "Transformers",
+      "Triton kernels",
+      "ViT",
+      "XGBoost"
+    ],
+    "certifications": [
+      "—"
+    ],
+    "experience": [
+      {
+        "title": "Machine Learning Engineer",
+        "company": "Pixeltree",
+        "start_date": "2015",
+        "end_date": "2017",
+        "duration_months": 24,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.Eng.",
+        "field_of_study": "Computer Engineering",
+        "school": "University of Washington",
+        "graduation_year": 2012
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "5d80707a663b",
+      "filename": "resume_ml_42.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 5,
+      "tracks": [
+        "RecSys",
+        "NLP"
+      ],
+      "projects": [
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        },
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        },
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        }
+      ]
+    },
+    "full_name": "Jules Garcia",
+    "email": "julesgarcia182@gmail.com",
+    "phone": "(485) 503-4009",
+    "location": "San Francisco, CA",
+    "linkedin_url": "linkedin.com/in/julesgarcia182",
+    "github_url": "github.com/julesgarcia182",
+    "current_title": "Senior Machine Learning Engineer",
+    "current_company": "Nimbus Labs",
+    "summary": "Mid‑level senior machine learning engineer with 5+ years experience across NLP, Tabular. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Airflow",
+      "Bandits",
+      "Hugging Face",
+      "Implicit feedback",
+      "Kafka",
+      "LLMs",
+      "LangChain",
+      "LightGBM",
+      "MLflow",
+      "PyTorch",
+      "Python",
+      "Redis",
+      "Spacy",
+      "Weights & Biases"
+    ],
+    "certifications": [
+      "—"
+    ],
+    "experience": [
+      {
+        "title": "Senior Machine Learning Engineer",
+        "company": "Nimbus Labs",
+        "start_date": "2014",
+        "end_date": "2018",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Computer Science",
+        "school": "Stanford University",
+        "graduation_year": 2012
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "7105fd733f1d",
+      "filename": "resume_ml_43.pdf",
+      "seniority": "senior",
+      "years_experience": 9,
+      "tracks": [
+        "TimeSeries",
+        "MLOps"
+      ],
+      "projects": [
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        },
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        }
+      ]
+    },
+    "full_name": "Sam White",
+    "email": "samwhite221@outlook.com",
+    "phone": "(291) 380-5368",
+    "location": "Atlanta, GA",
+    "linkedin_url": "linkedin.com/in/samwhite221",
+    "github_url": "github.com/samwhite221",
+    "current_title": "Senior Machine Learning Engineer",
+    "current_company": "Nimbus Labs",
+    "summary": "Senior senior machine learning engineer with 9+ years experience across Tabular, NLP. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Faiss",
+      "Kafka",
+      "LSTMs",
+      "Model Registry",
+      "ONNX",
+      "Observability",
+      "PostgreSQL",
+      "Prophet",
+      "ROCm",
+      "Ray",
+      "SQL",
+      "Spark",
+      "Weights & Biases",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "AWS Certified ML – Specialty"
+    ],
+    "experience": [
+      {
+        "title": "Senior Machine Learning Engineer",
+        "company": "Nimbus Labs",
+        "start_date": "2019",
+        "end_date": "2023",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Senior Machine Learning Engineer",
+        "company": "Helios Finance",
+        "start_date": "2012",
+        "end_date": "2016",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Senior Machine Learning Engineer",
+        "company": "Strato Cloud",
+        "start_date": "2012",
+        "end_date": "2016",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.S.",
+        "field_of_study": "Data Science",
+        "school": "University of Illinois Urbana‑Champaign",
+        "graduation_year": 2012
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "e812a11edde8",
+      "filename": "resume_ml_44.pdf",
+      "seniority": "senior",
+      "years_experience": 8,
+      "tracks": [
+        "MLOps",
+        "RecSys"
+      ],
+      "projects": [
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        },
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        },
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        }
+      ]
+    },
+    "full_name": "Quinn Taylor",
+    "email": "quinntaylor733@gmail.com",
+    "phone": "(626) 848-5130",
+    "location": "Los Angeles, CA",
+    "linkedin_url": "linkedin.com/in/quinntaylor733",
+    "github_url": "github.com/quinntaylor733",
+    "current_title": "ML Platform Engineer",
+    "current_company": "Nimbus Labs",
+    "summary": "Senior ml platform engineer with 8+ years experience across RecSys, CV. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ANN search",
+      "Docker",
+      "Faiss",
+      "Kubernetes",
+      "LightGBM",
+      "Matrix Factorization",
+      "Model",
+      "Registry",
+      "ONNX",
+      "Observability",
+      "PyTorch",
+      "Ray",
+      "TensorFlow",
+      "Vector DBs",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "Databricks ML Practitioner"
+    ],
+    "experience": [
+      {
+        "title": "ML Platform Engineer",
+        "company": "Nimbus Labs",
+        "start_date": "2020",
+        "end_date": "2024",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "ML Platform Engineer",
+        "company": "NeuroNova",
+        "start_date": "2012",
+        "end_date": "2016",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "Ph.D.",
+        "field_of_study": "Computer Science",
+        "school": "Cornell University",
+        "graduation_year": 2018
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "d096e70149b9",
+      "filename": "resume_ml_45.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 5,
+      "tracks": [
+        "TimeSeries",
+        "RecSys"
+      ],
+      "projects": [
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        }
+      ]
+    },
+    "full_name": "Skyler Miller",
+    "email": "skylermiller376@gmail.com",
+    "phone": "(381) 757-8781",
+    "location": "Denver, CO",
+    "linkedin_url": "linkedin.com/in/skylermiller376",
+    "github_url": "github.com/skylermiller376",
+    "current_title": "Senior Machine Learning Engineer",
+    "current_company": "VectorWorks",
+    "summary": "Mid‑level senior machine learning engineer with 5+ years experience across RecSys, Tabular. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "A/B testing",
+      "Anomaly detection",
+      "Bandits",
+      "CUDA",
+      "Docker",
+      "JAX",
+      "Kafka",
+      "LangChain",
+      "Prophet",
+      "PyTorch",
+      "Ray",
+      "Spark",
+      "Weights & Biases",
+      "XGBoost"
+    ],
+    "certifications": [
+      "NVIDIA Deep Learning Institute"
+    ],
+    "experience": [
+      {
+        "title": "Senior Machine Learning Engineer",
+        "company": "VectorWorks",
+        "start_date": "2016",
+        "end_date": "2020",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "Ph.D.",
+        "field_of_study": "Computer Science",
+        "school": "Harvard University",
+        "graduation_year": 2022
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "601e1f49029e",
+      "filename": "resume_ml_46.pdf",
+      "seniority": "junior",
+      "years_experience": 2,
+      "tracks": [
+        "CV",
+        "MLOps"
+      ],
+      "projects": [
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        },
+        {
+          "name": "Feature Store",
+          "track": "MLOps"
+        },
+        {
+          "name": "Model Observability",
+          "track": "MLOps"
+        }
+      ]
+    },
+    "full_name": "Devon Thomas",
+    "email": "devonthomas263@outlook.com",
+    "phone": "(473) 734-6495",
+    "location": "New York, NY",
+    "linkedin_url": "linkedin.com/in/devonthomas263",
+    "github_url": "github.com/devonthomas263",
+    "current_title": "Data Scientist (ML)",
+    "current_company": "Orbit Media",
+    "summary": "Junior data scientist (ml) with 2+ years experience across RecSys, Tabular. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Batch & Streaming",
+      "CI/CD",
+      "CNNs",
+      "Docker",
+      "Faiss",
+      "Kubernetes",
+      "LangChain",
+      "MLflow",
+      "ROCm",
+      "SQL",
+      "Spark",
+      "XGBoost",
+      "YOLO",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "—"
+    ],
+    "experience": [
+      {
+        "title": "Data Scientist (ML)",
+        "company": "Orbit Media",
+        "start_date": "2018",
+        "end_date": "2020",
+        "duration_months": 24,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "M.S.",
+        "field_of_study": "Data Science",
+        "school": "University of Illinois Urbana‑Champaign",
+        "graduation_year": 2017
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "c3034c3589cb",
+      "filename": "resume_ml_47.pdf",
+      "seniority": "junior",
+      "years_experience": 2,
+      "tracks": [
+        "CV",
+        "Tabular"
+      ],
+      "projects": [
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "Fraud Scoring",
+          "track": "Tabular"
+        },
+        {
+          "name": "Churn Model",
+          "track": "Tabular"
+        }
+      ]
+    },
+    "full_name": "Parker Young",
+    "email": "parkeryoung302@gmail.com",
+    "phone": "(659) 245-3857",
+    "location": "Los Angeles, CA",
+    "linkedin_url": "linkedin.com/in/parkeryoung302",
+    "github_url": "github.com/parkeryoung302",
+    "current_title": "ML Platform Engineer",
+    "current_company": "AcmeAI",
+    "summary": "Junior ml platform engineer with 2+ years experience across CV, Tabular. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Airflow",
+      "CUDA",
+      "Docker",
+      "Drift detection",
+      "Imbalanced learning",
+      "Kubernetes",
+      "LightGBM",
+      "MLflow",
+      "ONNX",
+      "PostgreSQL",
+      "PyTorch",
+      "Segmentation",
+      "Vector DBs",
+      "ViT"
+    ],
+    "certifications": [
+      "Google Professional ML Engineer"
+    ],
+    "experience": [
+      {
+        "title": "ML Platform Engineer",
+        "company": "AcmeAI",
+        "start_date": "2018",
+        "end_date": "2020",
+        "duration_months": 24,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Mathematics",
+        "school": "Cornell University",
+        "graduation_year": 2013
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "a53ebf168738",
+      "filename": "resume_ml_48.pdf",
+      "seniority": "junior",
+      "years_experience": 1,
+      "tracks": [
+        "RecSys",
+        "CV"
+      ],
+      "projects": [
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        }
+      ]
+    },
+    "full_name": "Finley Johnson",
+    "email": "finleyjohnson300@yahoo.com",
+    "phone": "(572) 469-3578",
+    "location": "Washington, DC",
+    "linkedin_url": "linkedin.com/in/finleyjohnson300",
+    "github_url": "github.com/finleyjohnson300",
+    "current_title": "Data Scientist (ML)",
+    "current_company": "AcmeAI",
+    "summary": "Junior data scientist (ml) with 1+ years experience across Tabular, NLP. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "ANN search",
+      "Airflow",
+      "CNNs",
+      "CUDA",
+      "Implicit feedback",
+      "Kubernetes",
+      "MLflow",
+      "ONNX",
+      "Python",
+      "ROCm",
+      "Ray",
+      "SQL",
+      "Vector DBs",
+      "YOLO"
+    ],
+    "certifications": [
+      "Databricks ML Practitioner"
+    ],
+    "experience": [
+      {
+        "title": "Data Scientist (ML)",
+        "company": "AcmeAI",
+        "start_date": "2015",
+        "end_date": "2016",
+        "duration_months": 12,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Mathematics",
+        "school": "Carnegie Mellon University",
+        "graduation_year": 2015
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "b464247f94e8",
+      "filename": "resume_ml_49.pdf",
+      "seniority": "mid‑level",
+      "years_experience": 3,
+      "tracks": [
+        "RecSys",
+        "TimeSeries"
+      ],
+      "projects": [
+        {
+          "name": "Vector Search",
+          "track": "RecSys"
+        },
+        {
+          "name": "Personalized Recommendations",
+          "track": "RecSys"
+        },
+        {
+          "name": "Anomaly Detection",
+          "track": "TimeSeries"
+        },
+        {
+          "name": "Forecasting Platform",
+          "track": "TimeSeries"
+        }
+      ]
+    },
+    "full_name": "Quinn Chen",
+    "email": "quinnchen148@proton.me",
+    "phone": "(506) 697-2905",
+    "location": "Seattle, WA",
+    "linkedin_url": "linkedin.com/in/quinnchen148",
+    "github_url": "github.com/quinnchen148",
+    "current_title": "ML Platform Engineer",
+    "current_company": "BlueWave Analytics",
+    "summary": "Mid‑level ml platform engineer with 3+ years experience across Tabular, MLOps. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Airflow",
+      "Bandits",
+      "Faiss",
+      "Kalman Filters",
+      "LSTMs",
+      "LangChain",
+      "LightGBM",
+      "Matrix",
+      "Factorization",
+      "PostgreSQL",
+      "SQL",
+      "Triton kernels",
+      "Vector DBs",
+      "Weights & Biases",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "Azure AI Engineer Associate, NVIDIA Deep Learning Institute"
+    ],
+    "experience": [
+      {
+        "title": "ML Platform Engineer",
+        "company": "BlueWave Analytics",
+        "start_date": "2015",
+        "end_date": "2018",
+        "duration_months": 36,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "Ph.D.",
+        "field_of_study": "Computer Science",
+        "school": "Harvard University",
+        "graduation_year": 2014
+      }
+    ]
+  },
+  {
+    "_meta": {
+      "id": "2f7950f4eebd",
+      "filename": "resume_ml_50.pdf",
+      "seniority": "senior",
+      "years_experience": 9,
+      "tracks": [
+        "NLP",
+        "CV"
+      ],
+      "projects": [
+        {
+          "name": "LLM Fine‑tuning",
+          "track": "NLP"
+        },
+        {
+          "name": "Domain‑specific RAG Assistant",
+          "track": "NLP"
+        },
+        {
+          "name": "Defect Detection",
+          "track": "CV"
+        },
+        {
+          "name": "OCR Pipeline",
+          "track": "CV"
+        }
+      ]
+    },
+    "full_name": "Emerson Johnson",
+    "email": "emersonjohnson148@proton.me",
+    "phone": "(963) 767-5662",
+    "location": "Los Angeles, CA",
+    "linkedin_url": "linkedin.com/in/emersonjohnson148",
+    "github_url": "github.com/emersonjohnson148",
+    "current_title": "Applied Scientist",
+    "current_company": "Aurora Robotics",
+    "summary": "Senior applied scientist with 9+ years experience across Tabular, CV. Focus on measurable business impact, production reliability, and fast iteration.",
+    "skills": [
+      "Airflow",
+      "CNNs",
+      "DVC",
+      "Kubernetes",
+      "MLflow",
+      "ROCm",
+      "Redis",
+      "Segmentation",
+      "SentencePiece",
+      "Spacy",
+      "Spark",
+      "Vector DBs",
+      "Weights & Biases",
+      "scikit‑learn"
+    ],
+    "certifications": [
+      "AWS Certified ML – Specialty"
+    ],
+    "experience": [
+      {
+        "title": "Applied Scientist",
+        "company": "Aurora Robotics",
+        "start_date": "2018",
+        "end_date": "2022",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Applied Scientist",
+        "company": "DataForge",
+        "start_date": "2021",
+        "end_date": "2025",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      },
+      {
+        "title": "Applied Scientist",
+        "company": "Lattice Solutions",
+        "start_date": "2014",
+        "end_date": "2018",
+        "duration_months": 48,
+        "description": null,
+        "achievements": []
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S.",
+        "field_of_study": "Mathematics",
+        "school": "Cornell University",
+        "graduation_year": 2018
+      }
+    ]
+  }
+]

@@ -1,0 +1,184 @@
+# AI Enablement Platform .gitignore
+
+# Environment files
+.env
+.env.*
+!.env.template
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+/lib/
+/lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Data directories
+data/
+!data/.gitkeep
+cache/
+!cache/.gitkeep
+
+# Backups
+backups/
+*.backup
+*.dump
+*.sql
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Customer-specific files
+config/customers/*/
+!config/customers/customer-template/
+!config/customers/local-dev/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Redis dumps
+dump.rdb
+
+# Neo4j data
+neo4j/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Secrets and keys
+*.pem
+*.key
+*.crt
+secrets/
+
+# Local configuration overrides
+local_config.yml
+local_settings.py
+
+# Documentation build
+site/
+docs/_build/
+
+# Package files
+*.tar.gz
+*.zip
+*.rar
+
+# AI model files
+*.bin
+*.safetensors
+# ML model files (not source code models)
+*.bin
+*.pt
+*.pth
+*.onnx
+*.h5
+*.pkl
+embeddings/
+# Downloaded ML models directory (if you have one)
+downloaded_models/
+
+# Vector indices
+indices/
+faiss_indices/
+chroma_db/
+
+# Build caches
+frontend/node_modules/.cache/
+
+# Frontend dependencies (generated locally via npm ci / npm install)
+frontend/node_modules/
+
+.config/
+node_modules/
+
+# Non-engineering writeups (not tracked)
+non-eng-writeups/
+
+# Test output artifacts
+*_test_output*.txt
+*_test_results*.txt
+docs/archive/test-outputs/
+
+# Temporary session notes (use docs/archive/sessions/ for committed ones)
+*_SESSION_*.md
+*_COMPLETE.md
+*_STATUS.md
+*_FIX.md
+tests/logs/
+
+# Agent run logs (keep templates and insights, ignore individual run logs)
+agent_runs/completed/*.md
+agent_runs/failed/*.md
+!agent_runs/completed/.gitkeep
+!agent_runs/failed/.gitkeep
+
+# Terraform
+**/.terraform/
+**/.terraform.lock.hcl
+**/.terraform.tfstate.lock.info
+**/terraform.tfstate
+**/terraform.tfstate.backup
+**/terraform.tfvars
+**/deploy_plan

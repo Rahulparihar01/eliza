@@ -1,0 +1,256 @@
+# =============================================================================
+# ELIZA Accelerate - Adoption Analytics Helm Values
+# =============================================================================
+# Override these values via --set, -f values-prod.yaml, or in ArgoCD.
+# Required values (no defaults) are marked REQUIRED below.
+# =============================================================================
+
+# -- Global image settings
+image:
+  # -- Container registry (include trailing /)
+  registry: ""
+  # -- Backend image name (API, Celery worker, Celery beat all use this)
+  backend:
+    repository: eliza-backend
+    tag: latest
+    pullPolicy: IfNotPresent
+  # -- Frontend image name (React SPA + nginx)
+  frontend:
+    repository: eliza-frontend
+    tag: latest
+    pullPolicy: IfNotPresent
+  # -- Image pull secrets (list of secret names)
+  pullSecrets: []
+
+# -- Namespace to deploy into (uses helm release namespace by default)
+namespace: ""
+
+# =============================================================================
+# Application Configuration
+# =============================================================================
+config:
+  # -- REQUIRED: Your organization identifier
+  customerId: ""
+  # -- REQUIRED: Display name for your organization
+  customerName: ""
+  # -- Log level (DEBUG, INFO, WARNING, ERROR)
+  logLevel: "INFO"
+  # -- Frontend URL for CORS and invite links (set to your ingress URL)
+  frontendUrl: "https://adoption.example.com"
+  # -- CORS allowed origins (comma-separated)
+  allowedOrigins: "https://adoption.example.com"
+
+# =============================================================================
+# Secrets (REQUIRED)
+# =============================================================================
+# Option A: Let the chart create a Secret from these values.
+# Option B: Set secrets.existingSecret to a pre-created K8s Secret name
+#           and leave these blank.
+secrets:
+  # -- Name of an existing Kubernetes Secret to use instead of creating one.
+  # Must contain keys: ADMIN_EMAIL, ADMIN_PASSWORD, OPENAI_API_KEY,
+  # ENCRYPTION_KEY, DATABASE_URL, REDIS_URL, CELERY_BROKER_URL,
+  # CELERY_RESULT_BACKEND
+  existingSecret: ""
+
+  # -- Values used when existingSecret is empty (chart creates the Secret)
+  adminEmail: "admin@example.com"
+  adminPassword: ""          # REQUIRED
+  openaiApiKey: ""           # REQUIRED - needs compliance_export scope
+  encryptionKey: ""          # REQUIRED - generate with: python3 -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+
+# =============================================================================
+# PostgreSQL
+# =============================================================================
+postgresql:
+  # -- Use an external PostgreSQL instance (recommended for production)
+  # If enabled, the chart does NOT deploy a PostgreSQL pod.
+  external:
+    enabled: false
+    host: ""
+    port: 5432
+    database: "ai_enablement"
+    username: "eliza"
+    # -- Password (ignored if secrets.existingSecret is set)
+    password: ""
+
+  # -- Deploy PostgreSQL as a pod inside the cluster (for evaluation only)
+  internal:
+    enabled: true
+    image: postgres:15
+    # -- Password for the internal PostgreSQL instance
+    password: ""              # REQUIRED if using internal PostgreSQL
+    storage: 20Gi
+    storageClass: ""
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: "1"
+        memory: 2Gi
+
+# =============================================================================
+# Redis
+# =============================================================================
+redis:
+  # -- Use an external Redis instance (recommended for production)
+  external:
+    enabled: false
+    host: ""
+    port: 6379
+
+  # -- Deploy Redis as a pod inside the cluster (for evaluation only)
+  internal:
+    enabled: true
+    image: redis:7-alpine
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+
+# =============================================================================
+# App (FastAPI API Server)
+# =============================================================================
+app:
+  replicaCount: 2
+  port: 5001
+
+  # -- First-time setup: creates platform tenant + admin user.
+  # Set to true for initial deploy, then set to false.
+  initTenant: true
+
+  resources:
+    requests:
+      cpu: "1"
+      memory: 2Gi
+    limits:
+      cpu: "2"
+      memory: 4Gi
+
+  # -- Health check configuration
+  healthcheck:
+    path: /health/ready
+    initialDelaySeconds: 120
+    periodSeconds: 30
+    timeoutSeconds: 10
+    failureThreshold: 5
+
+  # -- Pod annotations (e.g., for Datadog, Prometheus)
+  podAnnotations: {}
+
+  # -- Node selector
+  nodeSelector: {}
+
+  # -- Tolerations
+  tolerations: []
+
+  # -- Affinity rules
+  affinity: {}
+
+# =============================================================================
+# Celery Worker
+# =============================================================================
+celeryWorker:
+  replicaCount: 1
+  concurrency: 2
+  maxTasksPerChild: 50
+
+  resources:
+    requests:
+      cpu: "1"
+      memory: 2Gi
+    limits:
+      cpu: "2"
+      memory: 4Gi
+
+  podAnnotations: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+# =============================================================================
+# Celery Beat (Scheduler) -- always exactly 1 replica
+# =============================================================================
+celeryBeat:
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
+
+  podAnnotations: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+# =============================================================================
+# Frontend (React + nginx)
+# =============================================================================
+frontend:
+  replicaCount: 2
+  port: 80
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+
+  podAnnotations: {}
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+# =============================================================================
+# Ingress
+# =============================================================================
+ingress:
+  enabled: true
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+    # nginx.ingress.kubernetes.io/proxy-body-size: 50m
+  hosts:
+    - host: adoption.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+    # - secretName: eliza-adoption-tls
+    #   hosts:
+    #     - adoption.example.com
+
+# =============================================================================
+# Service
+# =============================================================================
+service:
+  type: ClusterIP
+  frontendPort: 80
+  appPort: 5001
+
+# =============================================================================
+# Autoscaling (optional)
+# =============================================================================
+autoscaling:
+  enabled: false
+  app:
+    minReplicas: 2
+    maxReplicas: 4
+    targetCPUUtilizationPercentage: 80
+  celeryWorker:
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 80
+  frontend:
+    minReplicas: 2
+    maxReplicas: 4
+    targetCPUUtilizationPercentage: 80

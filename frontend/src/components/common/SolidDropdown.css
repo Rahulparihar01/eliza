@@ -1,0 +1,80 @@
+/* Solid Opaque Dropdown - NO transparency, maximum readability */
+.solid-dropdown-menu {
+  width: var(--solid-dropdown-width, 320px);
+  /* SOLID opaque background - no transparency at all */
+  background: #2B1420 !important;
+  /* NO backdrop filter - causes transparency issues */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(248, 245, 240, 0.24) !important;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6), 0 12px 24px rgba(0, 0, 0, 0.4);
+  color: #F8F5F0;
+  overflow: hidden;
+}
+
+.solid-dropdown-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem;
+}
+
+.solid-dropdown-item {
+  position: relative;
+  /* SOLID item background - fully opaque */
+  background: #381A27 !important;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  box-shadow: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.solid-dropdown-item-interactive {
+  cursor: pointer;
+}
+
+.solid-dropdown-item-interactive:hover,
+.solid-dropdown-item-active {
+  /* Highlighted state - SOLID hover background */
+  background: #462134 !important;
+  border-color: #FF7B6B !important;
+  box-shadow: 0 4px 12px rgba(255, 123, 107, 0.4), 0 2px 8px rgba(255, 123, 107, 0.2);
+  transform: translateY(-1px);
+}
+
+.solid-dropdown-item-disabled {
+  background: var(--dropdown-item-disabled) !important;
+  border: 1px dashed var(--dropdown-border) !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.solid-dropdown-item-disabled:hover,
+.solid-dropdown-item-disabled:focus {
+  background: var(--dropdown-item-disabled) !important;
+  border-color: var(--dropdown-border) !important;
+  box-shadow: none;
+  transform: none;
+}
+
+.solid-dropdown-item-label {
+  color: #F8F5F0;
+  font-weight: 600;
+}
+
+.solid-dropdown-item-description {
+  color: #E8D5C8;
+}
+
+.solid-dropdown-badge {
+  background-color: var(--brand-soft);
+  color: var(--brand);
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.08em;
+}
+

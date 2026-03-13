@@ -1,0 +1,30 @@
+AI Enablement Platform Test Document
+
+This is a test document for the AI Enablement Platform document processing pipeline.
+
+Section 1: Introduction
+The AI Enablement Platform provides comprehensive analysis and recommendations for AI implementation in enterprise environments. This document will be used to test the document upload, processing, and chunking functionality.
+
+Section 2: Key Features
+- Multi-source data ingestion
+- Intelligent document processing
+- Semantic chunking strategies
+- Vector storage and retrieval
+- Real-time processing capabilities
+
+Section 3: Technical Architecture
+The platform uses FastAPI for the web framework, SQLAlchemy for database operations, and CrewAI for intelligent agent workflows. Document processing includes format detection, content extraction, and configurable chunking strategies.
+
+Section 4: Testing Scenarios
+This document should be processed through the following stages:
+1. Discovery and validation
+2. Content extraction
+3. Semantic chunking
+4. Quality validation
+5. Vector indexing
+
+Section 5: Expected Results
+After processing, this document should be split into meaningful chunks that preserve context while enabling efficient retrieval for RAG operations.
+
+Conclusion
+This test document provides sufficient content to validate the document processing pipeline functionality.

@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "eliza.fullname" . }}-celery-beat
+  labels:
+    {{- include "eliza.labels" . | nindent 4 }}
+    app.kubernetes.io/component: celery-beat
+spec:
+  # Celery Beat MUST be a singleton. Never scale beyond 1.
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      {{- include "eliza.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: celery-beat
+  template:
+    metadata:
+      labels:
+        {{- include "eliza.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: celery-beat
+      {{- with .Values.celeryBeat.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- range . }}
+        - name: {{ . }}
+        {{- end }}
+      {{- end }}
+      containers:
+        - name: celery-beat
+          image: {{ include "eliza.backendImage" . }}
+          imagePullPolicy: {{ .Values.image.backend.pullPolicy }}
+          command:
+            - celery
+            - -A
+            - src.celery_app
+            - beat
+            - --loglevel=info
+            - --pidfile=/tmp/celerybeat.pid
+          envFrom:
+            - configMapRef:
+                name: {{ include "eliza.configMapName" . }}
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "eliza.secretName" . }}
+                  key: DB_PASSWORD
+            - name: DATABASE_URL
+              value: {{ include "eliza.databaseUrl" . | quote }}
+            - name: REDIS_URL
+              value: "redis://{{ include "eliza.redisHost" . }}:{{ include "eliza.redisPort" . }}"
+            - name: CELERY_BROKER_URL
+              value: "redis://{{ include "eliza.redisHost" . }}:{{ include "eliza.redisPort" . }}/0"
+            - name: CELERY_RESULT_BACKEND
+              value: "redis://{{ include "eliza.redisHost" . }}:{{ include "eliza.redisPort" . }}/1"
+          resources:
+            {{- toYaml .Values.celeryBeat.resources | nindent 12 }}
+      {{- with .Values.celeryBeat.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.celeryBeat.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.celeryBeat.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

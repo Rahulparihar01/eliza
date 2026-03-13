@@ -1,0 +1,38 @@
+{
+  "generated_from": "applets/*.yaml",
+  "applet_to_pages": {
+    "_base": [],
+    "adoption": [
+      "adoption"
+    ],
+    "ai_console": [
+      "evals",
+      "telemetry",
+      "gepa-optimizer",
+      "prompt-management",
+      "tiny-model-studio"
+    ],
+    "business_intelligence": [
+      "data-analyst"
+    ],
+    "content": [
+      "content-research",
+      "sow"
+    ],
+    "data_connections": [
+      "data-connections"
+    ],
+    "ops": [
+      "admin",
+      "storage-settings",
+      "coming-soon"
+    ],
+    "retrieval": [
+      "data-search"
+    ],
+    "talent": [
+      "talent-intelligence",
+      "reference-checks"
+    ]
+  }
+}

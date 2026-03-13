@@ -1,0 +1,139 @@
+{
+  "id": 1,
+  "customer_id": "eliza",
+  "company_name": "google",
+  "company_website": null,
+  "role_category": "engineering",
+  "time_window_months": 24,
+  "employee_count_analyzed": 53,
+  "workforce_dna": {
+    "skill_profile": {
+      "core_skills": [
+        "c++",
+        "python",
+        "java",
+        "c",
+        "javascript",
+        "sql",
+        "html"
+      ],
+      "skill_frequencies": {
+        "c": 0.45,
+        "c#": 0.23,
+        "c++": 0.53,
+        "css": 0.13,
+        "git": 0.17,
+        "php": 0.13,
+        "sql": 0.38,
+        "xml": 0.11,
+        "html": 0.3,
+        "java": 0.49,
+        "linux": 0.17,
+        "mysql": 0.21,
+        "github": 0.09,
+        "jquery": 0.09,
+        "matlab": 0.19,
+        "python": 0.51,
+        "react.js": 0.09,
+        "algorithms": 0.23,
+        "javascript": 0.4,
+        "programming": 0.23,
+        "microsoft word": 0.15,
+        "data structures": 0.13,
+        "microsoft excel": 0.15,
+        "computer science": 0.11,
+        "machine learning": 0.15,
+        "microsoft office": 0.23,
+        "amazon web services": 0.13,
+        "microsoft sql server": 0.11,
+        "software development": 0.19,
+        "cascading style sheets": 0.11
+      }
+    },
+    "education_profile": {
+      "phd_rate": 0.0,
+      "masters_rate": 0.0,
+      "bachelors_rate": 0.0,
+      "cs_degree_rate": 0.0
+    },
+    "common_backgrounds": {
+      "faang_alumni_rate": 1.45,
+      "common_previous_companies": [
+        ["google", 10],
+        ["amazon", 7],
+        ["goldman sachs", 3],
+        ["intel corporation", 3],
+        ["mcgill university", 3],
+        ["international community school", 3],
+        ["metis consulting group (certified b corporation®)", 2],
+        ["suny geneseo", 2],
+        ["thomson reuters", 2],
+        ["inmobi", 2]
+      ],
+      "consulting_background_rate": 0.19
+    },
+    "avg_experience_years": 5,
+    "experience_distribution": {
+      "0-2": 0.0,
+      "10+": 0.0,
+      "3-5": 0.0,
+      "6-10": 0.0
+    }
+  },
+  "culture_indicators": {
+    "pace": "fast",
+    "remote_friendly": false,
+    "skill_diversity": 355,
+    "technical_depth": "high",
+    "location_diversity": 1,
+    "avg_experience_years": 5
+  },
+  "success_patterns": {
+    "employee_count": 53,
+    "common_previous_roles": [],
+    "common_previous_companies": [
+      "google",
+      "amazon",
+      "goldman sachs",
+      "inmobi",
+      "intel corporation",
+      "citi",
+      "amazon web services (aws)",
+      "cisco",
+      "tesla",
+      "oracle",
+      "microsoft",
+      "tempow (acquired by google)",
+      "stripe",
+      "nexlabs",
+      "subtle medical"
+    ]
+  },
+  "hiring_preferences": null,
+  "pdl_query_modifiers": {
+    "boost_skills": [
+      "c++",
+      "python",
+      "java",
+      "c",
+      "javascript",
+      "sql",
+      "html"
+    ],
+    "boost_companies": [
+      "google",
+      "amazon",
+      "goldman sachs",
+      "inmobi",
+      "intel corporation",
+      "citi",
+      "amazon web services (aws)",
+      "cisco",
+      "tesla",
+      "oracle"
+    ],
+    "target_experience": [2, 8]
+  },
+  "is_active": true,
+  "is_default": false
+}

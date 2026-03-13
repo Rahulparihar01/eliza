@@ -1,0 +1,14 @@
+apiVersion: v2
+name: eliza-adoption
+description: ELIZA Accelerate Platform - Adoption Analytics applet
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - eliza
+  - adoption
+  - analytics
+  - chatgpt
+home: https://github.com/eliza-platform/eliza
+maintainers:
+  - name: Eliza Platform

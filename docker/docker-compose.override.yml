@@ -1,0 +1,52 @@
+# Development overrides - mounts source code for hot reload
+# Usage: docker-compose up (automatically picks up this file)
+# To skip: docker-compose -f docker-compose.yml up
+
+version: '3.8'
+
+services:
+  app:
+    # Mount source code for hot reload
+    volumes:
+      - ../src:/app/src:ro
+      - ../alembic:/app/alembic:ro
+      - ../config:/app/config:ro
+      - app_data:/app/data
+      - app_logs:/app/logs
+      - app_cache:/app/cache
+      - ../tests/resumes:/app/tests/resumes:ro
+      # FASB PDFs for citation preview
+      - ../data/eval:/app/eval:ro
+    # Use uvicorn with reload for development
+    command: uvicorn src.main:app --host 0.0.0.0 --port 5001 --reload --reload-dir /app/src
+    environment:
+      - ENVIRONMENT=development
+      - LOG_LEVEL=DEBUG
+
+  celery-worker:
+    # Mount source code for hot reload
+    volumes:
+      - ../src:/app/src:ro
+      - ../alembic:/app/alembic:ro
+      - ../config:/app/config:ro
+      - app_data:/app/data
+      - app_logs:/app/logs
+      - app_cache:/app/cache
+    # Note: Celery doesn't auto-reload, restart manually after code changes
+    # Or use watchdog: celery -A src.celery_app worker --loglevel=info -P solo
+
+  celery-beat:
+    # Mount source code so beat sees config/task changes in dev
+    volumes:
+      - ../src:/app/src:ro
+      - ../alembic:/app/alembic:ro
+      - ../config:/app/config:ro
+      - app_data:/app/data
+      - app_logs:/app/logs
+      - app_cache:/app/cache
+
+  frontend:
+    # For frontend hot reload, run locally instead:
+    # cd frontend && npm run dev
+    profiles:
+      - production  # Don't start frontend in dev mode - run locally
